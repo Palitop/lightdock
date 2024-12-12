@@ -28,6 +28,10 @@ Jorge Roel-Touris, Alexandre M.J.J. Bonvin, [Brian Jiménez-García](http://bjim
 Jorge Roel-Touris, [Brian Jiménez-García](https://bjimenezgarcia.com) & Alexandre M.J.J. Bonvin<br>
 *Nat Commun* **11**, 6210 (2020); doi: [https://doi.org/10.1038/s41467-020-20076-5](https://doi.org/10.1038/s41467-020-20076-5)
 
+**The LightDock Server: Artificial Intelligence-powered modeling of macromolecular interactions**<br>
+[Brian Jiménez-García](http://bjimenezgarcia.com), Jorge Roel-Touris, & Didier Barradas-Bautista
+*Nucleic Acids Research*, 2023;, gkad327, doi: [https://doi.org/10.1093/nar/gkad327](https://doi.org/10.1093/nar/gkad327)
+
 ## 3. Installation
 
 Lightdock software is compatible and it has been tested with the followings OS:

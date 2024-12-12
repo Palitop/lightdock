@@ -7,7 +7,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 dependencies = [
-    "scipy>=1.7.0",
+    "scipy>=1.7.0, <=1.13.1",
     "prody>=2.0.1",
     "freesasa>=2.0.3",
 ]

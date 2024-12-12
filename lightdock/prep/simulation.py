@@ -267,7 +267,7 @@ def prepare_results_environment(swarms=10):
         saving_path = "%s%d" % (DEFAULT_SWARM_FOLDER, id_swarm)
         if Path(saving_path).is_dir():
             raise LightDockError(f"Simulation folder {saving_path} already exists")
-        os.mkdir(saving_path)
+        os.makedirs(saving_path)
     log.info("Done.")
 
 

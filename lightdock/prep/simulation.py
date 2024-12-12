@@ -340,8 +340,13 @@ def parse_restraints_file(restraints_file_name):
                 try:
                     fields = restraint.split()
                     residue_identifier = fields[1].split(".")
-                    # Only consider first character if many
-                    chain_id = residue_identifier[0][0].upper()
+
+                    # Only consider first character if many, accept any character
+                    chain_id = residue_identifier[0]
+
+                    # Corner case for Chain ID in case it is a blank
+                    if chain_id == '':
+                        chain_id = ' '
                     # Only considering 3 chars if many
                     residue = residue_identifier[1][0:3].upper()
                     # Check for integer
@@ -355,6 +360,7 @@ def parse_restraints_file(restraints_file_name):
                     parsed_restraint = (
                         f"{chain_id}.{residue}.{residue_number}{residue_insertion}"
                     )
+
                     # Check type of restraint:
                     active = passive = blocked = False
                     try:

@@ -333,6 +333,17 @@ class SetupCommandLineParser(object):
             action="store_true",
             default=False,
         )
+        # Enable small ligand docking
+        parser.add_argument(
+            "-sl",
+            "--sl",
+            "-small_ligand",
+            "--small_ligand",
+            help="Enable small ligand docking",
+            dest="small_ligand",
+            action="store_true",
+            default=False,
+        )
         # Version
         parser.add_argument(
             "-V",

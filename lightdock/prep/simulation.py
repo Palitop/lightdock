@@ -175,7 +175,8 @@ def calculate_starting_positions(
     flip=False,
     swarms_at_fixed_distance=DEFAULT_SWARM_DISTANCE,
     swarms_per_restraint=DEFAULT_SWARMS_PER_RESTRAINT,
-    dense_sampling=False
+    dense_sampling=False,
+    small_ligand=False,
 ):
     """Defines the starting positions of each glowworm in the simulation.
 
@@ -185,6 +186,7 @@ def calculate_starting_positions(
     log.info(f"  * Surface density: TotalSASA/{surface_density:.2f}")
     log.info(f"  * Swarm radius: {swarm_radius:.2f} Å")
     log.info(f"  * 180° flip of 50% of starting poses: {flip}")
+    log.info(f"  * small_ligand: {small_ligand}")
     init_folder = DEFAULT_POSITIONS_FOLDER
     if not os.path.isdir(init_folder):
         os.mkdir(init_folder)
@@ -212,6 +214,7 @@ def calculate_starting_positions(
             swarms_at_fixed_distance,
             swarms_per_restraint,
             dense_sampling,
+            small_ligand,
         )
         log.info(f"Generated {len(starting_points_files)} positions files")
     else:

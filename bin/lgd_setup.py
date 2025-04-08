@@ -162,6 +162,7 @@ if __name__ == "__main__":
             args.fixed_distance,
             args.swarms_per_restraint,
             args.dense_sampling,
+            args.small_ligand,
         )
         if len(starting_points_files) != args.swarms:
             args.swarms = len(starting_points_files)

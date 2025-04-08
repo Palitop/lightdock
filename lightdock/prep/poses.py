@@ -464,7 +464,8 @@ def calculate_initial_poses(
     flip=False,
     swarms_at_fixed_distance=DEFAULT_SWARM_DISTANCE,
     swarms_per_restraint=DEFAULT_SWARMS_PER_RESTRAINT,
-    dense_sampling=False
+    dense_sampling=False,
+    small_ligand=False,
 ):
     """Calculates the starting points for each of the glowworms using the center of swarms"""
 
@@ -502,6 +503,7 @@ def calculate_initial_poses(
         swarms_at_fixed_distance=swarms_at_fixed_distance,
         swarms_per_restraint=swarms_per_restraint,
         dense_sampling=dense_sampling,
+        small_ligand=small_ligand,
     )
 
     # Filter swarms far from the restraints

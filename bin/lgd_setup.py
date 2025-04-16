@@ -42,6 +42,11 @@ if __name__ == "__main__":
         parser = SetupCommandLineParser()
         args = parser.args
 
+        if args.small_ligand and not args.rotatable_bonds_file:
+            raise LightDockError(
+                "Rotatable bonds file for small ligand not specified"
+            )
+
         # Read input structures
         receptor = read_input_structure(
             args.receptor_pdb, args.noxt, args.noh, args.now, args.verbose_parser

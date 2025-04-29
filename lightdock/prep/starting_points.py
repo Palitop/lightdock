@@ -110,8 +110,9 @@ def calculate_surface_points(
         # Fixed swarm distance to receptor's surface on user input
         surface_distance = swarms_at_fixed_distance
     else:
-        if ligand_max_diameter < DEFAULT_SWARM_RADIUS * 2 and not small_ligand:
-            log.warning(f"Ligand radius is below the cutoff, using default swarm radius {DEFAULT_SWARM_RADIUS} as surface distance")
+        if ligand_max_diameter < DEFAULT_SWARM_RADIUS * 2 :
+            if not small_ligand:
+                log.warning(f"Ligand radius is below the cutoff, using default swarm radius {DEFAULT_SWARM_RADIUS} as surface distance")
             surface_distance = DEFAULT_SWARM_RADIUS
         else:
             # We will use the ligand size to place the swarms over receptor's surface

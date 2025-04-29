@@ -177,6 +177,7 @@ def calculate_starting_positions(
     swarms_per_restraint=DEFAULT_SWARMS_PER_RESTRAINT,
     dense_sampling=False,
     small_ligand=False,
+    rotatable_bonds_file=None,
 ):
     """Defines the starting positions of each glowworm in the simulation.
 
@@ -215,6 +216,7 @@ def calculate_starting_positions(
             swarms_per_restraint,
             dense_sampling,
             small_ligand,
+            rotatable_bonds_file,
         )
         log.info(f"Generated {len(starting_points_files)} positions files")
     else:

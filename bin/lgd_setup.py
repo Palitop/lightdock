@@ -168,6 +168,7 @@ if __name__ == "__main__":
             args.swarms_per_restraint,
             args.dense_sampling,
             args.small_ligand,
+            args.rotatable_bonds_file,
         )
         if len(starting_points_files) != args.swarms:
             args.swarms = len(starting_points_files)

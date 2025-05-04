@@ -50,6 +50,7 @@ def set_gso(
     anm_rec=DEFAULT_NMODES_REC,
     anm_lig=DEFAULT_NMODES_LIG,
     local_minimization=False,
+    rotatable_bonds=None,
 ):
     """Creates a lightdock GSO simulation object"""
 
@@ -77,6 +78,7 @@ def set_gso(
         local_minimization,
         anm_rec,
         anm_lig,
+        rotatable_bonds,
     )
     return gso
 

@@ -121,6 +121,7 @@ class DockingLandscapePosition(LandscapePosition):
         step_nmodes=0,
         num_rec_nmodes=0,
         num_lig_nmodes=0,
+        rotatable_bonds=None,
     ):
         self.objective_function = scoring_function
         self.translation = np.array(coordinates[:3])
@@ -151,6 +152,7 @@ class DockingLandscapePosition(LandscapePosition):
         self.receptor_pose = self.receptor.coordinates[self.receptor_id].clone()
         self.ligand_pose = self.ligand.coordinates[self.ligand_id].clone()
         self.ligand_reference_points = self.ligand.reference_points.clone()
+        self.rotatable_bonds = rotatable_bonds
 
     def clone(self):
         """Creates a copy of this landscape position"""
@@ -177,6 +179,7 @@ class DockingLandscapePosition(LandscapePosition):
             self.step_nmodes,
             self.num_rec_nmodes,
             self.num_lig_nmodes,
+            self.rotatable_bonds,
         )
 
     def evaluate_objective_function(

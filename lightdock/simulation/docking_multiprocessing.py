@@ -49,10 +49,11 @@ def set_gso(
     anm_rec=DEFAULT_NMODES_REC,
     anm_lig=DEFAULT_NMODES_LIG,
     local_minimization=False,
+    rotatable_bonds=None,
 ):
     """Creates a lightdock GSO simulation object"""
 
-    bounding_box = get_default_box(use_anm, anm_rec, anm_lig)
+    bounding_box = get_default_box(use_anm, anm_rec, anm_lig, rotatable_bonds)
 
     random_number_generator = MTGenerator(seed)
     if configuration_file:
@@ -76,6 +77,7 @@ def set_gso(
         local_minimization,
         anm_rec,
         anm_lig,
+        rotatable_bonds,
     )
     return gso
 
@@ -146,6 +148,7 @@ def prepare_gso_tasks(parser, adapters, scoring_functions, starting_points_files
             parser.args.anm_rec,
             parser.args.anm_lig,
             parser.args.local_minimization,
+            parser.args.rotatable_bonds,
         )
         saving_path = "%s%d" % (DEFAULT_SWARM_FOLDER, id_swarm)
         task = GSOClusterTask(id_swarm, gso, parser.args.steps, saving_path)

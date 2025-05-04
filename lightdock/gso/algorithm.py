@@ -188,6 +188,7 @@ class LightdockGSOBuilder(object):
         local_minimization,
         anm_rec,
         anm_lig,
+        rotatable_bonds,
     ):
         """Creates a new GSO instance of the algorithm reading the initial position of the glowworms
         agents from initial_population_file and using the scoring function adapter.
@@ -205,6 +206,7 @@ class LightdockGSOBuilder(object):
             step_nmodes,
             anm_rec,
             anm_lig,
+            rotatable_bonds,
         )
         return GSO(
             self._initializer.generate_glowworms(),

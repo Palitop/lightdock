@@ -322,7 +322,7 @@ def create_simulation_info_file(args, path=".", file_name=DEFAULT_LIGHTDOCK_INFO
     return output_file_name
 
 
-def get_default_box(use_anm, anm_rec, anm_lig):
+def get_default_box(use_anm, anm_rec, anm_lig, rotatable_bonds):
     """Get the default bounding box"""
     boundaries = [
         Boundary(-MAX_TRANSLATION, MAX_TRANSLATION),
@@ -336,6 +336,9 @@ def get_default_box(use_anm, anm_rec, anm_lig):
     if use_anm:
         boundaries.extend(Boundary(MIN_EXTENT, MAX_EXTENT) for _ in range(anm_rec))
         boundaries.extend(Boundary(MIN_EXTENT, MAX_EXTENT) for _ in range(anm_lig))
+
+    if rotatable_bonds:
+        boundaries.extend(Boundary(MIN_EXTENT, MAX_EXTENT) for _ in range(len(rotatable_bonds)))
 
     return BoundingBox(boundaries)
 

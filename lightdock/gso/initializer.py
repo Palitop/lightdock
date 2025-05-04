@@ -132,6 +132,7 @@ class LightdockFromFileInitializer(Initializer):
         step_nmodes,
         anm_rec,
         anm_lig,
+        rotatable_bonds
     ):
         super(LightdockFromFileInitializer, self).__init__(
             scoring_functions, number_of_glowworms, gso_parameters
@@ -146,6 +147,7 @@ class LightdockFromFileInitializer(Initializer):
         self.random_number_generator = MTGenerator(random_number_generator.seed)
         self.anm_rec = anm_rec
         self.anm_lig = anm_lig
+        self.rotatable_bonds = rotatable_bonds
 
     def generate_landscape_positions(self):
         """Generates a list of landscape positions that have been read
@@ -188,6 +190,7 @@ class LightdockFromFileInitializer(Initializer):
                         self.step_nmodes,
                         self.anm_rec,
                         self.anm_lig,
+                        self.rotatable_bonds,
                     )
                 )
         return positions

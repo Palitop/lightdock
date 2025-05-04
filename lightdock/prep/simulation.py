@@ -177,7 +177,7 @@ def calculate_starting_positions(
     swarms_per_restraint=DEFAULT_SWARMS_PER_RESTRAINT,
     dense_sampling=False,
     small_ligand=False,
-    rotatable_bonds_file=None,
+    rotatable_bonds=None,
 ):
     """Defines the starting positions of each glowworm in the simulation.
 
@@ -216,7 +216,7 @@ def calculate_starting_positions(
             swarms_per_restraint,
             dense_sampling,
             small_ligand,
-            rotatable_bonds_file,
+            rotatable_bonds,
         )
         log.info(f"Generated {len(starting_points_files)} positions files")
     else:
@@ -412,6 +412,17 @@ def parse_restraints_file(restraints_file_name):
                     log.warning(f"Ignoring malformed restraint {restraint}")
 
         return restraints
+
+
+def parse_rotatable_bonds_file(rotatable_bonds_file):
+    """Parse a rotatable bonds file in JSON format, returns a dictionary of atom pairs"""
+    with open(rotatable_bonds_file) as rbf:
+        log.info(f"Reading {rotatable_bonds_file}")
+        try:
+            rotatable_bonds = json.load(rbf)
+            return rotatable_bonds
+        except (TypeError, json.JSONDecodeError):
+            raise LightDockError(f"Wrong JSON file {rotatable_bonds_file}")
 
 
 def get_restraints(structure, restraints):

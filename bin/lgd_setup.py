@@ -20,6 +20,7 @@ from lightdock.prep.simulation import (
     calculate_anm,
     parse_restraints_file,
     get_restraints,
+    parse_rotatable_bonds_file,
 )
 from lightdock.constants import (
     DEFAULT_LIGHTDOCK_PREFIX,
@@ -41,11 +42,6 @@ if __name__ == "__main__":
     try:
         parser = SetupCommandLineParser()
         args = parser.args
-
-        if args.small_ligand and not args.rotatable_bonds_file:
-            raise LightDockError(
-                "Rotatable bonds file for small ligand not specified"
-            )
 
         # Read input structures
         receptor = read_input_structure(
@@ -90,6 +86,23 @@ if __name__ == "__main__":
         # Save to file parsed structures
         save_lightdock_structure(receptor)
         save_lightdock_structure(ligand)
+
+        # Parse small ligand information if provided
+        if args.small_ligand:
+            if not args.rotatable_bonds_file:
+                raise LightDockError(
+                    "Rotatable bonds file for small ligand not specified"
+                )
+            else:
+                log.info("Reading small ligand rotatable information...")
+                rotatable_bonds = parse_rotatable_bonds_file(args.rotatable_bonds_file)
+                args.rotatable_bonds = rotatable_bonds
+                log.info(f"{len(rotatable_bonds)} rotatable bonds found")
+                log.info("Done.")
+
+        # Complain if ANM is enabled for ligand and small_ligand is also required
+        if args.use_anm and args.small_ligand and args.anm_lig > 0:
+            raise LightDockError("Small ligand docking does not support ANM for ligand molecule")
 
         # Calculate and save ANM if required
         if args.use_anm:
@@ -168,7 +181,7 @@ if __name__ == "__main__":
             args.swarms_per_restraint,
             args.dense_sampling,
             args.small_ligand,
-            args.rotatable_bonds_file,
+            args.rotatable_bonds,
         )
         if len(starting_points_files) != args.swarms:
             args.swarms = len(starting_points_files)

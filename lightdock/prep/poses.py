@@ -470,7 +470,7 @@ def calculate_initial_poses(
     swarms_per_restraint=DEFAULT_SWARMS_PER_RESTRAINT,
     dense_sampling=False,
     small_ligand=False,
-    rotatable_bonds_file=None,
+    rotatable_bonds=None,
 ):
     """Calculates the starting points for each of the glowworms using the center of swarms"""
 
@@ -534,12 +534,7 @@ def calculate_initial_poses(
     pdb_file_name = os.path.join(dest_folder, SWARM_CENTERS_FILE)
     create_pdb_from_points(pdb_file_name, swarm_centers)
 
-    num_rotatable_bonds = 0
-    if small_ligand:
-        with open(rotatable_bonds_file) as rbf:
-            log.info(f"Reading {rotatable_bonds_file}")
-            rotatable_bonds = json.load(rbf)
-            num_rotatable_bonds = len(rotatable_bonds)
+    num_rotatable_bonds = len(rotatable_bonds)
 
     positions_files = []
 

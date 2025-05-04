@@ -208,7 +208,7 @@ def run_simulation(parser):
                 ligand.n_modes = None
 
         starting_points_files = load_starting_positions(
-            args.swarms, args.glowworms, args.use_anm, args.anm_rec, args.anm_lig
+            args.swarms, args.glowworms, args.use_anm, args.anm_rec, args.anm_lig, args.rotatable_bonds
         )
 
         scoring_functions, adapters = set_scoring_function(parser, receptor, ligand)

@@ -139,12 +139,17 @@ def calculate_anm(structure, num_nmodes, rmsd, seed, file_name):
     log.info(f"{num_nmodes} normal modes calculated")
 
 
-def check_starting_file(file_name, glowworms, use_anm, anm_rec, anm_lig):
+def check_starting_file(file_name, glowworms, use_anm, anm_rec, anm_lig, rotatable_bonds):
     """Check if the file_name file contains the required starting coordinates"""
     with open(file_name) as input_file:
         lines = [line.rstrip(os.linesep) for line in input_file.readlines()]
         num_glowworms = 0
-        expected_size = 7 + anm_rec + anm_lig if use_anm else 7
+
+        if not rotatable_bonds:
+            expected_size = 7 + anm_rec + anm_lig if use_anm else 7
+        else:
+            expected_size = 7 + anm_rec + len(rotatable_bonds) if use_anm else 7 + len(rotatable_bonds)
+
         for line in lines:
             fields = line.split()
             if len(fields) != expected_size:
@@ -232,7 +237,7 @@ def calculate_starting_positions(
         starting_points_files = glob.glob(pattern)
         for starting_point_file in starting_points_files:
             if not check_starting_file(
-                starting_point_file, glowworms, use_anm, anm_rec, anm_lig
+                starting_point_file, glowworms, use_anm, anm_rec, anm_lig, rotatable_bonds
             ):
                 raise LightDockError(
                     f"Error reading starting coordinates from file {starting_point_file}"
@@ -242,7 +247,12 @@ def calculate_starting_positions(
 
 
 def load_starting_positions(
-    swarms, glowworms, use_anm, anm_rec=DEFAULT_NMODES_REC, anm_lig=DEFAULT_NMODES_LIG
+    swarms,
+    glowworms,
+    use_anm,
+    anm_rec=DEFAULT_NMODES_REC,
+    anm_lig=DEFAULT_NMODES_LIG,
+    rotatable_bonds=None
 ):
     """Gets the list of starting positions of this simulation"""
     pattern = str(
@@ -257,7 +267,7 @@ def load_starting_positions(
         starting_point_file = Path(DEFAULT_POSITIONS_FOLDER) / f"{DEFAULT_STARTING_PREFIX}_{swarm_id}.dat"
 
         if not check_starting_file(
-            starting_point_file, glowworms, use_anm, anm_rec, anm_lig
+            starting_point_file, glowworms, use_anm, anm_rec, anm_lig, rotatable_bonds
         ):
             raise LightDockError(
                 f"Error reading starting coordinates from file {starting_point_file}"

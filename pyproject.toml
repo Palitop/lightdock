@@ -14,7 +14,12 @@ dependencies = [
 
 authors = [
     {name = "Brian Jimenez", email = "br.jimenezgarcia@gmail.com"},
+    {name = "Miquel Vidal"},
+    {name = "Regen Tsai"},
+    {name = "Jorge Roel"},
+    {name = "Miguel Diaz", email = "migueldm@uoc.edu"},
 ]
+
 maintainers = [
     {name = "Brian Jimenez", email = "br.jimenezgarcia@gmail.com"},
 ]

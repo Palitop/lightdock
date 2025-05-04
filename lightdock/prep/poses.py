@@ -4,6 +4,8 @@ import os
 import random
 import operator
 import numpy as np
+import json
+import math
 from lightdock.pdbutil.PDBIO import create_pdb_from_points
 from lightdock.prep.starting_points import calculate_surface_points
 from lightdock.mathutil.lrandom import MTGenerator, NormalGenerator
@@ -153,6 +155,7 @@ def populate_poses(
     ligand_restraints=None,
     ligand_diameter=1.0,
     flip=False,
+    num_rotatable_bonds=0,
 ):
     """Creates new poses around a given center and a given radius"""
     new_poses = []
@@ -262,6 +265,8 @@ def populate_poses(
                 op_vector.extend([rng_nm() for _ in range(rec_nm)])
             if lig_nm > 0:
                 op_vector.extend([rng_nm() for _ in range(lig_nm)])
+
+        op_vector.extend([number_generator(0.0, 2.0 * math.pi) for _ in range(num_rotatable_bonds)])
 
         new_poses.append(op_vector)
 
@@ -464,7 +469,9 @@ def calculate_initial_poses(
     flip=False,
     swarms_at_fixed_distance=DEFAULT_SWARM_DISTANCE,
     swarms_per_restraint=DEFAULT_SWARMS_PER_RESTRAINT,
-    dense_sampling=False
+    dense_sampling=False,
+    small_ligand=False,
+    rotatable_bonds_file=None,
 ):
     """Calculates the starting points for each of the glowworms using the center of swarms"""
 
@@ -502,6 +509,7 @@ def calculate_initial_poses(
         swarms_at_fixed_distance=swarms_at_fixed_distance,
         swarms_per_restraint=swarms_per_restraint,
         dense_sampling=dense_sampling,
+        small_ligand=small_ligand,
     )
 
     # Filter swarms far from the restraints
@@ -527,6 +535,13 @@ def calculate_initial_poses(
     pdb_file_name = os.path.join(dest_folder, SWARM_CENTERS_FILE)
     create_pdb_from_points(pdb_file_name, swarm_centers)
 
+    num_rotatable_bonds = 0
+    if small_ligand:
+        with open(rotatable_bonds_file) as rbf:
+            log.info(f"Reading {rotatable_bonds_file}")
+            rotatable_bonds = json.load(rbf)
+            num_rotatable_bonds = len(rotatable_bonds)
+
     positions_files = []
 
     for swarm_id, swarm_center in enumerate(swarm_centers):
@@ -544,6 +559,7 @@ def calculate_initial_poses(
             ligand_restraints,
             ligand_diameter,
             flip,
+            num_rotatable_bonds,
         )
         if writing_starting_positions:
             # Save poses as pdb file

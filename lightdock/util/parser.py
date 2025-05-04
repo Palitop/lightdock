@@ -333,6 +333,27 @@ class SetupCommandLineParser(object):
             action="store_true",
             default=False,
         )
+        # Enable small ligand docking
+        parser.add_argument(
+            "-sl",
+            "--sl",
+            "-small_ligand",
+            "--small_ligand",
+            help="Enable small ligand docking",
+            dest="small_ligand",
+            action="store_true",
+            default=False,
+        )
+        # Rotatable bonds file for small ligand
+        parser.add_argument(
+            "-rb",
+            "--rb",
+            "-rotatable_bonds",
+            "--rotatable_bonds",
+            help="Rotatable bonds file for small ligand",
+            type=valid_file,
+            dest="rotatable_bonds_file",
+        )
         # Version
         parser.add_argument(
             "-V",

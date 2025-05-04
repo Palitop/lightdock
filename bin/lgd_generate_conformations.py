@@ -278,6 +278,9 @@ if __name__ == "__main__":
                 )
                 raise SystemExit
 
+        # Deal with rotatable bonds if small ligand is used
+        # TODO
+
         # We rotate first, ligand it's at initial position
         ligand_pose.rotate(rotations[i])
         ligand_pose.translate(translations[i])

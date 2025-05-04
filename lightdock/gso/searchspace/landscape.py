@@ -213,6 +213,9 @@ class DockingLandscapePosition(LandscapePosition):
                     self.ligand.n_modes[i] * self.lig_extent[i]
                 )
 
+        # Deal with rotatable bonds if small ligand is used
+        # TODO
+
         # We rotate first, ligand it's at initial position
         self.ligand_pose.rotate(self.rotation)
         self.ligand_reference_points.rotate(self.rotation)

@@ -5,7 +5,6 @@ import random
 import operator
 import numpy as np
 import json
-import math
 from lightdock.pdbutil.PDBIO import create_pdb_from_points
 from lightdock.prep.starting_points import calculate_surface_points
 from lightdock.mathutil.lrandom import MTGenerator, NormalGenerator
@@ -266,7 +265,7 @@ def populate_poses(
             if lig_nm > 0:
                 op_vector.extend([rng_nm() for _ in range(lig_nm)])
 
-        op_vector.extend([number_generator(0.0, 2.0 * math.pi) for _ in range(num_rotatable_bonds)])
+        op_vector.extend([number_generator(0.0, 2.0 * np.pi) for _ in range(num_rotatable_bonds)])
 
         new_poses.append(op_vector)
 

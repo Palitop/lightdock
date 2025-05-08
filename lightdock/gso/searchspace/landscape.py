@@ -137,6 +137,8 @@ class DockingLandscapePosition(LandscapePosition):
         self.step_nmodes = step_nmodes
         self.num_rec_nmodes = num_rec_nmodes
         self.num_lig_nmodes = num_lig_nmodes
+        if rotatable_bonds:
+            self.rotatable_bonds_angles = coordinates[7:]
         # Copy ANM information if required
         self.rec_extent = (
             np.array(coordinates[7 : 7 + self.num_rec_nmodes])
@@ -165,6 +167,8 @@ class DockingLandscapePosition(LandscapePosition):
             self.rotation.y,
             self.rotation.z,
         ]
+        if self.rotatable_bonds:
+            coordinates.extend(self.rotatable_bonds_angles)
         coordinates.extend(self.rec_extent)
         coordinates.extend(self.lig_extent)
         return DockingLandscapePosition(
@@ -214,7 +218,13 @@ class DockingLandscapePosition(LandscapePosition):
                 )
 
         # Deal with rotatable bonds if small ligand is used
-        # TODO
+        if self.rotatable_bonds:
+            for idx, rotatable_bond in enumerate(self.rotatable_bonds):
+                self.ligand_pose.rotate_over(
+                    np.array(rotatable_bond["bond"]) - 1,
+                    np.array(rotatable_bond["atoms_to_rotate"]) - 1,
+                    self.rotatable_bonds_angles[idx]
+                )
 
         # We rotate first, ligand it's at initial position
         self.ligand_pose.rotate(self.rotation)
@@ -359,6 +369,8 @@ class DockingLandscapePosition(LandscapePosition):
             self.rotation.y,
             self.rotation.z,
         ]
+        if self.rotatable_bonds:
+            optimization_vector.extend(self.rotatable_bonds_angles)
         optimization_vector.extend(self.rec_extent)
         optimization_vector.extend(self.lig_extent)
         return "(%s) %4d %4d" % (

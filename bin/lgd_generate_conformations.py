@@ -17,7 +17,7 @@ from lightdock.pdbutil.PDBIO import parse_complex_from_file, write_pdb_to_file
 from lightdock.structure.complex import Complex
 from lightdock.mathutil.cython.quaternion import Quaternion
 from lightdock.structure.nm import read_nmodes
-from lightdock.prep.simulation import get_setup_from_file
+from lightdock.prep.simulation import get_setup_from_file, parse_rotatable_bonds_file
 from lightdock.util.parser import (
     valid_file,
     valid_integer_number,
@@ -28,13 +28,14 @@ from lightdock.util.parser import (
 log = LoggingManager.get_logger("lgd_generate_conformations")
 
 
-def parse_output_file(lightdock_output, num_anm_rec, num_anm_lig):
+def parse_output_file(lightdock_output, num_anm_rec, num_anm_lig, small_ligand):
     translations = []
     rotations = []
     receptor_ids = []
     ligand_ids = []
     rec_extents = []
     lig_extents = []
+    rotatable_bonds_angles = []
 
     data_file = open(lightdock_output)
     lines = data_file.readlines()
@@ -53,26 +54,30 @@ def parse_output_file(lightdock_output, num_anm_rec, num_anm_lig):
                 )
             )
             if len(coord) > 7:
-                rec_extents.append(
-                    np.array([float(x) for x in coord[7 : 7 + num_anm_rec]])
-                )
-                lig_extents.append(np.array([float(x) for x in coord[-num_anm_lig:]]))
+                if small_ligand:
+                    rotatable_bonds_angles.extend([float(x) for x in coord[7:]])
+                else:
+                    rec_extents.append(
+                        np.array([float(x) for x in coord[7 : 7 + num_anm_rec]])
+                    )
+                    lig_extents.append(np.array([float(x) for x in coord[-num_anm_lig:]]))
             raw_data = line[last + 1 :].split()
             receptor_id = int(raw_data[0])
             ligand_id = int(raw_data[1])
             receptor_ids.append(receptor_id)
             ligand_ids.append(ligand_id)
     log.info("Read %s coordinate lines" % counter)
-    return translations, rotations, receptor_ids, ligand_ids, rec_extents, lig_extents
+    return translations, rotations, receptor_ids, ligand_ids, rec_extents, lig_extents, rotatable_bonds_angles
 
 
-def parse_initial_file(lightdock_output, num_anm_rec, num_anm_lig):
+def parse_initial_file(lightdock_output, num_anm_rec, num_anm_lig, small_ligand):
     translations = []
     rotations = []
     receptor_ids = []
     ligand_ids = []
     rec_extents = []
     lig_extents = []
+    rotatable_bonds_angles = []
 
     data_file = open(lightdock_output)
     lines = data_file.readlines()
@@ -91,16 +96,19 @@ def parse_initial_file(lightdock_output, num_anm_rec, num_anm_lig):
                 )
             )
             if len(coord) > 7:
-                rec_extents.append(
-                    np.array([float(x) for x in coord[7 : 7 + num_anm_rec]])
-                )
-                lig_extents.append(np.array([float(x) for x in coord[-num_anm_lig:]]))
+                if small_ligand:
+                    rotatable_bonds_angles.extend([foat(x) for x in coord[7:]])
+                else:
+                    rec_extents.append(
+                        np.array([float(x) for x in coord[7 : 7 + num_anm_rec]])
+                    )
+                    lig_extents.append(np.array([float(x) for x in coord[-num_anm_lig:]]))
 
             receptor_ids.append(0)
             ligand_ids.append(0)
 
     log.info("Read %s coordinate lines" % counter)
-    return translations, rotations, receptor_ids, ligand_ids, rec_extents, lig_extents
+    return translations, rotations, receptor_ids, ligand_ids, rec_extents, lig_extents, rotatable_bonds_angles
 
 
 if __name__ == "__main__":
@@ -141,6 +149,27 @@ if __name__ == "__main__":
         metavar="setup_file",
         type=valid_file,
         default=None,
+    )
+    # Wether the ligand is a small ligand
+    parser.add_argument(
+        "-sl",
+        "--sl",
+        "-small_ligand",
+        "--small_ligand",
+        help="Enable small ligand docking",
+        dest="small_ligand",
+        action="store_true",
+        default=False,
+    )
+    # Rotatable bonds file for small ligand
+    parser.add_argument(
+        "-rb",
+        "--rb",
+        "-rotatable_bonds",
+        "--rotatable_bonds",
+        help="Rotatable bonds file for small ligand",
+        type=valid_file,
+        dest="rotatable_bonds_file",
     )
 
     args = parser.parse_args()
@@ -186,6 +215,13 @@ if __name__ == "__main__":
         log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
     ligand = Complex.from_structures(structures)
 
+    if args.small_ligand:
+        try:
+            rotatable_bonds = parse_rotatable_bonds_file(args.rotatable_bonds_file)
+        except Exception as e:
+            log.error("Problem found parsing rotatable bonds file:", e)
+            raise SystemExit
+
     # Output file
     output_file_path = Path(args.lightdock_output)
     if output_file_path.suffix == ".dat":
@@ -196,7 +232,8 @@ if __name__ == "__main__":
             ligand_ids,
             rec_extents,
             lig_extents,
-        ) = parse_initial_file(args.lightdock_output, num_anm_rec, num_anm_lig)
+            rotatable_bonds_angles,
+        ) = parse_initial_file(args.lightdock_output, num_anm_rec, num_anm_lig, args.small_ligand)
     else:
         (
             translations,
@@ -205,7 +242,8 @@ if __name__ == "__main__":
             ligand_ids,
             rec_extents,
             lig_extents,
-        ) = parse_output_file(args.lightdock_output, num_anm_rec, num_anm_lig)
+            rotatable_bonds_angles,
+        ) = parse_output_file(args.lightdock_output, num_anm_rec, num_anm_lig, args.small_ligand)
 
     found_conformations = len(translations)
     num_conformations = args.glowworms
@@ -279,7 +317,13 @@ if __name__ == "__main__":
                 raise SystemExit
 
         # Deal with rotatable bonds if small ligand is used
-        # TODO
+        if args.small_ligand:
+            for idx, rotatable_bond in enumerate(rotatable_bonds):
+                ligand_pose.rotate_over(
+                    np.array(rotatable_bond["bond"]) - 1,
+                    np.array(rotatable_bond["atoms_to_rotate"]) - 1,
+                    rotatable_bonds_angles[idx]
+                )
 
         # We rotate first, ligand it's at initial position
         ligand_pose.rotate(rotations[i])

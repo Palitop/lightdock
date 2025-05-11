@@ -25,8 +25,8 @@ def parse_command_line():
 if __name__ == "__main__":
     args = parse_command_line()
 
-    atoms, residues, chains = parse_complex_from_file(args.pdb)
-    structure = Complex(chains, atoms, structure_file_name=args.pdb)
+    atoms, residues, chains, bonds = parse_complex_from_file(args.pdb)
+    structure = Complex(chains, atoms, bonds=bonds, structure_file_name=args.pdb)
     distances_matrix = spatial.distance.squareform(
         spatial.distance.pdist(structure.representative())
     )

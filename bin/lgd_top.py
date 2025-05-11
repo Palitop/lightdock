@@ -86,13 +86,14 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.receptor_structures):
         log.info("Reading %s receptor PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        atoms, residues, chains, bonds = parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
                 "residues": residues,
                 "chains": chains,
                 "file_name": structure,
+                "bonds": bonds,
             }
         )
         log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
@@ -102,13 +103,14 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.ligand_structures):
         log.info("Reading %s ligand PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        atoms, residues, chains, bonds = parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
                 "residues": residues,
                 "chains": chains,
                 "file_name": structure,
+                "bonds": bonds,
             }
         )
         log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))

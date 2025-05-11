@@ -37,12 +37,12 @@ class TestStartingPoints:
     def test_calculate_starting_points(self, tmp_path):
         # Receptor
         file_name = self.golden_data_path / "1PPE_rec.pdb"
-        atoms, _, chains = parse_complex_from_file(file_name)
+        atoms, _, chains, _ = parse_complex_from_file(file_name)
         receptor = Complex(chains, atoms, structure_file_name=file_name)
 
         # Ligand
         file_name = self.golden_data_path / "1PPE_lig.pdb"
-        atoms, _, chains = parse_complex_from_file(file_name)
+        atoms, _, chains, _ = parse_complex_from_file(file_name)
         ligand = Complex(chains, atoms, structure_file_name=file_name)
 
         starting_points, rec_diameter, lig_diameter = calculate_surface_points(

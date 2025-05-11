@@ -95,14 +95,14 @@ if __name__ == "__main__":
 
     # Read receptor
     log.info("Reading %s receptor PDB file..." % args.receptor_pdb)
-    atoms, residues, chains = parse_complex_from_file(args.receptor_pdb)
-    receptor = Complex(chains, atoms)
+    atoms, residues, chains, bonds  = parse_complex_from_file(args.receptor_pdb)
+    receptor = Complex(chains, atoms, bonds=bonds)
     log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
 
     # Read ligand
     log.info("Reading %s ligand PDB file..." % args.ligand_pdb)
-    atoms, residues, chains = parse_complex_from_file(args.ligand_pdb)
-    ligand = Complex(chains, atoms)
+    atoms, residues, chains, bonds  = parse_complex_from_file(args.ligand_pdb)
+    ligand = Complex(chains, atoms, bonds=bonds)
     log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
 
     try:

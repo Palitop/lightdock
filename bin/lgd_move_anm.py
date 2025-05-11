@@ -71,13 +71,14 @@ if __name__ == "__main__":
     molecule_anm.calcModes(n_modes=args.n_modes)
     log.info("ANM calculated")
 
-    atoms, residues, chains = parse_complex_from_file(args.pdb_file)
+    atoms, residues, chains, bonds = parse_complex_from_file(args.pdb_file)
     lightdock_structures = [
         {
             "atoms": atoms,
             "residues": residues,
             "chains": chains,
             "file_name": args.pdb_file,
+            "bonds": bonds,
         }
     ]
     lightdock_structure = Complex.from_structures(lightdock_structures)

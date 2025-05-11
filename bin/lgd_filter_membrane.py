@@ -51,8 +51,8 @@ def get_restraints(restraints_file):
 
 
 def calculate_membrane_height(parsed_receptor_file, restraints):
-    atoms, residues, chains = parse_complex_from_file(parsed_receptor_file)
-    receptor = Complex(chains, atoms)
+    atoms, residues, chains, bonds = parse_complex_from_file(parsed_receptor_file)
+    receptor = Complex(chains, atoms, bonds=bonds)
     z_coord = []
     for restraint in restraints:
         chain_id, residue_name, residue_number = restraint.split(".")

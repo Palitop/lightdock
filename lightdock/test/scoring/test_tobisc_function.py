@@ -30,11 +30,11 @@ class TestTOBISC:
         self.tobisc = TOBISC()
 
     def test_calculate_TOBISC_1PPE(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -49,11 +49,11 @@ class TestTOBISC:
         )
 
     def test_calculate_TOBISC_1EAW(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1EAWrec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1EAWlig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -68,11 +68,11 @@ class TestTOBISC:
         )
 
     def test_calculate_TOBISC_1AY7(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7rec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7lig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -87,11 +87,11 @@ class TestTOBISC:
         )
 
     def test_calculate_TOBISC_1CZY(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1czy_protein.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1czy_peptide.pdb"
         )
         ligand = Complex(chains, atoms)

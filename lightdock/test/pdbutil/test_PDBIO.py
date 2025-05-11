@@ -60,22 +60,24 @@ class TestPDBReader:
         assert atom.__class__.__name__ == "Atom"
 
     def test_parse_complex_from_file(self):
-        atoms, residues, chains = parse_complex_from_file(
+        atoms, residues, chains, bonds = parse_complex_from_file(
             self.golden_data_path / "1PPE_l_u.pdb"
         )
         assert len(atoms) == 224
         assert len(residues) == 31
         assert len(chains) == 2
+        assert len(bonds) == 0
         assert len(chains[0].residues) == 29
         assert len(chains[1].residues) == 2
 
     def test_parse_multi_model_from_file(self):
-        atoms, residues, chains = parse_complex_from_file(
+        atoms, residues, chains, bonds = parse_complex_from_file(
             self.golden_data_path / "multi_model.pdb"
         )
         assert len(atoms) == 11
         assert len(residues) == 1
         assert len(chains) == 1
+        assert len(bonds) == 0
 
     def test_write_pdb_to_file(self, tmp_path):
         atoms, _, chains = parse_complex_from_file(
@@ -95,7 +97,7 @@ class TestPDBReader:
 
     def test_parse_pdb_noh(self, tmp_path):
         atoms_to_ignore = ["H"]
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPE_lig_with_H.pdb", atoms_to_ignore
         )
         protein = Complex(chains)

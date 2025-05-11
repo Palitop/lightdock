@@ -15,11 +15,11 @@ class TestDFIRE2:
 
     def test_calculate_DFIRE2_1PPE(self):
         dfire2 = DFIRE2()
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -35,7 +35,7 @@ class TestDFIRE2:
 
     def test_calculate_DFIRE2_1EAW(self):
         dfire2 = DFIRE2()
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1EAWrec.pdb"
         )
         receptor = Complex(chains, atoms)
@@ -55,11 +55,11 @@ class TestDFIRE2:
 
     def test_calculate_DFIRE2_1AY7(self):
         dfire2 = DFIRE2()
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7rec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7lig.pdb"
         )
         ligand = Complex(chains, atoms)

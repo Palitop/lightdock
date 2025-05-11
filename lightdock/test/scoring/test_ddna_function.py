@@ -14,13 +14,13 @@ class TestDDNA:
         self.dna = DDNA()
 
     def test_calculate_DNA_1AZP(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1azp_prot.pdb"
         )
         receptor = Complex(
             chains, atoms, structure_file_name=(self.golden_data_path / "1azp_prot.pdb")
         )
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1azp_dna.pdb"
         )
         ligand = Complex(

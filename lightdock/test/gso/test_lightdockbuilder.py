@@ -35,11 +35,11 @@ class TestLightDockGSOBuilder:
     def test_LightDockGSOBuilder_using_FromFileInitializer(self, tmp_path):
         builder = LightdockGSOBuilder()
         number_of_glowworms = 5
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)

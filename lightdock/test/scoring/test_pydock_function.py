@@ -14,7 +14,7 @@ class TestPyDock:
         self.pydock = CPyDock()
 
     def test_calculate_PyDock_1AY7(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7_rec.pdb"
         )
         receptor = Complex(
@@ -22,7 +22,7 @@ class TestPyDock:
             atoms,
             structure_file_name=(self.golden_data_path / "1AY7_rec.pdb"),
         )
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7_lig.pdb"
         )
         ligand = Complex(

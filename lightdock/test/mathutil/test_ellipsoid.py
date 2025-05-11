@@ -16,7 +16,7 @@ class TestEllipsoid:
         self.golden_data_path = self.path / "golden_data"
 
     def test_calculate_min_volume_ellipsoid(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPE_l_u.pdb"
         )
         protein = Complex(chains, atoms)

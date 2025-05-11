@@ -17,7 +17,7 @@ class TestNM:
 
     def test_calculate_anm_protein_1(self):
         pdb_file = self.golden_data_path / "nm_prot" / "2UUY_lig.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        _, _, chains, _ = parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
@@ -36,7 +36,7 @@ class TestNM:
 
     def test_calculate_anm_protein_2(self):
         pdb_file = self.golden_data_path / "nm_prot" / "2UUY_rec.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        _, _, chains, _ = parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
@@ -55,7 +55,7 @@ class TestNM:
 
     def test_calculate_anm_dna(self):
         pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        _, _, chains, _ = parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
@@ -74,7 +74,7 @@ class TestNM:
 
     def test_calculate_anm_wrong_extension(self):
         pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb.H"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        _, _, chains, _ = parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         # PATCH: assert_raises is not working properly with ProDy debug mode
@@ -89,7 +89,7 @@ class TestNM:
 
     def test_read_write(self, tmp_path):
         pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        _, _, chains, _ = parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(

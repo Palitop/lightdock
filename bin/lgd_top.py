@@ -22,7 +22,7 @@ from lightdock.util.parser import (
     valid_integer_number,
     get_lightdock_structures,
 )
-from lightdock.prep.simulation import get_setup_from_file
+from lightdock.prep.simulation import get_setup_from_file, parse_rotatable_bonds_file
 
 
 log = LoggingManager.get_logger("lgd_top")
@@ -70,6 +70,27 @@ if __name__ == "__main__":
         type=valid_file,
         default=None,
     )
+    # Wether the ligand is a small ligand
+    parser.add_argument(
+        "-sl",
+        "--sl",
+        "-small_ligand",
+        "--small_ligand",
+        help="Enable small ligand docking",
+        dest="small_ligand",
+        action="store_true",
+        default=False,
+    )
+    # Rotatable bonds file for small ligand
+    parser.add_argument(
+        "-rb",
+        "--rb",
+        "-rotatable_bonds",
+        "--rotatable_bonds",
+        help="Rotatable bonds file for small ligand",
+        type=valid_file,
+        dest="rotatable_bonds_file",
+    )
 
     args = parser.parse_args()
 
@@ -116,6 +137,14 @@ if __name__ == "__main__":
         log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
     ligand = Complex.from_structures(structures)
 
+    # Read rotatable bonds file if small_ligand specified
+    if args.small_ligand:
+        try:
+            rotatable_bonds = parse_rotatable_bonds_file(args.rotatable_bonds_file)
+        except Exception as e:
+            log.error("Problem found parsing rotatable bonds file:", e)
+            raise SystemExit
+
     # Read ranking file
     predictions = read_ranking_file(args.lightdock_ranking_file)
 
@@ -151,6 +180,15 @@ if __name__ == "__main__":
                         [float(x) for x in glowworm.pose[-num_anm_lig:]]
                     )
                     ligand_pose.coordinates += nmodes_lig[nm] * lig_extent[nm]
+
+            # Deal with rotatable bonds if small ligand is used
+            if args.small_ligand:
+                for idx, rotatable_bond in enumerate(rotatable_bonds):
+                    ligand_pose.rotate_over(
+                        np.array(rotatable_bond["bond"]) - 1,
+                        np.array(rotatable_bond["atoms_to_rotate"]) - 1,
+                        glowworm.pose[7 + idx]
+                    )
 
             # We rotate first, ligand it's at initial position
             rotation = Quaternion(

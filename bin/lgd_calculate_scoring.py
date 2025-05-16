@@ -30,10 +30,10 @@ if __name__ == "__main__":
     except ImportError:
         raise SystemExit("Scoring function not found or not available")
 
-    atoms, residues, chains = parse_complex_from_file(args.receptor)
-    receptor = Complex(chains, atoms, structure_file_name=args.receptor)
-    atoms, residues, chains = parse_complex_from_file(args.ligand)
-    ligand = Complex(chains, atoms, structure_file_name=args.ligand)
+    atoms, residues, chains, bonds = parse_complex_from_file(args.receptor)
+    receptor = Complex(chains, atoms, bonds=bonds, structure_file_name=args.receptor)
+    atoms, residues, chains, bonds = parse_complex_from_file(args.ligand)
+    ligand = Complex(chains, atoms, bonds=bonds, structure_file_name=args.ligand)
 
     CurrentScoringFunction = getattr(module, "DefinedScoringFunction")
     CurrentModelAdapter = getattr(module, "DefinedModelAdapter")

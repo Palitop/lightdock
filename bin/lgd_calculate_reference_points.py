@@ -67,7 +67,7 @@ if __name__ == "__main__":
             file_names.append(args.structure)
         for file_name in file_names:
             log.info("Reading %s PDB file..." % file_name)
-            atoms, residues, chains = parse_complex_from_file(
+            atoms, residues, chains, bonds = parse_complex_from_file(
                 file_name, atoms_to_ignore
             )
             structures.append(
@@ -76,6 +76,7 @@ if __name__ == "__main__":
                     "residues": residues,
                     "chains": chains,
                     "file_name": file_name,
+                    "bonds": bonds,
                 }
             )
             log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))

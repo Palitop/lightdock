@@ -16,13 +16,13 @@ class TestDockingLandscapePosition:
     def setup_class(self):
         self.path = Path(__file__).absolute().parent
         self.golden_data_path = self.path / "golden_data"
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         self.receptor = Complex(chains, atoms)
 
     def test_clone(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -47,7 +47,7 @@ class TestDockingLandscapePosition:
         assert 0.0 == pytest.approx(landscape_position_1.translation[0])
 
     def test_repr(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -64,7 +64,7 @@ class TestDockingLandscapePosition:
         """The result of this test must be the same value as testing the MJ3h function.
         Translation is 0 and Quaternion [1,0,0,0] means no rotation.
         """
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -78,7 +78,7 @@ class TestDockingLandscapePosition:
         assert 2.02 == pytest.approx(landscape_position.evaluate_objective_function())
 
     def test_evaluate_objective_function_rotation_y_axis_180(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -92,7 +92,7 @@ class TestDockingLandscapePosition:
         assert -1.4 == pytest.approx(landscape_position.evaluate_objective_function())
 
     def test_evaluate_objective_function_rotation_y_axis_180_translation_10(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -106,7 +106,7 @@ class TestDockingLandscapePosition:
         assert 6.39 == pytest.approx(landscape_position.evaluate_objective_function())
 
     def test_distance2_same_landscape_position(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -122,7 +122,7 @@ class TestDockingLandscapePosition:
         assert 0.0 == pytest.approx(landscape_position1.distance2(landscape_position2))
 
     def test_distance2_10A_translation_x(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -144,7 +144,7 @@ class TestDockingLandscapePosition:
         assert 10.0 == pytest.approx(landscape_position1.distance(landscape_position2))
 
     def test_distance2_minus_10A_translation_y(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -166,7 +166,7 @@ class TestDockingLandscapePosition:
         assert 10.0 == pytest.approx(landscape_position1.distance(landscape_position2))
 
     def test_move_step_rot_full_step_trans_half(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -198,7 +198,7 @@ class TestDockingLandscapePosition:
         assert expected_rotation == landscape_position1.rotation
 
     def test_move_step_rot_full_step_trans_full(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -226,7 +226,7 @@ class TestDockingLandscapePosition:
         assert landscape_position1 == landscape_position2
 
     def test_move_step_rot_half_step_trans_half(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -259,7 +259,7 @@ class TestDockingLandscapePosition:
         assert expected_rotation == landscape_position1.rotation
 
     def test_move_step_rot_half_step_trans_half_and_anm(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)

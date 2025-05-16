@@ -99,7 +99,7 @@ class TestRestraints:
 
     def test_get_restraints(self):
         input_file = self.golden_data_path / "2UUY_lig.pdb"
-        _, _, chains = parse_complex_from_file(input_file)
+        _, _, chains, _ = parse_complex_from_file(input_file)
         structure = Complex(chains)
         restraints = {"active": ["B.ALA.21"], "passive": ["B.GLY.75"], "blocked": []}
 
@@ -116,7 +116,7 @@ class TestRestraints:
     def test_get_restraints_with_error(self):
         with pytest.raises(LightDockError):
             input_file = self.golden_data_path / "2UUY_lig.pdb"
-            _, _, chains = parse_complex_from_file(input_file)
+            _, _, chains, _ = parse_complex_from_file(input_file)
             structure = Complex(chains)
             restraints = {"active": ["B.VAL.21"], "passive": ["B.GLY.75"], "blocked": []}
 

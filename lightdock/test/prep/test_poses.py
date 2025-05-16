@@ -499,10 +499,10 @@ class TestPoses:
     def test_calculate_initial_poses(self, tmp_path):
 
         file_name = self.golden_data_path / "3p0g" / "receptor_membrane.pdb"
-        _, _, chains = parse_complex_from_file(file_name)
+        _, _, chains, _ = parse_complex_from_file(file_name)
         receptor = Complex(chains, structure_file_name=file_name)
         file_name = self.golden_data_path / "3p0g" / "ligand.pdb"
-        _, _, chains = parse_complex_from_file(file_name)
+        _, _, chains, _ = parse_complex_from_file(file_name)
         ligand = Complex(chains, structure_file_name=file_name)
 
         rec_translation = receptor.move_to_origin()

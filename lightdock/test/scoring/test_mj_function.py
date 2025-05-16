@@ -29,7 +29,7 @@ class TestMJ3hAdapter:
         self.golden_data_path = self.path / "golden_data"
 
     def test_create_adapter(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
@@ -52,11 +52,11 @@ class TestMJ3h:
         self.mj3h = MJ3h()
 
     def test_calculate_MJ3h_1PPE(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -73,11 +73,11 @@ class TestMJ3h:
         # assert_almost_equal(-17.94/2, self.mj3h(receptor, receptor.residue_coordinates, ligand, ligand.residue_coordinates))
 
     def test_calculate_MJ3h_1EAW(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1EAWrec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1EAWlig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -94,11 +94,11 @@ class TestMJ3h:
         # assert_almost_equal(-3.14/2, self.mj3h(receptor, receptor.residue_coordinates, ligand, ligand.residue_coordinates))
 
     def test_calculate_MJ3h_1AY7(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7rec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "1AY7lig.pdb"
         )
         ligand = Complex(chains, atoms)

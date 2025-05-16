@@ -14,9 +14,11 @@ class Complex(object):
         structure_file_name="",
         structures=None,
         representative_id=0,
+        bonds = {},
     ):
         """Creates a new complex that can deal with multiple coordinates for a given atom"""
         self.chains = chains
+        self.bonds = bonds
         # Set atoms at the upper level for fast indexing
         if atoms:
             self.atoms = atoms
@@ -76,6 +78,7 @@ class Complex(object):
             structures[representative_id]["file_name"],
             structures,
             representative_id,
+            structures[representative_id]["bonds"],
         )
 
     def clone(self):

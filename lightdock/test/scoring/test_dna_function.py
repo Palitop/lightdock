@@ -14,7 +14,7 @@ class TestPyDockDNA:
         self.dna = DNA()
 
     def test_calculate_DNA_3MFK(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "3mfk_homodimer.pdb"
         )
         receptor = Complex(
@@ -22,7 +22,7 @@ class TestPyDockDNA:
             atoms,
             structure_file_name=(self.golden_data_path / "3mfk_homodimer.pdb"),
         )
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "3mfk_dna.pdb"
         )
         ligand = Complex(
@@ -39,7 +39,7 @@ class TestPyDockDNA:
         )
 
     def test_calculate_DNA_3MFK_with_hydrogens(self):
-        atoms, _, chains = parse_complex_from_file(
+        atoms, _, chains, _ = parse_complex_from_file(
             self.golden_data_path / "3mfk_homodimer_with_H.pdb"
         )
         receptor = Complex(
@@ -47,7 +47,7 @@ class TestPyDockDNA:
             atoms,
             structure_file_name=(self.golden_data_path / "3mfk_homodimer_with_H.pdb"),
         )
-        atoms, _t, chains = parse_complex_from_file(
+        atoms, _t, chains, _ = parse_complex_from_file(
             self.golden_data_path / "3mfk_dna.pdb"
         )
         ligand = Complex(

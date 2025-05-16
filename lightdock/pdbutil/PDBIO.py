@@ -107,6 +107,13 @@ def read_atom_line(line, line_type="", atoms_to_ignore=None, residues_to_ignore=
             element,
         )
 
+def read_conect_line(line):
+    try:
+        atom_ids = [int(a.strip()) for a in line[6:].split()]
+    except ValueError:
+        raise PDBParsingError("Wrong conect number in '%s'" % line)
+
+    return {atom_ids[0]: atom_ids[1:]}
 
 def parse_complex_from_file(
     input_file_name, atoms_to_ignore=None, residues_to_ignore=None, verbose=False
@@ -123,6 +130,7 @@ def parse_complex_from_file(
     atoms = []
     residues = []
     chains = []
+    bonds = {}
     num_models = 0
     last_chain_id = "#"
     last_residue_name = "#"
@@ -170,6 +178,9 @@ def parse_complex_from_file(
                     residues.append(current_residue)
                     current_chain.residues.append(current_residue)
                 current_residue.atoms.append(atom)
+            elif line_type == "CONECT":
+                conect = read_conect_line(line)
+                bonds.update(conect)
 
     # Set backbone and side-chain atoms
     for residue in residues:
@@ -179,7 +190,7 @@ def parse_complex_from_file(
         except Exception as e:
             log.warning("Possible problem: %s" % str(e))
 
-    return atoms, residues, chains
+    return atoms, residues, chains, bonds
 
 
 def _format_atom_name(atom_name):
@@ -215,6 +226,11 @@ def write_atom_line(atom, atom_coordinates, output):
     )
     output.write(line)
 
+def write_conect_line(atom, connections, output):
+    format_list = "%6s" + "%5d" * (len(connections) + 1) + linesep
+    line = format_list % ("CONECT", atom, *connections)
+    output.write(line)
+
 
 def write_pdb_to_file(
     molecule, output_file_name, atom_coordinates=None, structure_id=0
@@ -226,6 +242,10 @@ def write_pdb_to_file(
             write_atom_line(atom, atom_coordinates, output_file)
         else:
             write_atom_line(atom, molecule.atom_coordinates[structure_id], output_file)
+
+    for atom in molecule.bonds:
+        write_conect_line(atom, molecule.bonds[atom], output_file)
+
     output_file.close()
 
 

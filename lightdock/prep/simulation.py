@@ -84,7 +84,7 @@ def read_input_structure(
         file_names.append(pdb_file_name)
     for file_name in file_names:
         log.info(f"Reading structure from {file_name} PDB file...")
-        atoms, residues, chains = parse_complex_from_file(
+        atoms, residues, chains, bonds = parse_complex_from_file(
             file_name, atoms_to_ignore, residues_to_ignore, verbose_parser
         )
         structures.append(
@@ -93,6 +93,7 @@ def read_input_structure(
                 "residues": residues,
                 "chains": chains,
                 "file_name": file_name,
+                "bonds": bonds,
             }
         )
         log.info(f"{len(atoms)} atoms, {len(residues)} residues read.")

@@ -163,6 +163,7 @@ class TestSimulation:
             "setup_version": CURRENT_VERSION,
             "starting_points_seed": 324324,
             "surface_density": 50.0,
+            "swarm_centers": None,
             "swarm_radius": 10.0,
             "swarms": 5,
             "swarms_per_restraint": 20,

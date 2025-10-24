@@ -9,7 +9,7 @@ from lightdock.gso.boundaries import Boundary, BoundingBox
 from lightdock.mathutil.lrandom import MTGenerator
 from lightdock.constants import MAX_TRANSLATION, MAX_ROTATION
 from lightdock.structure.complex import Complex
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.scoring.mj3h.driver import MJ3h, MJ3hAdapter
 
 

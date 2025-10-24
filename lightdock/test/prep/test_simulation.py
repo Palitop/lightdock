@@ -20,7 +20,7 @@ from lightdock.prep.simulation import (
     check_starting_file,
 )
 from lightdock.structure.complex import Complex
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.util.parser import SetupCommandLineParser, CommandLineParser
 from lightdock.version import CURRENT_VERSION
 from lightdock.test.support import compare_two_files

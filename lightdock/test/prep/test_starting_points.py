@@ -5,7 +5,7 @@ import filecmp
 from pathlib import Path
 from lightdock.prep.starting_points import points_on_sphere, calculate_surface_points
 from lightdock.structure.complex import Complex
-from lightdock.pdbutil.PDBIO import parse_complex_from_file, create_pdb_from_points
+from lightdock.ioutil.PDBIO import parse_complex_from_file, create_pdb_from_points
 
 
 class TestStartingPoints:

@@ -4,7 +4,7 @@ import os
 import random
 import operator
 import numpy as np
-from lightdock.pdbutil.PDBIO import create_pdb_from_points
+from lightdock.ioutil.PDBIO import create_pdb_from_points
 from lightdock.prep.starting_points import calculate_surface_points
 from lightdock.mathutil.lrandom import MTGenerator, NormalGenerator
 from lightdock.mathutil.cython.quaternion import Quaternion

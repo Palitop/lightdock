@@ -3,7 +3,7 @@
 import pytest
 import numpy as np
 from pathlib import Path
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 from lightdock.mathutil.ellipsoid import MinimumVolumeEllipsoid
 from lightdock.error.lightdock_errors import MinimumVolumeEllipsoidError

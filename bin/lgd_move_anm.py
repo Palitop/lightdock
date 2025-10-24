@@ -7,7 +7,7 @@ import os
 import numpy as np
 import argparse
 from prody import parsePDB, ANM, extendModel, confProDy, sampleModes, writePDB
-from lightdock.pdbutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
 from lightdock.structure.complex import Complex
 from lightdock.util.logger import LoggingManager
 from lightdock.util.parser import valid_file

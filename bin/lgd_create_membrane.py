@@ -5,7 +5,7 @@ import argparse
 from prody import parsePDB, confProDy
 from math import cos, sin, radians, pi
 from numpy import arange
-from lightdock.pdbutil.PDBIO import create_pdb_from_points
+from lightdock.ioutil.PDBIO import create_pdb_from_points
 from lightdock.util.logger import LoggingManager
 
 

@@ -13,7 +13,7 @@ from lightdock.constants import (
     DEFAULT_REC_NM_FILE,
     DEFAULT_LIG_NM_FILE,
 )
-from lightdock.pdbutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import read_nmodes
 from lightdock.util.parser import (

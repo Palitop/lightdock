@@ -14,7 +14,7 @@ from lightdock.constants import (
 from lightdock.structure.nm import read_nmodes
 from lightdock.util.logger import LoggingManager
 from lightdock.mathutil.cython.quaternion import Quaternion
-from lightdock.pdbutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
 from lightdock.structure.complex import Complex
 from lightdock.prep.simulation import get_setup_from_file
 from lightdock.util.parser import valid_file

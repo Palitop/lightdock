@@ -4,7 +4,7 @@
 
 import argparse
 import os
-from lightdock.pdbutil.PDBIO import create_pdb_from_points
+from lightdock.ioutil.PDBIO import create_pdb_from_points
 from lightdock.util.logger import LoggingManager
 from lightdock.util.parser import valid_file
 

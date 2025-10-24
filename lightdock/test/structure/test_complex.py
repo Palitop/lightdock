@@ -9,7 +9,7 @@ from lightdock.structure.chain import Chain
 from lightdock.structure.residue import Residue
 from lightdock.structure.atom import Atom
 from lightdock.mathutil.cython.quaternion import Quaternion
-from lightdock.pdbutil.PDBIO import write_pdb_to_file
+from lightdock.ioutil.PDBIO import write_pdb_to_file
 
 
 class TestComplex:

@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.dfire2.driver import DFIRE2, DFIRE2Adapter
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 
 

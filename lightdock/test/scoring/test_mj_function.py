@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.mj3h.driver import MJPotential, MJ3h, MJ3hAdapter
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 
 

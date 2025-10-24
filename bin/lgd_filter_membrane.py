@@ -10,7 +10,7 @@ import re
 from prody import parsePDB, confProDy
 from lightdock.util.logger import LoggingManager
 from lightdock.util.analysis import read_ranking_file
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 
 

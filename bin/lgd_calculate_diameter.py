@@ -5,7 +5,7 @@
 import argparse
 from scipy import spatial
 import numpy as np
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 from lightdock.util.logger import LoggingManager
 

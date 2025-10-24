@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.tobia1.driver import TOBIA1Potential, TOBIA1, TOBIA1Adapter
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 
 

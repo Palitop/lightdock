@@ -13,7 +13,7 @@ from lightdock.gso.searchspace.benchmark_ofunctions import J1
 from lightdock.mathutil.lrandom import MTGenerator
 from lightdock.gso.boundaries import Boundary, BoundingBox
 from lightdock.error.lightdock_errors import GSOCoordinatesError
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 from lightdock.scoring.mj3h.driver import MJ3hAdapter, MJ3h
 

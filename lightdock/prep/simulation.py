@@ -27,7 +27,7 @@ from lightdock.constants import (
     DEFAULT_SWARMS_PER_RESTRAINT,
 )
 from lightdock.util.logger import LoggingManager
-from lightdock.pdbutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import calculate_nmodes, write_nmodes
 from lightdock.gso.boundaries import Boundary, BoundingBox

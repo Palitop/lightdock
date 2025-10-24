@@ -3,7 +3,7 @@
 import pytest
 import numpy as np
 from pathlib import Path
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import calculate_nmodes, write_nmodes, read_nmodes
 from lightdock.constants import STARTING_NM_SEED, DEFAULT_ANM_RMSD

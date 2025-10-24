@@ -6,7 +6,7 @@ from pathlib import Path
 from lightdock.gso.searchspace.landscape import DockingLandscapePosition
 from lightdock.gso.coordinates import Coordinates
 from lightdock.scoring.mj3h.driver import MJ3h, MJ3hAdapter
-from lightdock.pdbutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import parse_complex_from_file
 from lightdock.structure.complex import Complex
 from lightdock.mathutil.cython.quaternion import Quaternion
 from lightdock.scoring.tobisc.driver import TOBISC, TOBISCAdapter

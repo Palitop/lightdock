@@ -10,7 +10,7 @@ from lightdock.constants import (
 )
 from lightdock.error.lightdock_errors import MinimumVolumeEllipsoidError
 from lightdock.mathutil.ellipsoid import MinimumVolumeEllipsoid
-from lightdock.pdbutil.PDBIO import parse_complex_from_file, create_pdb_from_points
+from lightdock.ioutil.PDBIO import parse_complex_from_file, create_pdb_from_points
 from lightdock.structure.complex import Complex
 from lightdock.util.logger import LoggingManager
 

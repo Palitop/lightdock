@@ -3,7 +3,7 @@
 import pytest
 import filecmp
 from pathlib import Path
-from lightdock.pdbutil.PDBIO import (
+from lightdock.ioutil.PDBIO import (
     read_atom_line,
     parse_complex_from_file,
     write_pdb_to_file,

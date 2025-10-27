@@ -1,5 +1,6 @@
 """"Tests to compare PDBIO and MMCIFIO outputs"""
 
+import pytest
 from pathlib import Path
 from lightdock.ioutil.MMCIFIO import MMCIFIO
 from lightdock.ioutil.PDBIO import parse_complex_from_file
@@ -45,11 +46,15 @@ class TestPDBIOMMCIFIOReader:
         assert len(residues_pdb) == len(residues_mmcif)
         assert len(chains_pdb) == len(chains_mmcif)
 
-    def test_compare_pdb_mmcif_information(self):
-        atoms_pbd, residues_pdb, chains_pdb = parse_complex_from_file(self.pdb_file)
+    @pytest.mark.parametrize("pdb_file, mmcif_file", [
+        ("parse_complex_from_file_1CRN.pdb", "parse_complex_from_file_1CRN.cif"),
+        ("points.pdb", "points.cif")
+    ])
+    def test_compare_pdb_mmcif_information(self, pdb_file, mmcif_file):
+        atoms_pbd, residues_pdb, chains_pdb = parse_complex_from_file(self.absolute_path / pdb_file)
 
         mmcif_io = MMCIFIO()
-        atoms_mmcif, residues_mmcif, chains_mmcif = mmcif_io.parse_complex_from_file(self.mmcif_file)
+        atoms_mmcif, residues_mmcif, chains_mmcif = mmcif_io.parse_complex_from_file(self.absolute_path / mmcif_file)
 
         for atom_pdb, atom_mmcif in zip(atoms_pbd, atoms_mmcif):
             assert atom_pdb.number == atom_mmcif.number

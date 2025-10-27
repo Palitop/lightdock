@@ -7,6 +7,7 @@ from lightdock.structure.atom import Atom, HetAtom
 from lightdock.structure.residue import Residue
 from lightdock.structure.chain import Chain
 from lightdock.structure.complex import Complex
+from lightdock.prep.starting_points import points_on_sphere
 from Bio.PDB.Chain import Chain as BioChain
 from Bio.PDB.Residue import Residue as BioResidue
 from Bio.PDB.Atom import Atom as BioAtom
@@ -245,7 +246,7 @@ class TestMMCIFReader:
 
         chain_id = "A"
 
-        result = MMCIFIO._build_BioChain(chain_id, [residue])
+        result = MMCIFIO._build_BioChain(chain_id, residue)
 
         assert isinstance(result, BioChain)
         assert result.id == chain_id
@@ -275,7 +276,7 @@ class TestMMCIFReader:
 
         chain_id = "A"
 
-        chain = MMCIFIO._build_BioChain(chain_id, [residue])
+        chain = MMCIFIO._build_BioChain(chain_id, residue)
 
         structure_id = "TestStructure"
 
@@ -301,6 +302,7 @@ class TestMMCIFReader:
         ]
         receptor = Complex.from_structures(lightdock_structures)
         output_file = self.absolute_path / "write_to_file_written.cif"
+
         mmcif_io.write_to_file(receptor, str(output_file))
 
         atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(test_file)
@@ -326,6 +328,7 @@ class TestMMCIFReader:
         ]
         receptor = Complex.from_structures(lightdock_structures)
         output_file = self.absolute_path / "write_to_file_written.cif"
+
         mmcif_io.write_to_file(receptor, str(output_file))
 
         atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(test_file)
@@ -352,3 +355,11 @@ class TestMMCIFReader:
 
         for chain, chain_out in zip(chains, chains_output):
             assert chain.cid == chain_out.cid
+
+    def test_create_file_from_points(self):
+        mmcif_io = MMCIFIO()
+        output_file = self.absolute_path / "points.cif"
+        points = points_on_sphere(100)
+        mmcif_io.create_file_from_points(str(output_file), points)
+
+        assert output_file.exists()

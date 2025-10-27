@@ -23,7 +23,14 @@ class IO (ABC):
         pass
 
     @abstractmethod
-    def create_file_from_points():
+    def create_file_from_points(
+        file_name: str,
+        points: list,
+        atom_name: str = "H",
+        res_name: str = "SWR",
+        chain_id: str = "Z",
+        element: str = "H"
+    ):
         pass
 
     def cstrip(string):

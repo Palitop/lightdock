@@ -7,8 +7,10 @@ from lightdock.ioutil.PDBIO import (
     read_atom_line,
     parse_complex_from_file,
     write_pdb_to_file,
+    create_pdb_from_points
 )
 from lightdock.structure.complex import Complex
+from lightdock.prep.starting_points import points_on_sphere
 from lightdock.error.lightdock_errors import PDBParsingError
 
 
@@ -111,3 +113,10 @@ class TestPDBReader:
             self.golden_data_path / "parsed_1PPE_lig_with_H.pdb",
             tmp_path / "parsed_1PPE_lig_with_H.pdb",
         )
+
+    def test_create_file_from_points(self):
+        output_file = self.golden_data_path / "points.pdb"
+        points = points_on_sphere(100)
+        create_pdb_from_points(str(output_file), points)
+
+        assert output_file.exists()

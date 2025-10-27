@@ -153,11 +153,10 @@ class MMCIFIO(IO):
     @staticmethod
     def _build_BioChain(
         id: str,
-        residues: list = [],
+        residue: BioResidue,
     ) -> BioChain:
         chain = BioChain(id)
-        for residue in residues:
-            chain.add(residue)
+        chain.add(residue)
         return chain
 
     @staticmethod
@@ -202,7 +201,7 @@ class MMCIFIO(IO):
             chain: BioChain = next((c for c in chains if c.id == atom.chain_id), None)
             if chain is None:
                 residue = MMCIFIO._build_BioResidue(atom.residue_number, atom.residue_name, atom.residue_insertion, atomObject)
-                chain: BioChain = MMCIFIO._build_BioChain(atom.chain_id, [residue])
+                chain: BioChain = MMCIFIO._build_BioChain(atom.chain_id, residue)
                 chains.append(chain)
             else:
                 residue = next((r for r in chain if r.id[0] == " " and r.id[1] == atom.residue_number and r.id[2] == atom.residue_insertion.ljust(1)), None)
@@ -221,5 +220,45 @@ class MMCIFIO(IO):
         except Exception as e:
             print(e)
 
-    def create_file_from_points():
-        pass
+    def create_file_from_points(
+        self,
+        file_name: str,
+        points: list,
+        atom_name: str = "H",
+        res_name: str = "SWR",
+        chain_id: str = "Z",
+        element: str = "H"
+    ):
+        chains: list[BioChain] = []
+        for index, point in enumerate(points):
+            atomObject: BioAtom = BioAtom(
+                serial_number=index + 1,
+                name=atom_name,
+                fullname=atom_name,
+                altloc=" ",
+                coord=np.array([point[0], point[1], point[2]], dtype=float),
+                bfactor=1.0,
+                occupancy=1.0,
+                element=element
+            )
+            chain: BioChain = next((c for c in chains if c.id == chain_id), None)
+            if chain is None:
+                residue: BioResidue = MMCIFIO._build_BioResidue(resnumber=str(index + 1), resname=res_name, insertion_code=" ", atom=atomObject)
+                chain: BioChain = MMCIFIO._build_BioChain(id=chain_id, residue=residue)
+                chains.append(chain)
+            else:
+                residue = next((r for r in chain if r.id[0] == " " and r.id[1] == str(index + 1) and r.id[2] == " "), None)
+                if residue is None:
+                    residue: BioResidue = MMCIFIO._build_BioResidue(resnumber=str(index + 1), resname=res_name, insertion_code=" ", atom=atomObject)
+                    chain.add(residue)
+                else:
+                    residue.add(atomObject)
+
+        structure: BioStructure = MMCIFIO._build_BioStructure(file_name, chains=chains)
+
+        try:
+            io = BioMMCIFIO()
+            io.set_structure(structure)
+            io.save(file_name)
+        except Exception as e:
+            print(e)

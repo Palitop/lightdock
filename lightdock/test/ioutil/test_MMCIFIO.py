@@ -6,6 +6,11 @@ from lightdock.ioutil.MMCIFIO import MMCIFIO
 from lightdock.structure.atom import Atom, HetAtom
 from lightdock.structure.residue import Residue
 from lightdock.structure.chain import Chain
+from lightdock.structure.complex import Complex
+from Bio.PDB.Chain import Chain as BioChain
+from Bio.PDB.Residue import Residue as BioResidue
+from Bio.PDB.Atom import Atom as BioAtom
+from Bio.PDB.Structure import Structure as BioStructure
 
 
 class MockBioPythonAtom:
@@ -80,13 +85,17 @@ class TestMMCIFReader:
 
     def test_build_residue(self):
         residue = MockBioPythonResidue("GLY", ["", 42, "B"])
+        atom1 = MockBioPythonAtom(998, "C", " ", [4.0, 5.0, 6.0], 0.8, 30.0, "C")
+        atom2 = MockBioPythonAtom(999, "O", " ", [4.0, 5.0, 6.0], 0.8, 30.0, "O")
+        atoms = [atom1, atom2]
 
-        result = MMCIFIO._build_residue(residue)
+        result = MMCIFIO._build_residue(residue, atoms)
 
         assert isinstance(result, Residue)
         assert result.name == residue.resname
         assert result.number == residue.id[1]
         assert result.insertion == residue.id[2]
+        assert len(result.atoms) == len(atoms)
 
     def test_build_chain(self):
         residue1 = Residue("ALA", 1, " ")
@@ -148,3 +157,198 @@ class TestMMCIFReader:
         assert len(atoms) == 193
         assert len(residues) == 46
         assert len(chains) == 1
+
+    def test_build_BioAtom(self):
+        atom = Atom(
+            1,
+            IO.cstrip("CA"),
+            IO.cstrip(" "),
+            IO.cstrip("A"),
+            IO.cstrip("ARG"),
+            1,
+            IO.cstrip(" "),
+            1.0,
+            2.0,
+            3.0,
+            1.0,
+            20.0,
+            IO.cstrip("C")
+        )
+
+        atom.index = 0
+
+        result = MMCIFIO._build_BioAtom(atom, [[atom.x, atom.y, atom.z]])
+
+        assert isinstance(result, BioAtom)
+        assert result.serial_number == atom.number
+        assert result.name == atom.name
+        assert result.altloc == atom.alternative.ljust(1)
+        assert list(result.coord) == [atom.x, atom.y, atom.z]
+        assert result.occupancy == atom.occupancy
+        assert result.bfactor == atom.b_factor
+        assert result.element == atom.element
+
+    def test_build_BioResidue(self):
+        atom = Atom(
+            1,
+            IO.cstrip("CA"),
+            IO.cstrip(" "),
+            IO.cstrip("A"),
+            IO.cstrip("ARG"),
+            1,
+            IO.cstrip(" "),
+            1.0,
+            2.0,
+            3.0,
+            1.0,
+            20.0,
+            IO.cstrip("C")
+        )
+        atom.index = 0
+
+        bioAtom = MMCIFIO._build_BioAtom(atom, [[atom.x, atom.y, atom.z]])
+
+        residue = Residue(
+            IO.cstrip("ARG"),
+            1,
+            IO.cstrip(" ")
+        )
+
+        result = MMCIFIO._build_BioResidue(resnumber=1, resname="ARG", insertion_code=" ", atom=bioAtom)
+
+        assert isinstance(result, BioResidue)
+        assert result.resname == residue.name
+        assert result.id == (" ", residue.number, residue.insertion.ljust(1))
+        assert len(result.child_dict) == 1
+
+    def test_build_BioChain(self):
+        atom = Atom(
+            1,
+            IO.cstrip("CA"),
+            IO.cstrip(" "),
+            IO.cstrip("A"),
+            IO.cstrip("ARG"),
+            1,
+            IO.cstrip(" "),
+            1.0,
+            2.0,
+            3.0,
+            1.0,
+            20.0,
+            IO.cstrip("C")
+        )
+        atom.index = 0
+
+        bioAtom = MMCIFIO._build_BioAtom(atom, [[atom.x, atom.y, atom.z]])
+
+        residue = MMCIFIO._build_BioResidue(resnumber=1, resname="ARG", insertion_code=" ", atom=bioAtom)
+
+        chain_id = "A"
+
+        result = MMCIFIO._build_BioChain(chain_id, [residue])
+
+        assert isinstance(result, BioChain)
+        assert result.id == chain_id
+        assert len(result.child_dict) == 1
+
+    def test_build_BioStructure(self):
+        atom = Atom(
+            1,
+            IO.cstrip("CA"),
+            IO.cstrip(" "),
+            IO.cstrip("A"),
+            IO.cstrip("ARG"),
+            1,
+            IO.cstrip(" "),
+            1.0,
+            2.0,
+            3.0,
+            1.0,
+            20.0,
+            IO.cstrip("C")
+        )
+        atom.index = 0
+
+        bioAtom = MMCIFIO._build_BioAtom(atom, [[atom.x, atom.y, atom.z]])
+
+        residue = MMCIFIO._build_BioResidue(resnumber=1, resname="ARG", insertion_code=" ", atom=bioAtom)
+
+        chain_id = "A"
+
+        chain = MMCIFIO._build_BioChain(chain_id, [residue])
+
+        structure_id = "TestStructure"
+
+        result = MMCIFIO._build_BioStructure(structure_id, [chain])
+
+        assert isinstance(result, BioStructure)
+        assert result.id == structure_id
+        assert len(result.child_dict) == 1
+
+    def test_write_to_file(self):
+        mmcif_io = MMCIFIO()
+        test_file = self.absolute_path / "parse_complex_from_file_1CRN.cif"
+
+        atoms, residues, chains = mmcif_io.parse_complex_from_file(test_file)
+
+        lightdock_structures = [
+            {
+                "atoms": atoms,
+                "residues": residues,
+                "chains": chains,
+                "file_name": test_file,
+            }
+        ]
+        receptor = Complex.from_structures(lightdock_structures)
+        output_file = self.absolute_path / "write_to_file_written.cif"
+        mmcif_io.write_to_file(receptor, str(output_file))
+
+        atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(test_file)
+
+        assert output_file.exists()
+        assert len(atoms) == len(atoms_output)
+        assert len(residues) == len(residues_output)
+        assert len(chains) == len(chains_output)
+
+    def test_write_to_file_information(self):
+        mmcif_io = MMCIFIO()
+        test_file = self.absolute_path / "parse_complex_from_file_1CRN.cif"
+
+        atoms, residues, chains = mmcif_io.parse_complex_from_file(test_file)
+
+        lightdock_structures = [
+            {
+                "atoms": atoms,
+                "residues": residues,
+                "chains": chains,
+                "file_name": test_file,
+            }
+        ]
+        receptor = Complex.from_structures(lightdock_structures)
+        output_file = self.absolute_path / "write_to_file_written.cif"
+        mmcif_io.write_to_file(receptor, str(output_file))
+
+        atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(test_file)
+
+        for atom, atom_out in zip(atoms, atoms_output):
+            assert atom.number == atom_out.number
+            assert atom.name == atom_out.name
+            assert atom.alternative == atom_out.alternative
+            assert atom.chain_id == atom_out.chain_id
+            assert atom.residue_name == atom_out.residue_name
+            assert atom.residue_number == atom_out.residue_number
+            assert atom.residue_insertion == atom_out.residue_insertion
+            assert atom.x == atom_out.x
+            assert atom.y == atom_out.y
+            assert atom.z == atom_out.z
+            assert atom.occupancy == atom_out.occupancy
+            assert atom.b_factor == atom_out.b_factor
+            assert atom.element == atom_out.element
+
+        for residue, residue_out in zip(residues, residues_output):
+            assert residue.name == residue_out.name
+            assert residue.number == residue_out.number
+            assert residue.insertion == residue_out.insertion
+
+        for chain, chain_out in zip(chains, chains_output):
+            assert chain.cid == chain_out.cid

@@ -14,7 +14,7 @@ from lightdock.constants import (
 from lightdock.structure.nm import read_nmodes
 from lightdock.util.logger import LoggingManager
 from lightdock.mathutil.cython.quaternion import Quaternion
-from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.prep.simulation import get_setup_from_file
 from lightdock.util.parser import valid_file
@@ -95,13 +95,15 @@ if __name__ == "__main__":
 
     # Read receptor
     log.info("Reading %s receptor PDB file..." % args.receptor_pdb)
-    atoms, residues, chains = parse_complex_from_file(args.receptor_pdb)
+    io = IOFactory(args.receptor_pdb).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.receptor_pdb)
     receptor = Complex(chains, atoms)
     log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
 
     # Read ligand
     log.info("Reading %s ligand PDB file..." % args.ligand_pdb)
-    atoms, residues, chains = parse_complex_from_file(args.ligand_pdb)
+    io = IOFactory(args.ligand_pdb).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.ligand_pdb)
     ligand = Complex(chains, atoms)
     log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
 
@@ -176,8 +178,9 @@ if __name__ == "__main__":
                     args.glowworm_id,
                     step,
                 )
-                write_pdb_to_file(receptor, output_file_name, receptor_pose)
-                write_pdb_to_file(ligand, output_file_name, ligand_pose)
+                io = IOFactory(output_file_name).get_instance()
+                io.write_to_file(receptor, output_file_name, receptor_pose)
+                io.write_to_file(ligand, output_file_name, ligand_pose)
                 log.info("Generated trajectory for step %s" % (step))
         except IOError:
             # Ignore not generated steps

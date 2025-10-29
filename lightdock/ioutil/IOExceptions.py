@@ -8,7 +8,13 @@ class UnsupportedFileTypeError(Exception):
         super().__init__(self.message)
 
 
-class EmptyFileNameError(Exception):
+class EmptyPathError(Exception):
     def __init__(self):
-        self.message = "Please provide a non empty file name"
+        self.message = "Empty path"
+        super().__init__(self.message)
+
+
+class FolderPathError(Exception):
+    def __init__(self):
+        self.message = "Provider path is a folder, please check the path"
         super().__init__(self.message)

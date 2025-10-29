@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.fastdfire.driver import DFIRE, DFIREAdapter
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 
 
@@ -14,11 +14,13 @@ class TestFastDFIRE:
         self.dfire = DFIRE()
 
     def test_calculate_FastDFIRE_1PPE(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1PPErec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1PPElig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -33,11 +35,13 @@ class TestFastDFIRE:
         )
 
     def test_calculate_FastDFIRE_1EAW(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1EAWrec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1EAWrec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1EAWlig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1EAWlig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -52,11 +56,13 @@ class TestFastDFIRE:
         )
 
     def test_calculate_FastDFIRE_1AY7(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1AY7rec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1AY7rec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1AY7lig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1AY7lig.pdb"
         )
         ligand = Complex(chains, atoms)

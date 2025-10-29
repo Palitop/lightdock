@@ -278,12 +278,12 @@ class TestMMCIFReader:
 
         chain = MMCIFIO._build_BioChain(chain_id, residue)
 
-        structure_id = "TestStructure"
+        output_file = Path("/home/testStrucutre.cif")
 
-        result = MMCIFIO._build_BioStructure(structure_id, [chain])
+        result = MMCIFIO._build_BioStructure(output_file, [chain])
 
         assert isinstance(result, BioStructure)
-        assert result.id == structure_id
+        assert result.id == output_file.stem
         assert len(result.child_dict) == 1
 
     def test_write_to_file(self):
@@ -303,7 +303,7 @@ class TestMMCIFReader:
         receptor = Complex.from_structures(lightdock_structures)
         output_file = self.absolute_path / "write_to_file_written.cif"
 
-        mmcif_io.write_to_file(receptor, str(output_file))
+        mmcif_io.write_to_file(receptor, output_file)
 
         atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(test_file)
 
@@ -329,7 +329,7 @@ class TestMMCIFReader:
         receptor = Complex.from_structures(lightdock_structures)
         output_file = self.absolute_path / "write_to_file_written.cif"
 
-        mmcif_io.write_to_file(receptor, str(output_file))
+        mmcif_io.write_to_file(receptor, output_file)
 
         atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(test_file)
 
@@ -360,6 +360,6 @@ class TestMMCIFReader:
         mmcif_io = MMCIFIO()
         output_file = self.absolute_path / "points.cif"
         points = points_on_sphere(100)
-        mmcif_io.create_file_from_points(str(output_file), points)
+        mmcif_io.create_file_from_points(output_file, points)
 
         assert output_file.exists()

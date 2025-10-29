@@ -13,7 +13,7 @@ from lightdock.constants import (
     DEFAULT_REC_NM_FILE,
     DEFAULT_LIG_NM_FILE,
 )
-from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import read_nmodes
 from lightdock.util.parser import (
@@ -159,7 +159,8 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.receptor_structure):
         log.info("Reading %s receptor PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        io = IOFactory(structure).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
@@ -175,7 +176,8 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.ligand_structure):
         log.info("Reading %s ligand PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        io = IOFactory(structure).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
@@ -237,4 +239,5 @@ if __name__ == "__main__":
         residue_id = f"{atom.chain_id}.{atom.residue_name}.{atom.residue_number}"
         atom.b_factor = residue_freqs_norm[residue_id]
 
-    write_pdb_to_file(receptor, args.output_pdb_file)
+    io = IOFactory(args.output_pdb_file).get_instance()
+    io.write_to_file(receptor, args.output_pdb_file)

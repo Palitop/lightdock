@@ -13,7 +13,7 @@ from lightdock.constants import (
     DEFAULT_REC_NM_FILE,
     DEFAULT_LIG_NM_FILE,
 )
-from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.mathutil.cython.quaternion import Quaternion
 from lightdock.structure.nm import read_nmodes
@@ -158,7 +158,8 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.receptor_structures):
         log.info("Reading %s receptor PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        io = IOFactory(structure).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
@@ -174,7 +175,8 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.ligand_structures):
         log.info("Reading %s ligand PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        io = IOFactory(structure).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
@@ -282,12 +284,17 @@ if __name__ == "__main__":
         ligand_pose.rotate(rotations[i])
         ligand_pose.translate(translations[i])
 
-        write_pdb_to_file(
+        output_file = os.path.join(destination_path, "lightdock_%s.pdb" % i)
+        io = IOFactory(output_file).get_instance()
+        io.write_to_file(
             receptor,
-            os.path.join(destination_path, "lightdock_%s.pdb" % i),
+            output_file,
             receptor_pose,
         )
-        write_pdb_to_file(
+
+        output_file = os.path.join(destination_path, "lightdock_%s.pdb" % i)
+        io = IOFactory(output_file).get_instance()
+        io.write_to_file(
             ligand, os.path.join(destination_path, "lightdock_%s.pdb" % i), ligand_pose
         )
     log.info("Generated %d conformations" % num_conformations)

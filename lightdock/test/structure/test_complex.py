@@ -9,7 +9,7 @@ from lightdock.structure.chain import Chain
 from lightdock.structure.residue import Residue
 from lightdock.structure.atom import Atom
 from lightdock.mathutil.cython.quaternion import Quaternion
-from lightdock.ioutil.PDBIO import write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 
 
 class TestComplex:
@@ -155,7 +155,9 @@ class TestComplex:
         protein = Complex(chains=self.chains2)
         q = Quaternion()
         protein.rotate(q)
-        write_pdb_to_file(
+        file_name = tmp_path / "rotated.pdb"
+        io = IOFactory(file_name).get_instance()
+        io.write_to_file(
             protein, tmp_path / "rotated.pdb", protein.atom_coordinates[0]
         )
         assert filecmp.cmp(
@@ -172,8 +174,10 @@ class TestComplex:
 
         protein.rotate(q)
 
-        write_pdb_to_file(
-            protein, tmp_path / "rotated.pdb", protein.atom_coordinates[0]
+        file_name = tmp_path / "rotated.pdb"
+        io = IOFactory(file_name).get_instance()
+        io.write_to_file(
+            protein, file_name, protein.atom_coordinates[0]
         )
         assert filecmp.cmp(
             self.golden_data_path / "two_residues_y_180.pdb",
@@ -194,7 +198,9 @@ class TestComplex:
 
         protein.rotate(q)
 
-        write_pdb_to_file(
+        file_name = tmp_path / "rotated.pdb"
+        io = IOFactory(file_name).get_instance()
+        io.write_to_file(
             protein, tmp_path / "rotated.pdb", protein.atom_coordinates[0]
         )
         assert filecmp.cmp(

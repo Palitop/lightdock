@@ -20,7 +20,7 @@ from lightdock.prep.simulation import (
     check_starting_file,
 )
 from lightdock.structure.complex import Complex
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.util.parser import SetupCommandLineParser, CommandLineParser
 from lightdock.version import CURRENT_VERSION
 from lightdock.test.support import compare_two_files
@@ -99,7 +99,8 @@ class TestRestraints:
 
     def test_get_restraints(self):
         input_file = self.golden_data_path / "2UUY_lig.pdb"
-        _, _, chains = parse_complex_from_file(input_file)
+        io = IOFactory(input_file).get_instance()
+        _, _, chains = io.parse_complex_from_file(input_file)
         structure = Complex(chains)
         restraints = {"active": ["B.ALA.21"], "passive": ["B.GLY.75"], "blocked": []}
 
@@ -116,7 +117,8 @@ class TestRestraints:
     def test_get_restraints_with_error(self):
         with pytest.raises(LightDockError):
             input_file = self.golden_data_path / "2UUY_lig.pdb"
-            _, _, chains = parse_complex_from_file(input_file)
+            io = IOFactory(input_file).get_instance()
+            _, _, chains = io.parse_complex_from_file(input_file)
             structure = Complex(chains)
             restraints = {"active": ["B.VAL.21"], "passive": ["B.GLY.75"], "blocked": []}
 
@@ -319,7 +321,6 @@ class TestSimulation:
 
         glowworms = 9
         assert not check_starting_file(file_name, glowworms, use_anm, anm_rec, anm_lig)
-
 
     def test_simulation_parser(self, tmp_path):
         shutil.copyfile(

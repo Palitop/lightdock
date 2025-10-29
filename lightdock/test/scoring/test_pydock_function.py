@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.cpydock.driver import CPyDock, CPyDockAdapter
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 
 
@@ -14,7 +14,8 @@ class TestPyDock:
         self.pydock = CPyDock()
 
     def test_calculate_PyDock_1AY7(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1AY7_rec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1AY7_rec.pdb"
         )
         receptor = Complex(
@@ -22,7 +23,8 @@ class TestPyDock:
             atoms,
             structure_file_name=(self.golden_data_path / "1AY7_rec.pdb"),
         )
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1AY7_lig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1AY7_lig.pdb"
         )
         ligand = Complex(

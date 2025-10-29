@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.dna.driver import DNA, DNAAdapter
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 
 
@@ -14,7 +14,8 @@ class TestPyDockDNA:
         self.dna = DNA()
 
     def test_calculate_DNA_3MFK(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "3mfk_homodimer.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "3mfk_homodimer.pdb"
         )
         receptor = Complex(
@@ -22,7 +23,8 @@ class TestPyDockDNA:
             atoms,
             structure_file_name=(self.golden_data_path / "3mfk_homodimer.pdb"),
         )
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "3mfk_dna.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "3mfk_dna.pdb"
         )
         ligand = Complex(
@@ -39,7 +41,8 @@ class TestPyDockDNA:
         )
 
     def test_calculate_DNA_3MFK_with_hydrogens(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "3mfk_homodimer_with_H.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "3mfk_homodimer_with_H.pdb"
         )
         receptor = Complex(
@@ -47,7 +50,8 @@ class TestPyDockDNA:
             atoms,
             structure_file_name=(self.golden_data_path / "3mfk_homodimer_with_H.pdb"),
         )
-        atoms, _t, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "3mfk_dna.pdb").get_instance()
+        atoms, _t, chains = io.parse_complex_from_file(
             self.golden_data_path / "3mfk_dna.pdb"
         )
         ligand = Complex(

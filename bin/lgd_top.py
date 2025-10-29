@@ -14,7 +14,7 @@ from lightdock.constants import (
     DEFAULT_REC_NM_FILE,
     DEFAULT_LIG_NM_FILE,
 )
-from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import read_nmodes
 from lightdock.util.parser import (
@@ -86,7 +86,8 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.receptor_structures):
         log.info("Reading %s receptor PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        io = IOFactory(structure).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
@@ -102,7 +103,8 @@ if __name__ == "__main__":
     structures = []
     for structure in get_lightdock_structures(args.ligand_structures):
         log.info("Reading %s ligand PDB file..." % structure)
-        atoms, residues, chains = parse_complex_from_file(structure)
+        io = IOFactory(structure).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
             {
                 "atoms": atoms,
@@ -159,14 +161,16 @@ if __name__ == "__main__":
                 [glowworm.pose[0], glowworm.pose[1], glowworm.pose[2]]
             )
 
-            write_pdb_to_file(
+            destination_file = os.path.join(destination_path, "top_%s.pdb" % str(i + 1))
+            io = IOFactory(destination_file).get_instance()
+            io.write_to_file(
                 receptor,
-                os.path.join(destination_path, "top_%s.pdb" % str(i + 1)),
+                destination_file,
                 receptor_pose,
             )
-            write_pdb_to_file(
+            io.write_to_file(
                 ligand,
-                os.path.join(destination_path, "top_%s.pdb" % str(i + 1)),
+                destination_file,
                 ligand_pose,
             )
     log.info("Generated %d conformations" % args.top)

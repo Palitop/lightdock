@@ -3,11 +3,10 @@
 """Generates a set of n_confs conformations of an input pdb_file PDB structure
 using the first non-trivial ANM n_modes in a given rmsd interval"""
 
-import os
 import numpy as np
 import argparse
 from prody import parsePDB, ANM, extendModel, confProDy, sampleModes, writePDB
-from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.util.logger import LoggingManager
 from lightdock.util.parser import valid_file
@@ -71,7 +70,8 @@ if __name__ == "__main__":
     molecule_anm.calcModes(n_modes=args.n_modes)
     log.info("ANM calculated")
 
-    atoms, residues, chains = parse_complex_from_file(args.pdb_file)
+    io = IOFactory(args.pdb_file).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.pdb_file)
     lightdock_structures = [
         {
             "atoms": atoms,
@@ -115,7 +115,8 @@ if __name__ == "__main__":
         conf = (array * scale * randn[i]).sum(1).reshape((num_atoms_prody, 3))
         lightdock_structure.atom_coordinates[0].coordinates = coordinates + conf
         output_file = f"anm_{i+1}_{args.pdb_file}"
-        write_pdb_to_file(lightdock_structure, output_file, lightdock_structure[0])
+        io = IOFactory(output_file).get_instance()
+        io.write_to_file(lightdock_structure, output_file, lightdock_structure[0])
         log.info(f"Conformation {i+1} written to [{output_file}]")
 
     if args.ensemble:

@@ -4,7 +4,7 @@
 
 import argparse
 import importlib
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.util.logger import LoggingManager
 
@@ -30,9 +30,12 @@ if __name__ == "__main__":
     except ImportError:
         raise SystemExit("Scoring function not found or not available")
 
-    atoms, residues, chains = parse_complex_from_file(args.receptor)
+    io = IOFactory(args.receptor).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.receptor)
     receptor = Complex(chains, atoms, structure_file_name=args.receptor)
-    atoms, residues, chains = parse_complex_from_file(args.ligand)
+
+    io = IOFactory(args.ligand).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.ligand)
     ligand = Complex(chains, atoms, structure_file_name=args.ligand)
 
     CurrentScoringFunction = getattr(module, "DefinedScoringFunction")

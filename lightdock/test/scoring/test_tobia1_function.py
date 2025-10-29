@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.scoring.tobia1.driver import TOBIA1Potential, TOBIA1, TOBIA1Adapter
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 
 
@@ -30,11 +30,13 @@ class TestTOBIA1:
         self.tobia1 = TOBIA1()
 
     def test_calculate_TOBIA1_1PPE(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1PPErec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1PPErec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1PPElig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1PPElig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -49,11 +51,13 @@ class TestTOBIA1:
         )
 
     def test_calculate_TOBIA1_1EAW(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1EAWrec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1EAWrec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1EAWlig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1EAWlig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -68,11 +72,13 @@ class TestTOBIA1:
         )
 
     def test_calculate_TOBIA1_1AY7(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1AY7rec.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1AY7rec.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1AY7lig.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1AY7lig.pdb"
         )
         ligand = Complex(chains, atoms)
@@ -87,11 +93,13 @@ class TestTOBIA1:
         )
 
     def test_calculate_TOBIA1_1CZY(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1czy_protein.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1czy_protein.pdb"
         )
         receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1czy_peptide.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1czy_peptide.pdb"
         )
         ligand = Complex(chains, atoms)

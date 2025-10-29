@@ -5,7 +5,7 @@ import argparse
 from prody import parsePDB, confProDy
 from math import cos, sin, radians, pi
 from numpy import arange
-from lightdock.ioutil.PDBIO import create_pdb_from_points
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.util.logger import LoggingManager
 
 
@@ -139,7 +139,8 @@ if __name__ == "__main__":
         density += 1.0
 
     # Save genearted beads as a new PDB file
-    create_pdb_from_points(
+    io = IOFactory(args.output_pdb_file).get_instance()
+    io.create_file_from_points(
         args.output_pdb_file, points, atom_name="BJ", res_name="MMB", element="P"
     )
 

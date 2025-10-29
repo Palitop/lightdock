@@ -4,7 +4,7 @@
 
 import argparse
 import os
-from lightdock.ioutil.PDBIO import create_pdb_from_points
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.util.logger import LoggingManager
 from lightdock.util.parser import valid_file
 
@@ -51,5 +51,7 @@ if __name__ == "__main__":
     destination_path = os.path.dirname(args.lightdock_output)
     pdb_file_name = os.path.splitext(args.lightdock_output)[0] + ".pdb"
 
-    create_pdb_from_points(os.path.join(destination_path, pdb_file_name), translations, res_name="GLW")
+    output_file = os.path.join(destination_path, pdb_file_name)
+    io = IOFactory(output_file).get_instance()
+    io.create_file_from_points(output_file, translations, res_name="GLW")
     log.info("PDB %s file created." % os.path.join(destination_path, pdb_file_name))

@@ -10,7 +10,7 @@ import re
 from prody import parsePDB, confProDy
 from lightdock.util.logger import LoggingManager
 from lightdock.util.analysis import read_ranking_file
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 
 
@@ -51,7 +51,8 @@ def get_restraints(restraints_file):
 
 
 def calculate_membrane_height(parsed_receptor_file, restraints):
-    atoms, residues, chains = parse_complex_from_file(parsed_receptor_file)
+    io = IOFactory(parsed_receptor_file).get_instance()
+    atoms, _, chains = io.parse_complex_from_file(parsed_receptor_file)
     receptor = Complex(chains, atoms)
     z_coord = []
     for restraint in restraints:

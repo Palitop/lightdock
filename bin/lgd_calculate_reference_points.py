@@ -10,7 +10,7 @@ from lightdock.constants import (
 )
 from lightdock.error.lightdock_errors import MinimumVolumeEllipsoidError
 from lightdock.mathutil.ellipsoid import MinimumVolumeEllipsoid
-from lightdock.ioutil.PDBIO import parse_complex_from_file, create_pdb_from_points
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.util.logger import LoggingManager
 
@@ -67,7 +67,8 @@ if __name__ == "__main__":
             file_names.append(args.structure)
         for file_name in file_names:
             log.info("Reading %s PDB file..." % file_name)
-            atoms, residues, chains = parse_complex_from_file(
+            io = IOFactory(file_name).get_instance()
+            atoms, residues, chains = io.parse_complex_from_file(
                 file_name, atoms_to_ignore
             )
             structures.append(
@@ -101,7 +102,8 @@ if __name__ == "__main__":
         points = [point for point in ellipsoid.poles]
         points.append(ellipsoid.center)
         pdb_file_name = output_file_name + ".pdb"
-        create_pdb_from_points(pdb_file_name, points)
+        io = IOFactory(pdb_file_name).get_instance()
+        io.create_file_from_points(pdb_file_name, points)
         log.info("Points written to %s in pdb format" % pdb_file_name)
         log.info("Done.")
 

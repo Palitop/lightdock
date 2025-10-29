@@ -4,7 +4,7 @@ import os
 import random
 import operator
 import numpy as np
-from lightdock.ioutil.PDBIO import create_pdb_from_points
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.prep.starting_points import calculate_surface_points
 from lightdock.mathutil.lrandom import MTGenerator, NormalGenerator
 from lightdock.mathutil.cython.quaternion import Quaternion
@@ -489,8 +489,7 @@ def calculate_initial_poses(
         blocking_restraints = receptor_restraints["blocked"]
         receptor_restraints = receptor_restraints["active"] + receptor_restraints["passive"]
 
-
-    swarm_centers, receptor_diameter, ligand_diameter = calculate_surface_points(
+    swarm_centers, _, ligand_diameter = calculate_surface_points(
         receptor,
         ligand,
         num_swarms,
@@ -529,7 +528,8 @@ def calculate_initial_poses(
         )
 
     pdb_file_name = os.path.join(dest_folder, SWARM_CENTERS_FILE)
-    create_pdb_from_points(pdb_file_name, swarm_centers)
+    io = IOFactory(pdb_file_name).get_instance()
+    io.create_file_from_points(pdb_file_name, swarm_centers)
 
     positions_files = []
 
@@ -554,7 +554,8 @@ def calculate_initial_poses(
             pdb_file_name = os.path.join(
                 dest_folder, "%s_%s.pdb" % (DEFAULT_PDB_STARTING_PREFIX, swarm_id)
             )
-            create_pdb_from_points(
+            io = IOFactory(pdb_file_name).get_instance()
+            io.create_file_from_points(
                 pdb_file_name,
                 [[pose[0], pose[1], pose[2]] for pose in poses[:num_glowworms]],
             )

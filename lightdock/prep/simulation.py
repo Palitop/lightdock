@@ -27,7 +27,7 @@ from lightdock.constants import (
     DEFAULT_SWARMS_PER_RESTRAINT,
 )
 from lightdock.util.logger import LoggingManager
-from lightdock.ioutil.PDBIO import parse_complex_from_file, write_pdb_to_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import calculate_nmodes, write_nmodes
 from lightdock.gso.boundaries import Boundary, BoundingBox
@@ -84,7 +84,8 @@ def read_input_structure(
         file_names.append(pdb_file_name)
     for file_name in file_names:
         log.info(f"Reading structure from {file_name} PDB file...")
-        atoms, residues, chains = parse_complex_from_file(
+        io = IOFactory(file_name).get_instance()
+        atoms, residues, chains = io.parse_complex_from_file(
             file_name, atoms_to_ignore, residues_to_ignore, verbose_parser
         )
         structures.append(
@@ -118,7 +119,8 @@ def save_lightdock_structure(structure):
             raise LightDockError(
                 f"{moved_file_name} already exists, please delete previous setup generated files"
             )
-        write_pdb_to_file(structure, moved_file_name, structure[structure_index])
+        io = IOFactory(moved_file_name).get_instance()
+        io.write_to_file(structure, moved_file_name, structure[structure_index])
         mask_file_name = Path(file_name).parent / Path(
             DEFAULT_MASK_FILE % Path(file_name).stem
         )
@@ -130,7 +132,7 @@ def calculate_anm(structure, num_nmodes, rmsd, seed, file_name):
     """Calculates ANM for representative structure"""
     original_file_name = structure.structure_file_names[structure.representative_id]
     # We have to use the parsed structure by LightDock
-    parsed_lightdock_structure = Path(original_file_name).parent /(
+    parsed_lightdock_structure = Path(original_file_name).parent / (
         DEFAULT_LIGHTDOCK_PREFIX % Path(original_file_name).name
     )
     modes = calculate_nmodes(parsed_lightdock_structure, num_nmodes, rmsd, seed, structure)

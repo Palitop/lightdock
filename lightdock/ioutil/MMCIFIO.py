@@ -1,7 +1,7 @@
 """Parses Atomic coordinates entries from MMCIF files"""
 
-from os import path
 import numpy as np
+from pathlib import Path
 from lightdock.ioutil.IO import IO
 from Bio.PDB import MMCIFParser, MMCIFIO as BioMMCIFIO
 from Bio.PDB.Atom import Atom as BioAtom
@@ -21,7 +21,6 @@ class MMCIFIO(IO):
 
     def __init__(self):
         self.log = LoggingManager.get_logger("mmcif")
-        pass
 
     @staticmethod
     def _build_atom(
@@ -83,13 +82,13 @@ class MMCIFIO(IO):
 
     def parse_complex_from_file(
         self,
-        input_file_name: str,
+        input_file_name: Path,
         atoms_to_ignore: list = [],
         residues_to_ignore: list = [],
         verbose: bool = False
     ):
         parser = MMCIFParser(QUIET=True)
-        structure_id = path.splitext(path.basename(input_file_name))[0]
+        structure_id = input_file_name.stem
         structure = parser.get_structure(structure_id, input_file_name)
 
         atoms = []
@@ -139,13 +138,13 @@ class MMCIFIO(IO):
 
     @staticmethod
     def _build_BioStructure(
-        output_file_name: str,
+        output_file_name: Path,
         chains: list,
     ) -> BioStructure:
         model: BioModel = BioModel(0)
         for chain in chains:
             model.add(chain)
-        structure_id = path.splitext(path.basename(output_file_name))[0]
+        structure_id = output_file_name.stem
         structure: BioStructure = BioStructure(structure_id)
         structure.add(model)
         return structure
@@ -187,7 +186,7 @@ class MMCIFIO(IO):
     def write_to_file(
         self,
         molecule: Complex,
-        output_file_name: str,
+        output_file_name: Path,
         atom_coordinates: SpacePoints = None,
         structure_id: int = 0
     ):
@@ -222,7 +221,7 @@ class MMCIFIO(IO):
 
     def create_file_from_points(
         self,
-        file_name: str,
+        file_name: Path,
         points: list,
         atom_name: str = "H",
         res_name: str = "SWR",

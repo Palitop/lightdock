@@ -13,7 +13,7 @@ from lightdock.gso.searchspace.benchmark_ofunctions import J1
 from lightdock.mathutil.lrandom import MTGenerator
 from lightdock.gso.boundaries import Boundary, BoundingBox
 from lightdock.error.lightdock_errors import GSOCoordinatesError
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.scoring.mj3h.driver import MJ3hAdapter, MJ3h
 
@@ -122,13 +122,13 @@ class TestLightdockFromFileInitializer:
     def setup_class(self):
         self.path = Path(__file__).absolute().parent
         self.golden_data_path = self.path / "golden_data"
-        atoms, _, chains = parse_complex_from_file(
-            self.golden_data_path / "1PPErec.pdb"
-        )
+        file_name = self.golden_data_path / "1PPErec.pdb"
+        io = IOFactory(file_name).get_instance()
+        atoms, _, chains = io.parse_complex_from_file(file_name)
         self.receptor = Complex(chains, atoms)
-        atoms, _, chains = parse_complex_from_file(
-            self.golden_data_path / "1PPElig.pdb"
-        )
+        file_name = self.golden_data_path / "1PPElig.pdb"
+        io = IOFactory(file_name).get_instance()
+        atoms, _, chains = io.parse_complex_from_file(file_name)
         self.ligand = Complex(chains, atoms)
         self.adapter = MJ3hAdapter(self.receptor, self.ligand)
         self.scoring_function = MJ3h()

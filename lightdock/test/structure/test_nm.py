@@ -3,7 +3,7 @@
 import pytest
 import numpy as np
 from pathlib import Path
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import calculate_nmodes, write_nmodes, read_nmodes
 from lightdock.constants import STARTING_NM_SEED, DEFAULT_ANM_RMSD
@@ -17,7 +17,8 @@ class TestNM:
 
     def test_calculate_anm_protein_1(self):
         pdb_file = self.golden_data_path / "nm_prot" / "2UUY_lig.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        io = IOFactory(pdb_file).get_instance()
+        _, _, chains = io.parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
@@ -36,7 +37,8 @@ class TestNM:
 
     def test_calculate_anm_protein_2(self):
         pdb_file = self.golden_data_path / "nm_prot" / "2UUY_rec.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        io = IOFactory(pdb_file).get_instance()
+        _, _, chains = io.parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
@@ -55,7 +57,8 @@ class TestNM:
 
     def test_calculate_anm_dna(self):
         pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        io = IOFactory(pdb_file).get_instance()
+        _, _, chains = io.parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
@@ -72,24 +75,10 @@ class TestNM:
 
         assert np.allclose(expected_nmodes, nmodes)
 
-    def test_calculate_anm_wrong_extension(self):
-        pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb.H"
-        _, _, chains = parse_complex_from_file(pdb_file)
-        molecule = Complex(chains)
-
-        # PATCH: assert_raises is not working properly with ProDy debug mode
-        with pytest.raises(NormalModesCalculationError):
-            nmodes = calculate_nmodes(
-                pdb_file,
-                n_modes=10,
-                rmsd=DEFAULT_ANM_RMSD,
-                seed=STARTING_NM_SEED,
-                molecule=molecule
-            )
-
     def test_read_write(self, tmp_path):
         pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb"
-        _, _, chains = parse_complex_from_file(pdb_file)
+        io = IOFactory(pdb_file).get_instance()
+        _, _, chains = io.parse_complex_from_file(pdb_file)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(

@@ -3,7 +3,7 @@
 import pytest
 import numpy as np
 from pathlib import Path
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.mathutil.ellipsoid import MinimumVolumeEllipsoid
 from lightdock.error.lightdock_errors import MinimumVolumeEllipsoidError
@@ -16,7 +16,8 @@ class TestEllipsoid:
         self.golden_data_path = self.path / "golden_data"
 
     def test_calculate_min_volume_ellipsoid(self):
-        atoms, _, chains = parse_complex_from_file(
+        io = IOFactory(self.golden_data_path / "1PPE_l_u.pdb").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
             self.golden_data_path / "1PPE_l_u.pdb"
         )
         protein = Complex(chains, atoms)

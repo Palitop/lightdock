@@ -3,7 +3,7 @@
 import pytest
 from pathlib import Path
 from lightdock.ioutil.MMCIFIO import MMCIFIO
-from lightdock.ioutil.PDBIO import parse_complex_from_file
+from lightdock.ioutil.PDBIO import PDBIO
 
 
 class TestPDBIOMMCIFIOReader:
@@ -13,7 +13,8 @@ class TestPDBIOMMCIFIOReader:
         self.mmcif_file = self.absolute_path / "parse_complex_from_file_1CRN.cif"
 
     def test_compare_pdb_mmcif_outputs(self):
-        atoms_pbd, residues_pdb, chains_pdb = parse_complex_from_file(self.pdb_file)
+        pdb_io = PDBIO()
+        atoms_pbd, residues_pdb, chains_pdb = pdb_io.parse_complex_from_file(self.pdb_file)
 
         mmcif_io = MMCIFIO()
         atoms_mmcif, residues_mmcif, chains_mmcif = mmcif_io.parse_complex_from_file(self.mmcif_file)
@@ -25,7 +26,8 @@ class TestPDBIOMMCIFIOReader:
     def test_compare_pdb_mmcif_outputs_ignoring_atoms(self):
         atoms_to_ignore = ["C", "O", "CB"]
 
-        atoms_pbd, residues_pdb, chains_pdb = parse_complex_from_file(self.pdb_file, atoms_to_ignore=atoms_to_ignore)
+        pdb_io = PDBIO()
+        atoms_pbd, residues_pdb, chains_pdb = pdb_io.parse_complex_from_file(self.pdb_file, atoms_to_ignore=atoms_to_ignore)
 
         mmcif_io = MMCIFIO()
         atoms_mmcif, residues_mmcif, chains_mmcif = mmcif_io.parse_complex_from_file(self.mmcif_file, atoms_to_ignore=atoms_to_ignore)
@@ -37,7 +39,8 @@ class TestPDBIOMMCIFIOReader:
     def test_compare_pdb_mmcif_outputs_ignoring_residues(self):
         residues_to_ignore = ["ALA", "TYR"]
 
-        atoms_pbd, residues_pdb, chains_pdb = parse_complex_from_file(self.pdb_file, residues_to_ignore=residues_to_ignore)
+        pdb_io = PDBIO()
+        atoms_pbd, residues_pdb, chains_pdb = pdb_io.parse_complex_from_file(self.pdb_file, residues_to_ignore=residues_to_ignore)
 
         mmcif_io = MMCIFIO()
         atoms_mmcif, residues_mmcif, chains_mmcif = mmcif_io.parse_complex_from_file(self.mmcif_file, residues_to_ignore=residues_to_ignore)
@@ -51,7 +54,8 @@ class TestPDBIOMMCIFIOReader:
         ("points.pdb", "points.cif")
     ])
     def test_compare_pdb_mmcif_information(self, pdb_file, mmcif_file):
-        atoms_pbd, residues_pdb, chains_pdb = parse_complex_from_file(self.absolute_path / pdb_file)
+        pdb_io = PDBIO()
+        atoms_pbd, residues_pdb, chains_pdb = pdb_io.parse_complex_from_file(self.absolute_path / pdb_file)
 
         mmcif_io = MMCIFIO()
         atoms_mmcif, residues_mmcif, chains_mmcif = mmcif_io.parse_complex_from_file(self.absolute_path / mmcif_file)

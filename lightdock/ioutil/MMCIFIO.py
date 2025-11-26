@@ -210,14 +210,29 @@ class MMCIFIO(IO):
                 else:
                     residue.add(atomObject)
 
-        structure: BioStructure = MMCIFIO._build_BioStructure(output_file_name, chains)
-
         try:
-            io = BioMMCIFIO()
-            io.set_structure(structure)
-            io.save(output_file_name)
+            # if file exists, we add the new chains to the structure
+            parser = MMCIFParser(QUIET=True)
+            structure_id = output_file_name.stem
+            structure = parser.get_structure(structure_id, output_file_name)
+
+            chain_ids = [chain.id for chain in structure.get_chains()]
+
+            for chain in chains:
+                if chain.id in chain_ids:
+                    last_id = chain_ids[-1]
+                    chain.id = chr(ord(last_id) + 1)
+                    chain_ids.append(chain.id)
+                structure[0].add(chain)
+        except FileNotFoundError:
+            # if the file does not exist, create a new file with the structure
+            structure: BioStructure = MMCIFIO._build_BioStructure(output_file_name, chains)
         except Exception as e:
             print(e)
+        finally:
+            io = BioMMCIFIO()
+            io.set_structure(structure)
+            io.save(str(output_file_name))
 
     def create_file_from_points(
         self,
@@ -258,6 +273,6 @@ class MMCIFIO(IO):
         try:
             io = BioMMCIFIO()
             io.set_structure(structure)
-            io.save(file_name)
+            io.save(str(file_name))
         except Exception as e:
             print(e)

@@ -1,5 +1,7 @@
 """Tests for MMCIFReader module"""
 
+import os
+import shutil
 from pathlib import Path
 from lightdock.ioutil.IO import IO
 from lightdock.ioutil.MMCIFIO import MMCIFIO
@@ -287,6 +289,9 @@ class TestMMCIFReader:
         assert len(result.child_dict) == 1
 
     def test_write_to_file(self):
+        if os.path.exists(self.absolute_path / "write_to_file_written.cif"):
+            os.remove(self.absolute_path / "write_to_file_written.cif")
+
         mmcif_io = MMCIFIO()
         test_file = self.absolute_path / "parse_complex_from_file_1CRN.cif"
 
@@ -313,6 +318,9 @@ class TestMMCIFReader:
         assert len(chains) == len(chains_output)
 
     def test_write_to_file_information(self):
+        if os.path.exists(self.absolute_path / "write_to_file_written.cif"):
+            os.remove(self.absolute_path / "write_to_file_written.cif")
+
         mmcif_io = MMCIFIO()
         test_file = self.absolute_path / "parse_complex_from_file_1CRN.cif"
 
@@ -355,6 +363,42 @@ class TestMMCIFReader:
 
         for chain, chain_out in zip(chains, chains_output):
             assert chain.cid == chain_out.cid
+
+    def test_write_to_file_exists(self):
+        shutil.copy(
+            self.absolute_path / "write_to_file_written.cif",
+            self.absolute_path / "write_to_file_written_exists.cif"
+        )
+
+        mmcif_io = MMCIFIO()
+        test_file = self.absolute_path / "parse_complex_from_file_1CRN.cif"
+
+        atoms, residues, chains = mmcif_io.parse_complex_from_file(test_file)
+
+        lightdock_structures = [
+            {
+                "atoms": atoms,
+                "residues": residues,
+                "chains": chains,
+                "file_name": test_file,
+            }
+        ]
+        receptor = Complex.from_structures(lightdock_structures)
+        output_file = self.absolute_path / "write_to_file_written_exists.cif"
+
+        atoms_exists, residues_exists, chains_exists = mmcif_io.parse_complex_from_file(output_file)
+
+        mmcif_io.write_to_file(receptor, output_file)
+
+        atoms_output, residues_output, chains_output = mmcif_io.parse_complex_from_file(output_file)
+
+        assert len(atoms) + len(atoms_exists) == len(atoms_output)
+        assert len(residues) + len(residues_exists) == len(residues_output)
+        assert len(chains) + len(chains_exists) == len(chains_output)
+
+        # removing all the created files by the test case
+        if os.path.exists(self.absolute_path / "write_to_file_written_exists.cif"):
+            os.remove(self.absolute_path / "write_to_file_written_exists.cif")
 
     def test_create_file_from_points(self):
         mmcif_io = MMCIFIO()

@@ -8,7 +8,7 @@
     "fixed_distance": 0.0,
     "flip": true,
     "glowworms": 200,
-    "ligand_pdb": "3V6Z_B.pdb",
+    "ligand": "3V6Z_B.pdb",
     "ligand_restraints": {
         "active": [
             "B.GLY.10",
@@ -38,7 +38,7 @@
     "noh": true,
     "now": false,
     "noxt": true,
-    "receptor_pdb": "3V6Z_A.pdb",
+    "receptor": "3V6Z_A.pdb",
     "receptor_restraints": {
         "active": [
             "A.GLN.26",

@@ -8,7 +8,7 @@
     "fixed_distance": 0.0,
     "flip": false,
     "glowworms": 25,
-    "ligand_pdb": "1PPE_lig.pdb",
+    "ligand": "1PPE_lig.pdb",
     "ligand_restraints": {
         "active": [],
         "blocked": [],
@@ -18,7 +18,7 @@
     "noh": false,
     "now": false,
     "noxt": false,
-    "receptor_pdb": "1PPE_rec.pdb",
+    "receptor": "1PPE_rec.pdb",
     "receptor_restraints": {
         "active": [
             "A.LEU.99"

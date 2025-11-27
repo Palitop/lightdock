@@ -11,7 +11,7 @@
     "flip": false,
     "glowworms": 50,
     "gso_seed": 324324,
-    "ligand_pdb": "1DIZ_lig.pdb",
+    "ligand": "1DIZ_lig.pdb",
     "ligand_restraints": {
         "active": [],
         "blocked": [],
@@ -26,7 +26,7 @@
     "now": false,
     "noxt": false,
     "profiling": false,
-    "receptor_pdb": "1DIZ_rec.pdb",
+    "receptor": "1DIZ_rec.pdb",
     "receptor_restraints": {
         "active": [
             "A.MET.1",

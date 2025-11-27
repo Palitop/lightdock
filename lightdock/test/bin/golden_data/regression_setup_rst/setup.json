@@ -8,7 +8,7 @@
     "fixed_distance": 0.0,
     "flip": false,
     "glowworms": 100,
-    "ligand_pdb": "2UUY_lig.pdb",
+    "ligand": "2UUY_lig.pdb",
     "ligand_restraints": {
         "active": [
             "B.LEU.37"
@@ -23,7 +23,7 @@
     "noh": true,
     "now": true,
     "noxt": true,
-    "receptor_pdb": "2UUY_rec.pdb",
+    "receptor": "2UUY_rec.pdb",
     "receptor_restraints": {
         "active": [
             "A.SER.195"

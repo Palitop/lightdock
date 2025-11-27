@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Creates a PDB with atom points representing the position for each of the glowworms of a swarm"""
+"""Creates a PDB/MMCIF file with atom points representing the position for each of the glowworms of a swarm"""
 
 import argparse
 import os
@@ -42,6 +42,15 @@ if __name__ == "__main__":
         type=valid_file,
         metavar="lightdock_output",
     )
+
+    parser.add_argument(
+        "--output_format",
+        help="Output file format (pdb or mmcif)",
+        metavar="output_format",
+        default="pdb",
+        choices=["pdb", "cif"]
+    )
+
     args = parser.parse_args()
 
     # Output file
@@ -49,9 +58,9 @@ if __name__ == "__main__":
 
     # Destination path is the same as the lightdock output
     destination_path = os.path.dirname(args.lightdock_output)
-    pdb_file_name = os.path.splitext(args.lightdock_output)[0] + ".pdb"
+    file_name = os.path.splitext(args.lightdock_output)[0] + "." + args.output_format
 
-    output_file = os.path.join(destination_path, pdb_file_name)
+    output_file = os.path.join(destination_path, file_name)
     io = IOFactory(output_file).get_instance()
     io.create_file_from_points(output_file, translations, res_name="GLW")
-    log.info("PDB %s file created." % os.path.join(destination_path, pdb_file_name))
+    log.info("%s file created." % os.path.join(destination_path, file_name))

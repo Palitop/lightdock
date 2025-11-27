@@ -25,7 +25,7 @@ class IOFactory:
             if self.file_name.is_dir():
                 raise FolderPathError()
 
-        file_type = IOFactory._get_file_type(self.file_name)
+        file_type = IOFactory.get_file_type(self.file_name)
 
         if file_type in ["mmcif", "cif"]:
             return MMCIFIO()
@@ -36,5 +36,5 @@ class IOFactory:
         raise UnsupportedFileTypeError(file_type)
 
     @staticmethod
-    def _get_file_type(file_name: Path) -> str:
+    def get_file_type(file_name: Path) -> str:
         return str(file_name).split('.')[-1].lower()

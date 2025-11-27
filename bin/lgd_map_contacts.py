@@ -103,17 +103,17 @@ def calculate_contacts(rec_atoms_per_residue, rec_pose, lig_pose):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(prog="lgd_map_contacts")
-    # Receptor PDB
+    # Receptor
     parser.add_argument(
         "receptor_structure",
-        help="PDB file of the receptor structure",
+        help="File of the receptor structure",
         type=valid_file,
         metavar="receptor_structure",
     )
-    # Ligand PDB
+    # Ligand
     parser.add_argument(
         "ligand_structure",
-        help="PDB file of the ligand structure",
+        help="File of the ligand structure",
         type=valid_file,
         metavar="ligand_structure",
     )
@@ -124,11 +124,11 @@ if __name__ == "__main__":
         metavar="setup_file",
         type=valid_file,
     )
-    # Output PDB file
+    # Output file
     parser.add_argument(
-        "output_pdb_file",
-        help="Output PDB file",
-        metavar="output_pdb_file"
+        "output_file",
+        help="Output file",
+        metavar="output_file"
     )
     # GSO files
     parser.add_argument(
@@ -140,8 +140,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if os.path.exists(args.output_pdb_file):
-        log.error(f"File {args.output_pdb_file} already exists")
+    if os.path.exists(args.output_file):
+        log.error(f"File {args.output_file} already exists")
         raise SystemExit
 
     # Load setup configuration
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     # Receptor
     structures = []
     for structure in get_lightdock_structures(args.receptor_structure):
-        log.info("Reading %s receptor PDB file..." % structure)
+        log.info("Reading %s receptor file..." % structure)
         io = IOFactory(structure).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
@@ -175,7 +175,7 @@ if __name__ == "__main__":
     # Ligand
     structures = []
     for structure in get_lightdock_structures(args.ligand_structure):
-        log.info("Reading %s ligand PDB file..." % structure)
+        log.info("Reading %s ligand file..." % structure)
         io = IOFactory(structure).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
@@ -239,5 +239,5 @@ if __name__ == "__main__":
         residue_id = f"{atom.chain_id}.{atom.residue_name}.{atom.residue_number}"
         atom.b_factor = residue_freqs_norm[residue_id]
 
-    io = IOFactory(args.output_pdb_file).get_instance()
-    io.write_to_file(receptor, args.output_pdb_file)
+    io = IOFactory(args.output_file).get_instance()
+    io.write_to_file(receptor, args.output_file)

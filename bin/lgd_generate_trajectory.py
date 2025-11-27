@@ -30,22 +30,29 @@ def parse_command_line():
     )
     parser.add_argument("steps", help="steps to consider", type=int, metavar="steps")
     parser.add_argument(
-        "receptor_pdb",
-        help="Receptor LightDock parsed PDB structure",
+        "receptor",
+        help="Receptor LightDock parsed structure",
         type=valid_file,
-        metavar="receptor_pdb",
+        metavar="receptor",
     )
     parser.add_argument(
-        "ligand_pdb",
-        help="Ligand LightDock parsed PDB structure",
+        "ligand",
+        help="Ligand LightDock parsed structure",
         type=valid_file,
-        metavar="ligand_pdb",
+        metavar="ligand",
     )
     parser.add_argument(
         "setup_file",
         help="Simulation setup file",
         metavar="setup_file",
         type=valid_file,
+    )
+    parser.add_argument(
+        "--output_format",
+        help="Output file format (pdb or mmcif)",
+        metavar="output_format",
+        default="pdb",
+        choices=["pdb", "cif"]
     )
     return parser.parse_args()
 
@@ -94,26 +101,26 @@ if __name__ == "__main__":
         num_anm_lig = setup["anm_lig"]
 
     # Read receptor
-    log.info("Reading %s receptor PDB file..." % args.receptor_pdb)
-    io = IOFactory(args.receptor_pdb).get_instance()
-    atoms, residues, chains = io.parse_complex_from_file(args.receptor_pdb)
+    log.info("Reading %s receptor file..." % args.receptor)
+    io = IOFactory(args.receptor).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.receptor)
     receptor = Complex(chains, atoms)
     log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
 
     # Read ligand
-    log.info("Reading %s ligand PDB file..." % args.ligand_pdb)
-    io = IOFactory(args.ligand_pdb).get_instance()
-    atoms, residues, chains = io.parse_complex_from_file(args.ligand_pdb)
+    log.info("Reading %s ligand file..." % args.ligand)
+    io = IOFactory(args.ligand).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.ligand)
     ligand = Complex(chains, atoms)
     log.info("%s atoms, %s residues read." % (len(atoms), len(residues)))
 
     try:
-        nm_path = os.path.abspath(os.path.dirname(args.receptor_pdb))
+        nm_path = os.path.abspath(os.path.dirname(args.receptor))
         nmodes_rec = read_nmodes(os.path.join(nm_path, DEFAULT_REC_NM_FILE + ".npy"))
     except:
         nmodes_rec = None
     try:
-        nm_path = os.path.abspath(os.path.dirname(args.ligand_pdb))
+        nm_path = os.path.abspath(os.path.dirname(args.ligand))
         nmodes_lig = read_nmodes(os.path.join(nm_path, DEFAULT_LIG_NM_FILE + ".npy"))
     except:
         nmodes_lig = None
@@ -174,9 +181,10 @@ if __name__ == "__main__":
                 ligand_pose.rotate(rotation)
                 ligand_pose.translate(translation)
 
-                output_file_name = "trajectory_%s_step_%s.pdb" % (
+                output_file_name = "trajectory_%s_step_%s.%s" % (
                     args.glowworm_id,
                     step,
+                    args.output_format
                 )
                 io = IOFactory(output_file_name).get_instance()
                 io.write_to_file(receptor, output_file_name, receptor_pose)

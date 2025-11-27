@@ -146,8 +146,8 @@ def run_simulation(parser):
 
         # Read input structures (use parsed ones)
         parsed_lightdock_receptor = os.path.join(
-            os.path.dirname(args.receptor_pdb),
-            DEFAULT_LIGHTDOCK_PREFIX % os.path.basename(args.receptor_pdb),
+            os.path.dirname(args.receptor),
+            DEFAULT_LIGHTDOCK_PREFIX % os.path.basename(args.receptor),
         )
         receptor = read_input_structure(
             parsed_lightdock_receptor,
@@ -157,8 +157,8 @@ def run_simulation(parser):
             args.verbose_parser,
         )
         parsed_lightdock_ligand = os.path.join(
-            os.path.dirname(args.ligand_pdb),
-            DEFAULT_LIGHTDOCK_PREFIX % os.path.basename(args.ligand_pdb),
+            os.path.dirname(args.ligand),
+            DEFAULT_LIGHTDOCK_PREFIX % os.path.basename(args.ligand),
         )
         ligand = read_input_structure(
             parsed_lightdock_ligand, args.noxt, args.noh, args.now, args.verbose_parser

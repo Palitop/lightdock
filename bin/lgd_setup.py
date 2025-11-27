@@ -2,7 +2,7 @@
 
 """Before launching the LightDock simulation, a setup step is required.
 
-This step parses the input PDB structures, calculates the minimum ellipsoid
+This step parses the input PDB/MMCIF structures, calculates the minimum ellipsoid
 containing each of them, calculates the swarms on the surface of the
 receptor and populates each swarm with random coordinates for each glowworm's
 optimization vector.
@@ -45,10 +45,10 @@ if __name__ == "__main__":
 
         # Read input structures
         receptor = read_input_structure(
-            args.receptor_pdb, args.noxt, args.noh, args.now, args.verbose_parser
+            args.receptor, args.noxt, args.noh, args.now, args.verbose_parser
         )
         ligand = read_input_structure(
-            args.ligand_pdb, args.noxt, args.noh, args.now, args.verbose_parser
+            args.ligand, args.noxt, args.noh, args.now, args.verbose_parser
         )
 
         # Move structures to origin
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         lig_translation = ligand.move_to_origin()
 
         # Calculate reference points for receptor
-        log.info(f"Calculating reference points for receptor {args.receptor_pdb}...")
+        log.info(f"Calculating reference points for receptor {args.receptor}...")
         ellipsoid_data_file = "%s%s" % (
             DEFAULT_LIGHTDOCK_PREFIX % receptor.structure_file_names[0],
             DEFAULT_ELLIPSOID_DATA_EXTENSION,
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         log.info("Done.")
 
         # Calculate reference points for ligand
-        log.info("Calculating reference points for ligand %s..." % args.ligand_pdb)
+        log.info("Calculating reference points for ligand %s..." % args.ligand)
         ellipsoid_data_file = "%s%s" % (
             DEFAULT_LIGHTDOCK_PREFIX % ligand.structure_file_names[0],
             DEFAULT_ELLIPSOID_DATA_EXTENSION,

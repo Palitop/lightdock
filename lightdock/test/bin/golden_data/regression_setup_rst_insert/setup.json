@@ -8,7 +8,7 @@
     "fixed_distance": 0.0,
     "flip": false,
     "glowworms": 200,
-    "ligand_pdb": "ligand.pdb",
+    "ligand": "ligand.pdb",
     "ligand_restraints": {
         "active": [],
         "blocked": [],
@@ -18,7 +18,7 @@
     "noh": true,
     "now": true,
     "noxt": true,
-    "receptor_pdb": "receptor.pdb",
+    "receptor": "receptor.pdb",
     "receptor_restraints": {
         "active": [
             "H.ASP.52A",

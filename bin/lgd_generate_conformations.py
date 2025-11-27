@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Generates the PDB structures given a LightDock swarm results file"""
+"""Generates the PDB/MMCIF structures given a LightDock swarm results file"""
 
 import argparse
 import os
@@ -109,14 +109,14 @@ if __name__ == "__main__":
     # Receptor
     parser.add_argument(
         "receptor_structures",
-        help="receptor structures: PDB file or list of PDB files",
+        help="receptor structures: file or list of files",
         type=valid_file,
         metavar="receptor_structure",
     )
     # Ligand
     parser.add_argument(
         "ligand_structures",
-        help="ligand structures: PDB file or list of PDB files",
+        help="ligand structures: file or list of files",
         type=valid_file,
         metavar="ligand_structure",
     )
@@ -143,6 +143,14 @@ if __name__ == "__main__":
         default=None,
     )
 
+    parser.add_argument(
+        "--output_format",
+        help="Output file format (pdb or mmcif)",
+        metavar="output_format",
+        default="pdb",
+        choices=["pdb", "cif"]
+    )
+
     args = parser.parse_args()
 
     # Load setup configuration if provided
@@ -157,7 +165,7 @@ if __name__ == "__main__":
     # Receptor
     structures = []
     for structure in get_lightdock_structures(args.receptor_structures):
-        log.info("Reading %s receptor PDB file..." % structure)
+        log.info("Reading %s receptor file..." % structure)
         io = IOFactory(structure).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
@@ -174,7 +182,7 @@ if __name__ == "__main__":
     # Ligand
     structures = []
     for structure in get_lightdock_structures(args.ligand_structures):
-        log.info("Reading %s ligand PDB file..." % structure)
+        log.info("Reading %s ligand file..." % structure)
         io = IOFactory(structure).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
@@ -284,7 +292,7 @@ if __name__ == "__main__":
         ligand_pose.rotate(rotations[i])
         ligand_pose.translate(translations[i])
 
-        output_file = os.path.join(destination_path, "lightdock_%s.pdb" % i)
+        output_file = os.path.join(destination_path, "lightdock_%s.%s" % (i, args.output_format))
         io = IOFactory(output_file).get_instance()
         io.write_to_file(
             receptor,
@@ -292,9 +300,9 @@ if __name__ == "__main__":
             receptor_pose,
         )
 
-        output_file = os.path.join(destination_path, "lightdock_%s.pdb" % i)
+        output_file = os.path.join(destination_path, "lightdock_%s.%s" % (i, args.output_format))
         io = IOFactory(output_file).get_instance()
         io.write_to_file(
-            ligand, os.path.join(destination_path, "lightdock_%s.pdb" % i), ligand_pose
+            ligand, os.path.join(destination_path, "lightdock_%s.%s" % (i, args.output_format)), ligand_pose
         )
     log.info("Generated %d conformations" % num_conformations)

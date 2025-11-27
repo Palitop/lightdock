@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Generates the top N structures in PDB format given a ranking file"""
+"""Generates the top N structures in PDB/MMCIF format given a ranking file"""
 
 import argparse
 import os
@@ -34,14 +34,14 @@ if __name__ == "__main__":
     # Receptor
     parser.add_argument(
         "receptor_structures",
-        help="receptor structures: PDB file or list of PDB files",
+        help="receptor structures: file or list of files",
         type=valid_file,
         metavar="receptor_structure",
     )
     # Ligand
     parser.add_argument(
         "ligand_structures",
-        help="ligand structures: PDB file or list of PDB files",
+        help="ligand structures: file or list of files",
         type=valid_file,
         metavar="ligand_structure",
     )
@@ -71,6 +71,14 @@ if __name__ == "__main__":
         default=None,
     )
 
+    parser.add_argument(
+        "--output_format",
+        help="Output file format (pdb or mmcif)",
+        metavar="output_format",
+        default="pdb",
+        choices=["pdb", "cif"]
+    )
+
     args = parser.parse_args()
 
     # Load setup configuration if provided
@@ -85,7 +93,7 @@ if __name__ == "__main__":
     # Receptor
     structures = []
     for structure in get_lightdock_structures(args.receptor_structures):
-        log.info("Reading %s receptor PDB file..." % structure)
+        log.info("Reading %s receptor file..." % structure)
         io = IOFactory(structure).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
@@ -102,7 +110,7 @@ if __name__ == "__main__":
     # Ligand
     structures = []
     for structure in get_lightdock_structures(args.ligand_structures):
-        log.info("Reading %s ligand PDB file..." % structure)
+        log.info("Reading %s ligand file..." % structure)
         io = IOFactory(structure).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(structure)
         structures.append(
@@ -161,7 +169,7 @@ if __name__ == "__main__":
                 [glowworm.pose[0], glowworm.pose[1], glowworm.pose[2]]
             )
 
-            destination_file = os.path.join(destination_path, "top_%s.pdb" % str(i + 1))
+            destination_file = os.path.join(destination_path, "top_%s.%s" % (str(i + 1), args.output_format))
             io = IOFactory(destination_file).get_instance()
             io.write_to_file(
                 receptor,

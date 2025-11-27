@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Calculates the scoring function value for a pair of receptor and ligand PDB structures"""
+"""Calculates the scoring function value for a pair of receptor and ligand PDB/MMCIF structures"""
 
 import argparse
 import importlib
@@ -15,8 +15,8 @@ log = LoggingManager.get_logger("lgd_calculate_scoring")
 def parse_command_line():
     parser = argparse.ArgumentParser(prog="lgd_calculate_scoring")
     parser.add_argument("scoring_function", help="scoring function")
-    parser.add_argument("receptor", help="PDB receptor")
-    parser.add_argument("ligand", help="PDB ligand")
+    parser.add_argument("receptor", help="receptor file")
+    parser.add_argument("ligand", help="ligand file")
     script_args = parser.parse_args()
     return script_args
 

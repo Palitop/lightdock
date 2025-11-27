@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Calculates the diameter of a given PDB structure"""
+"""Calculates the diameter of a given PDB/MMCIF structure"""
 
 import argparse
 from scipy import spatial
@@ -16,7 +16,7 @@ log = LoggingManager.get_logger("lgd_calculate_diameter")
 def parse_command_line():
     parser = argparse.ArgumentParser(prog="lgd_calculate_diameter")
     parser.add_argument(
-        "pdb", help="PDB file for structure to calculate maximum diameter"
+        "file", help="file for structure to calculate maximum diameter"
     )
     parsed_args = parser.parse_args()
     return parsed_args
@@ -25,10 +25,10 @@ def parse_command_line():
 if __name__ == "__main__":
     args = parse_command_line()
 
-    io = IOFactory(args.pdb).get_instance()
-    atoms, residues, chains = io.parse_complex_from_file(args.pdb)
+    io = IOFactory(args.file).get_instance()
+    atoms, residues, chains = io.parse_complex_from_file(args.file)
 
-    structure = Complex(chains, atoms, structure_file_name=args.pdb)
+    structure = Complex(chains, atoms, structure_file_name=args.file)
     distances_matrix = spatial.distance.squareform(
         spatial.distance.pdist(structure.representative())
     )

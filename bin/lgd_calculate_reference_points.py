@@ -34,8 +34,8 @@ def parse_command_line():
     return parser.parse_args()
 
 
-def get_pdb_files(input_file_name):
-    """Get a list of the PDB files in the input_file_name"""
+def get_files(input_file_name):
+    """Get a list of the files in the input_file_name"""
     structure_file_names = []
     with open(input_file_name) as input_file:
         for line in input_file:
@@ -62,11 +62,11 @@ if __name__ == "__main__":
         file_names = []
         file_name, file_extension = os.path.splitext(args.structure)
         if file_extension == DEFAULT_LIST_EXTENSION:
-            file_names.extend(get_pdb_files(args.structure))
+            file_names.extend(get_files(args.structure))
         else:
             file_names.append(args.structure)
         for file_name in file_names:
-            log.info("Reading %s PDB file..." % file_name)
+            log.info("Reading %s file..." % file_name)
             io = IOFactory(file_name).get_instance()
             atoms, residues, chains = io.parse_complex_from_file(
                 file_name, atoms_to_ignore
@@ -101,10 +101,11 @@ if __name__ == "__main__":
 
         points = [point for point in ellipsoid.poles]
         points.append(ellipsoid.center)
-        pdb_file_name = output_file_name + ".pdb"
-        io = IOFactory(pdb_file_name).get_instance()
-        io.create_file_from_points(pdb_file_name, points)
-        log.info("Points written to %s in pdb format" % pdb_file_name)
+        file_format = IOFactory.get_file_type(file_names[0])
+        file_name = output_file_name + "." + file_format
+        io = IOFactory(file_name).get_instance()
+        io.create_file_from_points(file_name, points)
+        log.info("Points written to %s in %s format" % file_name, file_format)
         log.info("Done.")
 
     except KeyboardInterrupt:

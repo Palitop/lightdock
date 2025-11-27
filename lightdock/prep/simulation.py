@@ -50,7 +50,7 @@ def get_pdb_files(input_file):
 
 
 def read_input_structure(
-    pdb_file_name,
+    file,
     ignore_oxt=True,
     ignore_hydrogens=False,
     ignore_water=False,
@@ -58,8 +58,8 @@ def read_input_structure(
 ):
     """Reads the input structure.
 
-    The arguments pdb_file_name can be a PDB file or a file
-    containing a list of PDB files.
+    The arguments file can be a PDB/MMCIF file or a file
+    containing a list of PDB/MMCIF files.
 
     ignore_oxt flag avoids saving OXT atoms.
     """
@@ -77,11 +77,11 @@ def read_input_structure(
 
     structures = []
     file_names = []
-    file_name, file_extension = os.path.splitext(pdb_file_name)
+    file_name, file_extension = os.path.splitext(file)
     if file_extension == DEFAULT_LIST_EXTENSION:
-        file_names.extend(get_pdb_files(pdb_file_name))
+        file_names.extend(get_pdb_files(file))
     else:
-        file_names.append(pdb_file_name)
+        file_names.append(file)
     for file_name in file_names:
         log.info(f"Reading structure from {file_name} PDB file...")
         io = IOFactory(file_name).get_instance()

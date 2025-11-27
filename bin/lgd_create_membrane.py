@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(prog="lgd_create_membrane")
     parser.add_argument(
-        "input_pdb_file", help="Input PDB file", metavar="input_pdb_file"
+        "input_file", help="Input file", metavar="input_file"
     )
     parser.add_argument(
         "anchor_residue",
@@ -55,20 +55,20 @@ if __name__ == "__main__":
         default=30.0,
     )
     parser.add_argument(
-        "--output_pdb_file",
-        "-output_pdb_file",
+        "--output_file",
+        "-output_file",
         "-o",
-        help="Output PDB file name",
-        dest="output_pdb_file",
+        help="Output file name",
+        dest="output_file",
         default="membrane.pdb",
     )
 
     args = parser.parse_args()
 
-    if not os.path.exists(args.input_pdb_file):
-        log.error(f"File {args.input_pdb_file} does not exist")
+    if not os.path.exists(args.input_file):
+        log.error(f"File {args.input_file} does not exist")
         raise SystemExit
-    molecule = parsePDB(args.input_pdb_file)
+    molecule = parsePDB(args.input_file)
 
     try:
         chain, res_name, res_num = args.anchor_residue.split(".")
@@ -138,13 +138,13 @@ if __name__ == "__main__":
 
         density += 1.0
 
-    # Save genearted beads as a new PDB file
-    io = IOFactory(args.output_pdb_file).get_instance()
+    # Save genearted beads as a new file
+    io = IOFactory(args.output_file).get_instance()
     io.create_file_from_points(
-        args.output_pdb_file, points, atom_name="BJ", res_name="MMB", element="P"
+        args.output_file, points, atom_name="BJ", res_name="MMB", element="P"
     )
 
-    log.info(f"Membrane PDB file written to [{args.output_pdb_file}]")
+    log.info(f"Membrane file written to [{args.output_file}]")
     log.info(f"- Angular resolution: {args.angular_resolution} degrees")
     log.info(f"- Radius resolution: {args.radius_resolution} A")
     log.info(f"- Radius offset: {args.radius_offset} A")

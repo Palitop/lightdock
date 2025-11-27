@@ -96,17 +96,17 @@ class SetupCommandLineParser(object):
 
         # Receptor
         parser.add_argument(
-            "receptor_pdb",
-            help="Receptor structure PDB file",
+            "receptor",
+            help="Receptor structure file",
             type=valid_file,
-            metavar="receptor_pdb_file",
+            metavar="receptor_file",
         )
         # Ligand
         parser.add_argument(
-            "ligand_pdb",
-            help="Ligand structure PDB file",
+            "ligand",
+            help="Ligand structure file",
             type=valid_file,
-            metavar="ligand_pdb_file",
+            metavar="ligand_file",
         )
         # Clusters
         parser.add_argument(

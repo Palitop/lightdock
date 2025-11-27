@@ -82,7 +82,7 @@ def parse_command_line():
     )
     parser.add_argument(
         "parsed_receptor_file",
-        help="Receptor PDB parsed by LightDock",
+        help="Receptor parsed by LightDock",
         metavar="parsed_receptor_file",
     )
     parser.add_argument(

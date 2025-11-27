@@ -8,7 +8,7 @@
     "fixed_distance": 0.0,
     "flip": false,
     "glowworms": 50,
-    "ligand_pdb": "3x29_ligand.pdb",
+    "ligand": "3x29_ligand.pdb",
     "ligand_restraints": {
         "active": [],
         "blocked": [],
@@ -18,7 +18,7 @@
     "noh": true,
     "now": false,
     "noxt": true,
-    "receptor_pdb": "3x29_receptor_membrane.pdb",
+    "receptor": "3x29_receptor_membrane.pdb",
     "receptor_restraints": {
         "active": [
             "A.GLN.61",

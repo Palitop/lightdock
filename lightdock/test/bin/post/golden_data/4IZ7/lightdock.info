@@ -7,7 +7,7 @@
     "ftdock_file": null, 
     "glowworms": 50, 
     "gso_seed": 324324, 
-    "ligand_pdb": "4IZ7_B_noh.pdb", 
+    "ligand": "4IZ7_B_noh.pdb", 
     "ligand_restraints": {
         "active": [
             "B.ASN.14", 
@@ -30,7 +30,7 @@
     "noh": true, 
     "noxt": true, 
     "profiling": false, 
-    "receptor_pdb": "4IZ7_A_noh.pdb", 
+    "receptor": "4IZ7_A_noh.pdb", 
     "receptor_restraints": {
         "active": [
             "A.ILE.198", 

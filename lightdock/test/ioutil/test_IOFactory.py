@@ -59,5 +59,5 @@ class TestIOFactory():
         (Path("1CRN.mmcif"), "mmcif")
     ])
     def test_get_file_type(self, file_name: str, result: str):
-        file_type = IOFactory._get_file_type(file_name)
+        file_type = IOFactory.get_file_type(file_name)
         assert file_type == result

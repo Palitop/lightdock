@@ -1,5 +1,6 @@
 """Tests for GSOBuilder class using J1 function"""
 
+import pytest
 import filecmp
 from pathlib import Path
 from lightdock.gso.parameters import GSOParameters
@@ -31,17 +32,21 @@ class TestLightDockGSOBuilder:
         )
         self.random_number_generator = MTGenerator(324324)
 
-    def test_LightDockGSOBuilder_using_FromFileInitializer(self, tmp_path):
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1PPElig.pdb", "1PPErec.pdb"),
+        ("1PPElig.cif", "1PPErec.cif"),
+    ])
+    def test_LightDockGSOBuilder_using_FromFileInitializer(self, lig_file, rec_file, tmp_path):
         builder = LightdockGSOBuilder()
         number_of_glowworms = 5
-        io = IOFactory(self.golden_data_path / "1PPErec.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1PPErec.pdb"
+            self.golden_data_path / rec_file
         )
-        io = IOFactory(self.golden_data_path / "1PPElig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         receptor = Complex(chains, atoms)
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1PPElig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = MJ3hAdapter(receptor, ligand)

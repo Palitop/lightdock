@@ -53,6 +53,46 @@ class TestEllipsoid:
 
         assert np.allclose(expected_poles, ellipsoid.poles, ERROR_TOLERANCE)
 
+    def test_calculate_min_volume_ellipsoid_cif(self):
+        io = IOFactory(self.golden_data_path / "1PPE_l_u.cif").get_instance()
+        atoms, _, chains = io.parse_complex_from_file(
+            self.golden_data_path / "1PPE_l_u.cif"
+        )
+        protein = Complex(chains, atoms)
+
+        ellipsoid = MinimumVolumeEllipsoid(protein.atom_coordinates[0].coordinates)
+
+        print(ellipsoid.poles)
+
+        assert 5.799791250856532 == pytest.approx(ellipsoid.center[0])
+        assert 13.306092685541458 == pytest.approx(ellipsoid.center[1])
+        assert 6.283786663549531 == pytest.approx(ellipsoid.center[2])
+
+        assert 11.51000997975971 == pytest.approx(ellipsoid.radii[0])
+        assert 17.41300065237483 == pytest.approx(ellipsoid.radii[1])
+        assert 25.131767919940263 == pytest.approx(ellipsoid.radii[2])
+
+        assert -0.6486846041655251 == pytest.approx(ellipsoid.rotation[0][0])
+        assert -0.43420890854202066 == pytest.approx(ellipsoid.rotation[0][1])
+        assert 0.625036725370088 == pytest.approx(ellipsoid.rotation[0][2])
+        assert 0.7520882640674591 == pytest.approx(ellipsoid.rotation[1][0])
+        assert -0.49144929949240357 == pytest.approx(ellipsoid.rotation[1][1])
+        assert 0.43913645838215387 == pytest.approx(ellipsoid.rotation[1][2])
+        assert 0.11649689854503213 == pytest.approx(ellipsoid.rotation[2][0])
+        assert 0.7549438454422769 == pytest.approx(ellipsoid.rotation[2][1])
+        assert 0.6453590185766491 == pytest.approx(ellipsoid.rotation[2][2])
+
+        expected_poles = [
+            [13.266157518518202, 18.303841556160688, -0.9103922831765114],
+            [-1.6665750168051394, 8.308343814922228, 13.477965610275573],
+            [-7.296322181993587, 21.863699658211836, -1.3628967727404868],
+            [18.89590468370665, 4.748485712871082, 13.93047009983955],
+            [2.8720182332299578, -5.666980830701096, -9.935226416359232],
+            [8.727564268483107, 32.27916620178401, 22.502799743458294]
+        ]
+
+        assert np.allclose(expected_poles, ellipsoid.poles, ERROR_TOLERANCE)
+
     def test_exception_singular_matrix(self):
         with pytest.raises(MinimumVolumeEllipsoidError):
             coordinates = np.array([[2.0, 2.0, 2.0], [0.0, 0.0, 0.0]])

@@ -11,28 +11,32 @@ class TestPyDockDNA:
     def setup_class(self):
         self.path = Path(__file__).absolute().parent
         self.golden_data_path = self.path / "golden_data"
-        self.dna = DNA()
 
-    def test_calculate_DNA_3MFK(self):
-        io = IOFactory(self.golden_data_path / "3mfk_homodimer.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("3mfk_dna.pdb", "3mfk_homodimer.pdb"),
+        ("3mfk_dna.cif", "3mfk_homodimer.cif")
+    ])
+    def test_calculate_DNA_3MFK(self, lig_file, rec_file):
+        dna = DNA()
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "3mfk_homodimer.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(
             chains,
             atoms,
-            structure_file_name=(self.golden_data_path / "3mfk_homodimer.pdb"),
+            structure_file_name=(self.golden_data_path / rec_file),
         )
-        io = IOFactory(self.golden_data_path / "3mfk_dna.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "3mfk_dna.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(
-            chains, atoms, structure_file_name=(self.golden_data_path / "3mfk_dna.pdb")
+            chains, atoms, structure_file_name=(self.golden_data_path / lig_file)
         )
         adapter = DNAAdapter(receptor, ligand)
         assert -2716.68018700585 == pytest.approx(
-            self.dna(
+            dna(
                 adapter.receptor_model,
                 adapter.receptor_model.coordinates[0],
                 adapter.ligand_model,
@@ -40,26 +44,31 @@ class TestPyDockDNA:
             )
         )
 
-    def test_calculate_DNA_3MFK_with_hydrogens(self):
-        io = IOFactory(self.golden_data_path / "3mfk_homodimer_with_H.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("3mfk_dna.pdb", "3mfk_homodimer_with_H.pdb"),
+        ("3mfk_dna.cif", "3mfk_homodimer_with_H.cif")
+    ])
+    def test_calculate_DNA_3MFK_with_hydrogens(self, lig_file, rec_file):
+        dna = DNA()
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "3mfk_homodimer_with_H.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(
             chains,
             atoms,
-            structure_file_name=(self.golden_data_path / "3mfk_homodimer_with_H.pdb"),
+            structure_file_name=(self.golden_data_path / rec_file),
         )
-        io = IOFactory(self.golden_data_path / "3mfk_dna.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _t, chains = io.parse_complex_from_file(
-            self.golden_data_path / "3mfk_dna.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(
-            chains, atoms, structure_file_name=(self.golden_data_path / "3mfk_dna.pdb")
+            chains, atoms, structure_file_name=(self.golden_data_path / lig_file)
         )
         adapter = DNAAdapter(receptor, ligand)
         assert 688.1703668834168 == pytest.approx(
-            self.dna(
+            dna(
                 adapter.receptor_model,
                 adapter.receptor_model.coordinates[0],
                 adapter.ligand_model,

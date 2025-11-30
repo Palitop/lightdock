@@ -97,8 +97,9 @@ class TestRestraints:
         self.path = Path(__file__).absolute().parent
         self.golden_data_path = self.path / "golden_data"
 
-    def test_get_restraints(self):
-        input_file = self.golden_data_path / "2UUY_lig.pdb"
+    @pytest.mark.parametrize("file_name", ["2UUY_lig.pdb", "2UUY_lig.cif"])
+    def test_get_restraints(self, file_name):
+        input_file = self.golden_data_path / file_name
         io = IOFactory(input_file).get_instance()
         _, _, chains = io.parse_complex_from_file(input_file)
         structure = Complex(chains)
@@ -114,9 +115,10 @@ class TestRestraints:
             residues["passive"][0].name == "GLY" and residues["passive"][0].number == 75
         )
 
-    def test_get_restraints_with_error(self):
+    @pytest.mark.parametrize("file_name", ["2UUY_lig.pdb", "2UUY_lig.cif"])
+    def test_get_restraints_with_error(self, file_name):
         with pytest.raises(LightDockError):
-            input_file = self.golden_data_path / "2UUY_lig.pdb"
+            input_file = self.golden_data_path / file_name
             io = IOFactory(input_file).get_instance()
             _, _, chains = io.parse_complex_from_file(input_file)
             structure = Complex(chains)
@@ -142,8 +144,12 @@ class TestSimulation:
 
         assert box.dimension == 7 + 5 + 3
 
-    def test_get_setup_from_file(self):
-        read = get_setup_from_file(self.golden_data_path / "setup.json")
+    @pytest.mark.parametrize("lig_file, rec_file, setup_file", [
+        ("2UUY_lig.pdb", "2UUY_rec.pdb", "setup.json"),
+        ("2UUY_lig.cif", "2UUY_rec.cif", "setup_cif.json"),
+    ])
+    def test_get_setup_from_file(self, lig_file, rec_file, setup_file):
+        read = get_setup_from_file(self.golden_data_path / setup_file)
 
         expected = {
             "anm_lig": 10,
@@ -155,12 +161,12 @@ class TestSimulation:
             "fixed_distance": 0.0,
             "flip": False,
             "glowworms": 10,
-            "ligand": "2UUY_lig.pdb",
+            "ligand": lig_file,
             "membrane": False,
             "noh": False,
             "now": False,
             "noxt": True,
-            "receptor": "2UUY_rec.pdb",
+            "receptor": rec_file,
             "restraints": None,
             "setup_version": CURRENT_VERSION,
             "starting_points_seed": 324324,
@@ -177,22 +183,26 @@ class TestSimulation:
 
         assert read == expected
 
-    def test_create_setup_file(self, tmp_path):
+    @pytest.mark.parametrize("lig_file, rec_file, setup_file", [
+        ("2UUY_lig.pdb", "2UUY_rec.pdb", "setup.json"),
+        ("2UUY_lig.cif", "2UUY_rec.cif", "setup_cif.json"),
+    ])
+    def test_create_setup_file(self, lig_file, rec_file, setup_file, tmp_path):
         shutil.copyfile(
-            self.golden_data_path / "2UUY_rec.pdb", tmp_path / "2UUY_rec.pdb"
+            self.golden_data_path / rec_file, tmp_path / rec_file
         )
         shutil.copyfile(
-            self.golden_data_path / "2UUY_lig.pdb", tmp_path / "2UUY_lig.pdb"
+            self.golden_data_path / lig_file, tmp_path / lig_file
         )
         os.chdir(tmp_path)
         parser = SetupCommandLineParser(
-            ["2UUY_rec.pdb", "2UUY_lig.pdb", "-s 5", "-g 10", "-anm", "--noxt"]
+            [rec_file, lig_file, "-s 5", "-g 10", "-anm", "--noxt"]
         )
 
         create_setup_file(parser.args)
 
         assert compare_two_files(
-            tmp_path / "setup.json", self.golden_data_path / "setup.json",
+            tmp_path / "setup.json", self.golden_data_path / setup_file,
             ignore=["setup_version", "start_time"]
         )
 
@@ -215,19 +225,24 @@ class TestSimulation:
 
             assert False
 
-    def test_get_pdb_files(self):
+    @pytest.mark.parametrize("file_list, files", [
+        ("pdb_files.list", ["2UUY_rec.pdb", "2UUY_lig.pdb"]),
+        ("cif_files.list", ["2UUY_rec.cif", "2UUY_lig.cif"]),
+    ])
+    def test_get_pdb_files(self, file_list, files):
         os.chdir(self.golden_data_path)
-        file_names = get_pdb_files(self.golden_data_path / "pdb_files.list")
+        file_names = get_pdb_files(self.golden_data_path / file_list)
 
-        expected = ["2UUY_rec.pdb", "2UUY_lig.pdb"]
+        expected = files
 
         assert file_names == expected
 
-    def test_read_input_structure(self):
+    @pytest.mark.parametrize("input_file", ["2UUY_lig.pdb", "2UUY_lig.cif"])
+    def test_read_input_structure(self, input_file):
         os.chdir(self.golden_data_path)
 
         structure = read_input_structure(
-            "2UUY_lig.pdb",
+            input_file,
             ignore_oxt=True,
             ignore_hydrogens=False,
             verbose_parser=False,
@@ -235,11 +250,12 @@ class TestSimulation:
 
         assert len(structure.atoms) == 415
 
-    def test_read_multiple_input_structure(self):
+    @pytest.mark.parametrize("input_list", ["pdb_files.list", "cif_files.list"])
+    def test_read_multiple_input_structure(self, input_list):
         os.chdir(self.golden_data_path)
 
         structure = read_input_structure(
-            "pdb_files.list",
+            input_list,
             ignore_oxt=True,
             ignore_hydrogens=False,
             verbose_parser=False,

@@ -88,12 +88,15 @@ class MMCIFIO(IO):
         verbose: bool = False
     ):
         parser = MMCIFParser(QUIET=True)
-        structure_id = input_file_name.stem
+        structure_id = Path(input_file_name).stem
         structure = parser.get_structure(structure_id, input_file_name)
 
         atoms = []
         residues = []
         chains = []
+
+        if len(structure) == 0:
+            return atoms, residues, chains
 
         if len(structure) > 1:
             self.log.warning(
@@ -144,7 +147,7 @@ class MMCIFIO(IO):
         model: BioModel = BioModel(0)
         for chain in chains:
             model.add(chain)
-        structure_id = output_file_name.stem
+        structure_id = Path(output_file_name).stem
         structure: BioStructure = BioStructure(structure_id)
         structure.add(model)
         return structure
@@ -213,7 +216,7 @@ class MMCIFIO(IO):
         try:
             # if file exists, we add the new chains to the structure
             parser = MMCIFParser(QUIET=True)
-            structure_id = output_file_name.stem
+            structure_id = Path(output_file_name).stem
             structure = parser.get_structure(structure_id, output_file_name)
 
             chain_ids = [chain.id for chain in structure.get_chains()]

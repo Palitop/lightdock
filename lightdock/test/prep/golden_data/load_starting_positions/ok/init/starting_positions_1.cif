@@ -1,0 +1,146 @@
+data_STARTING_POSITIONS_1
+# 
+_pdbx_database_status.entry_id                        STARTING_POSITIONS_1 
+_pdbx_database_status.status_code                     . 
+_pdbx_database_status.status_code_sf                  ? 
+_pdbx_database_status.status_code_mr                  ? 
+_pdbx_database_status.status_code_cs                  ? 
+_pdbx_database_status.recvd_initial_deposition_date   ? 
+_pdbx_database_status.status_code_nmr_data            ? 
+_pdbx_database_status.deposit_site                    ? 
+_pdbx_database_status.process_site                    ? 
+_pdbx_database_status.SG_entry                        ? 
+_pdbx_database_status.pdb_format_compatible           Y 
+_pdbx_database_status.methods_development_category    ? 
+# 
+_entity.id                         1 
+_entity.type                       non-polymer 
+_entity.src_method                 syn 
+_entity.pdbx_description           "(1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2,6-diamino-2,6-dideoxy-alpha-D-glucopyranoside" 
+_entity.formula_weight             322.358 
+_entity.pdbx_number_of_molecules   1 
+_entity.pdbx_ec                    ? 
+_entity.pdbx_mutation              ? 
+_entity.pdbx_fragment              ? 
+_entity.details                    ? 
+# 
+_pdbx_nonpoly_scheme.asym_id         A 
+_pdbx_nonpoly_scheme.entity_id       1 
+_pdbx_nonpoly_scheme.mon_id          XXX 
+_pdbx_nonpoly_scheme.ndb_seq_num     1 
+_pdbx_nonpoly_scheme.pdb_seq_num     1 
+_pdbx_nonpoly_scheme.auth_seq_num    1 
+_pdbx_nonpoly_scheme.pdb_mon_id      XXX 
+_pdbx_nonpoly_scheme.auth_mon_id     XXX 
+_pdbx_nonpoly_scheme.pdb_strand_id   ? 
+_pdbx_nonpoly_scheme.pdb_ins_code    . 
+# 
+_chem_comp.id               XXX 
+_chem_comp.type             D-saccharide 
+_chem_comp.mon_nstd_flag    . 
+_chem_comp.name             "(1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2,6-diamino-2,6-dideoxy-alpha-D-glucopyranoside" 
+_chem_comp.pdbx_synonyms    
+;(2R,3S,4R,5R,6R)-6-((1R,2R,3S,4R,6S)-4,6-DIAMINO-2,3-DIHYDROXYCYCLOHEXYLOXY)-5-AMINO-2-(AMINOMETHYL)-TETRAHYDRO-2H-PYRA N-3,4-DIOL; NEOMYCIN A; NEAMINE; (1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2,6-diamino-2,6-dideoxy-alpha-D-glucoside; (1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2,6-diamino-2,6-dideoxy-D-glucoside; (1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2,6-diamino-2,6-dideoxy-glucoside
+;
+_chem_comp.formula          "C12 H26 N4 O6" 
+_chem_comp.formula_weight   322.358 
+# 
+_struct_asym.id                            A 
+_struct_asym.pdbx_blank_PDB_chainid_flag   N 
+_struct_asym.pdbx_modified                 N 
+_struct_asym.entity_id                     1 
+_struct_asym.details                       ? 
+# 
+_atom_sites.entry_id                    STARTING_POSITIONS_1 
+_atom_sites.fract_transf_matrix[1][1]   1.000000 
+_atom_sites.fract_transf_matrix[1][2]   0.000000 
+_atom_sites.fract_transf_matrix[1][3]   0.000000 
+_atom_sites.fract_transf_matrix[2][1]   0.000000 
+_atom_sites.fract_transf_matrix[2][2]   1.000000 
+_atom_sites.fract_transf_matrix[2][3]   0.000000 
+_atom_sites.fract_transf_matrix[3][1]   0.000000 
+_atom_sites.fract_transf_matrix[3][2]   0.000000 
+_atom_sites.fract_transf_matrix[3][3]   1.000000 
+_atom_sites.fract_transf_vector[1]      0.00000 
+_atom_sites.fract_transf_vector[2]      0.00000 
+_atom_sites.fract_transf_vector[3]      0.00000 
+# 
+loop_
+_pdbx_unobs_or_zero_occ_atoms.id 
+_pdbx_unobs_or_zero_occ_atoms.PDB_model_num 
+_pdbx_unobs_or_zero_occ_atoms.polymer_flag 
+_pdbx_unobs_or_zero_occ_atoms.occupancy_flag 
+_pdbx_unobs_or_zero_occ_atoms.auth_asym_id 
+_pdbx_unobs_or_zero_occ_atoms.auth_comp_id 
+_pdbx_unobs_or_zero_occ_atoms.auth_seq_id 
+_pdbx_unobs_or_zero_occ_atoms.PDB_ins_code 
+_pdbx_unobs_or_zero_occ_atoms.auth_atom_id 
+_pdbx_unobs_or_zero_occ_atoms.label_alt_id 
+_pdbx_unobs_or_zero_occ_atoms.label_asym_id 
+_pdbx_unobs_or_zero_occ_atoms.label_comp_id 
+_pdbx_unobs_or_zero_occ_atoms.label_seq_id 
+_pdbx_unobs_or_zero_occ_atoms.label_atom_id 
+1  1 N 1 . XXX 1 ? O3A ? A XXX 1 O3A 
+2  1 N 1 . XXX 1 ? C4A ? A XXX 1 C4A 
+3  1 N 1 . XXX 1 ? C5A ? A XXX 1 C5A 
+4  1 N 1 . XXX 1 ? O4A ? A XXX 1 O4A 
+5  1 N 1 . XXX 1 ? C6A ? A XXX 1 C6A 
+6  1 N 1 . XXX 1 ? N1  ? A XXX 1 N1  
+7  1 N 1 . XXX 1 ? C7  ? A XXX 1 C7  
+8  1 N 1 . XXX 1 ? C8  ? A XXX 1 C8  
+9  1 N 1 . XXX 1 ? N2  ? A XXX 1 N2  
+10 1 N 1 . XXX 1 ? C9  ? A XXX 1 C9  
+11 1 N 1 . XXX 1 ? O1  ? A XXX 1 O1  
+12 1 N 1 . XXX 1 ? C1  ? A XXX 1 C1  
+13 1 N 1 . XXX 1 ? O5  ? A XXX 1 O5  
+14 1 N 1 . XXX 1 ? C5  ? A XXX 1 C5  
+15 1 N 1 . XXX 1 ? C6  ? A XXX 1 C6  
+16 1 N 1 . XXX 1 ? N3  ? A XXX 1 N3  
+17 1 N 1 . XXX 1 ? C4  ? A XXX 1 C4  
+18 1 N 1 . XXX 1 ? O4  ? A XXX 1 O4  
+19 1 N 1 . XXX 1 ? C3  ? A XXX 1 C3  
+20 1 N 1 . XXX 1 ? O3  ? A XXX 1 O3  
+21 1 N 1 . XXX 1 ? C2  ? A XXX 1 C2  
+22 1 N 1 . XXX 1 ? N4  ? A XXX 1 N4  
+# 
+_atom_type.symbol   H 
+# 
+_entry.id   STARTING_POSITIONS_1 
+# 
+_pdbx_entity_nonpoly.entity_id   1 
+_pdbx_entity_nonpoly.name        "(1R,2R,3S,4R,6S)-4,6-diamino-2,3-dihydroxycyclohexyl 2,6-diamino-2,6-dideoxy-alpha-D-glucopyranoside" 
+_pdbx_entity_nonpoly.comp_id     XXX 
+# 
+loop_
+_atom_site.group_PDB 
+_atom_site.id 
+_atom_site.type_symbol 
+_atom_site.label_atom_id 
+_atom_site.label_alt_id 
+_atom_site.label_comp_id 
+_atom_site.label_asym_id 
+_atom_site.label_entity_id 
+_atom_site.label_seq_id 
+_atom_site.pdbx_PDB_ins_code 
+_atom_site.Cartn_x 
+_atom_site.Cartn_y 
+_atom_site.Cartn_z 
+_atom_site.occupancy 
+_atom_site.B_iso_or_equiv 
+_atom_site.pdbx_formal_charge 
+_atom_site.auth_seq_id 
+_atom_site.auth_comp_id 
+_atom_site.auth_asym_id 
+_atom_site.auth_atom_id 
+_atom_site.pdbx_PDB_model_num 
+HETATM 1  H H . XXX A 1 . ? -2.351  12.346 33.935 1.00 ? ? 1 XXX ? H 1 
+HETATM 2  H H . XXX A 1 . ? -11.144 16.471 26.815 1.00 ? ? 1 XXX ? H 1 
+HETATM 3  H H . XXX A 1 . ? -15.096 15.217 32.172 1.00 ? ? 1 XXX ? H 1 
+HETATM 4  H H . XXX A 1 . ? -1.615  16.212 34.752 1.00 ? ? 1 XXX ? H 1 
+HETATM 5  H H . XXX A 1 . ? -12.821 2.996  27.613 1.00 ? ? 1 XXX ? H 1 
+HETATM 6  H H . XXX A 1 . ? -9.471  8.771  40.424 1.00 ? ? 1 XXX ? H 1 
+HETATM 7  H H . XXX A 1 . ? -3.889  4.203  28.165 1.00 ? ? 1 XXX ? H 1 
+HETATM 8  H H . XXX A 1 . ? -7.589  7.495  25.192 1.00 ? ? 1 XXX ? H 1 
+HETATM 9  H H . XXX A 1 . ? -5.009  11.150 30.101 1.00 ? ? 1 XXX ? H 1 
+HETATM 10 H H . XXX A 1 . ? -14.453 4.165  31.435 1.00 ? ? 1 XXX ? H 1 
+# 

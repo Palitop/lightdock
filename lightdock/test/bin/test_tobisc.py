@@ -80,3 +80,41 @@ class TestRegressionTOBISCLong:
             self.golden_data_path / "init" / "swarm_centers.pdb",
             tmp_path / "init" / "swarm_centers.pdb",
         )
+
+    def test_lightdock_1ppe_50_steps_20_glowworms_100_swarms_cif(self, tmp_path):
+        os.chdir(tmp_path)
+        shutil.copy(self.golden_data_path / "1PPE_rec.cif", tmp_path)
+        shutil.copy(self.golden_data_path / "1PPE_lig.cif", tmp_path)
+
+        num_swarms = 100
+        num_glowworms = 20
+        steps = 30
+
+        command = f"lgd_setup.py 1PPE_rec.cif 1PPE_lig.cif -g {num_glowworms} -s {num_swarms} "
+        command += ">> test_lightdock.out"
+        os.system(command)
+
+        command = f"lgd_run.py -c 1 -f {self.golden_data_path / 'glowworm.conf'} "
+        command += f"-s tobisc setup.json {steps} -l 0 >> test_lightdock.out"
+        os.system(command)
+
+        assert filecmp.cmp(
+            self.golden_data_path / "swarm_0" / "gso_0.out",
+            tmp_path / "swarm_0" / "gso_0.out",
+        )
+        assert filecmp.cmp(
+            self.golden_data_path / "swarm_0" / "gso_10.out",
+            tmp_path / "swarm_0" / "gso_10.out",
+        )
+        assert filecmp.cmp(
+            self.golden_data_path / "swarm_0" / "gso_20.out",
+            tmp_path / "swarm_0" / "gso_20.out",
+        )
+        assert filecmp.cmp(
+            self.golden_data_path / "swarm_0" / "gso_30.out",
+            tmp_path / "swarm_0" / "gso_30.out",
+        )
+        assert filecmp.cmp(
+            self.golden_data_path / "init" / "swarm_centers.pdb",
+            tmp_path / "init" / "swarm_centers.pdb",
+        )

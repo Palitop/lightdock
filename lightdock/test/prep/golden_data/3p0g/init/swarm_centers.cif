@@ -1,0 +1,988 @@
+data_SWARM_CENTERS
+# 
+_pdbx_database_status.entry_id                        SWARM_CENTERS 
+_pdbx_database_status.status_code                     . 
+_pdbx_database_status.status_code_sf                  ? 
+_pdbx_database_status.status_code_mr                  ? 
+_pdbx_database_status.status_code_cs                  ? 
+_pdbx_database_status.recvd_initial_deposition_date   ? 
+_pdbx_database_status.status_code_nmr_data            ? 
+_pdbx_database_status.deposit_site                    ? 
+_pdbx_database_status.process_site                    ? 
+_pdbx_database_status.SG_entry                        ? 
+_pdbx_database_status.pdb_format_compatible           Y 
+_pdbx_database_status.methods_development_category    ? 
+# 
+_entity.id                         1 
+_entity.type                       non-polymer 
+_entity.src_method                 syn 
+_entity.pdbx_description           "N'-(4-chlorophenyl)-N-[(4R)-3-(4-chlorophenyl)-5,5-dimethyl-1-(2-{(2E)-2-[(2E)-3-(5-nitrofuran-2-yl)prop-2-en-1-ylidene]hydrazinyl}-2-oxoethyl)-2-oxoimidazolidin-4-yl]-N-hydroxyurea" 
+_entity.formula_weight             631.444 
+_entity.pdbx_number_of_molecules   19 
+_entity.pdbx_ec                    ? 
+_entity.pdbx_mutation              ? 
+_entity.pdbx_fragment              ? 
+_entity.details                    ? 
+# 
+loop_
+_pdbx_nonpoly_scheme.asym_id 
+_pdbx_nonpoly_scheme.entity_id 
+_pdbx_nonpoly_scheme.mon_id 
+_pdbx_nonpoly_scheme.ndb_seq_num 
+_pdbx_nonpoly_scheme.pdb_seq_num 
+_pdbx_nonpoly_scheme.auth_seq_num 
+_pdbx_nonpoly_scheme.pdb_mon_id 
+_pdbx_nonpoly_scheme.auth_mon_id 
+_pdbx_nonpoly_scheme.pdb_strand_id 
+_pdbx_nonpoly_scheme.pdb_ins_code 
+A 1 SWR 1 1  1  SWR SWR Z . 
+B 1 SWR 1 2  2  SWR SWR Z . 
+C 1 SWR 1 3  3  SWR SWR Z . 
+D 1 SWR 1 4  4  SWR SWR Z . 
+E 1 SWR 1 5  5  SWR SWR Z . 
+F 1 SWR 1 6  6  SWR SWR Z . 
+G 1 SWR 1 7  7  SWR SWR Z . 
+H 1 SWR 1 8  8  SWR SWR Z . 
+I 1 SWR 1 9  9  SWR SWR Z . 
+J 1 SWR 1 10 10 SWR SWR Z . 
+K 1 SWR 1 11 11 SWR SWR Z . 
+L 1 SWR 1 12 12 SWR SWR Z . 
+M 1 SWR 1 13 13 SWR SWR Z . 
+N 1 SWR 1 14 14 SWR SWR Z . 
+O 1 SWR 1 15 15 SWR SWR Z . 
+P 1 SWR 1 16 16 SWR SWR Z . 
+Q 1 SWR 1 17 17 SWR SWR Z . 
+R 1 SWR 1 18 18 SWR SWR Z . 
+S 1 SWR 1 19 19 SWR SWR Z . 
+# 
+_chem_comp.id               SWR 
+_chem_comp.type             non-polymer 
+_chem_comp.mon_nstd_flag    . 
+_chem_comp.name             "N'-(4-chlorophenyl)-N-[(4R)-3-(4-chlorophenyl)-5,5-dimethyl-1-(2-{(2E)-2-[(2E)-3-(5-nitrofuran-2-yl)prop-2-en-1-ylidene]hydrazinyl}-2-oxoethyl)-2-oxoimidazolidin-4-yl]-N-hydroxyurea" 
+_chem_comp.pdbx_synonyms    "Eeyarestatin I" 
+_chem_comp.formula          "C27 H26 Cl2 N7 O7" 
+_chem_comp.formula_weight   631.444 
+# 
+loop_
+_struct_asym.id 
+_struct_asym.pdbx_blank_PDB_chainid_flag 
+_struct_asym.pdbx_modified 
+_struct_asym.entity_id 
+_struct_asym.details 
+A N N 1 ? 
+B N N 1 ? 
+C N N 1 ? 
+D N N 1 ? 
+E N N 1 ? 
+F N N 1 ? 
+G N N 1 ? 
+H N N 1 ? 
+I N N 1 ? 
+J N N 1 ? 
+K N N 1 ? 
+L N N 1 ? 
+M N N 1 ? 
+N N N 1 ? 
+O N N 1 ? 
+P N N 1 ? 
+Q N N 1 ? 
+R N N 1 ? 
+S N N 1 ? 
+# 
+_atom_sites.entry_id                    SWARM_CENTERS 
+_atom_sites.fract_transf_matrix[1][1]   1.000000 
+_atom_sites.fract_transf_matrix[1][2]   0.000000 
+_atom_sites.fract_transf_matrix[1][3]   0.000000 
+_atom_sites.fract_transf_matrix[2][1]   0.000000 
+_atom_sites.fract_transf_matrix[2][2]   1.000000 
+_atom_sites.fract_transf_matrix[2][3]   0.000000 
+_atom_sites.fract_transf_matrix[3][1]   0.000000 
+_atom_sites.fract_transf_matrix[3][2]   0.000000 
+_atom_sites.fract_transf_matrix[3][3]   1.000000 
+_atom_sites.fract_transf_vector[1]      0.00000 
+_atom_sites.fract_transf_vector[2]      0.00000 
+_atom_sites.fract_transf_vector[3]      0.00000 
+# 
+loop_
+_pdbx_unobs_or_zero_occ_atoms.id 
+_pdbx_unobs_or_zero_occ_atoms.PDB_model_num 
+_pdbx_unobs_or_zero_occ_atoms.polymer_flag 
+_pdbx_unobs_or_zero_occ_atoms.occupancy_flag 
+_pdbx_unobs_or_zero_occ_atoms.auth_asym_id 
+_pdbx_unobs_or_zero_occ_atoms.auth_comp_id 
+_pdbx_unobs_or_zero_occ_atoms.auth_seq_id 
+_pdbx_unobs_or_zero_occ_atoms.PDB_ins_code 
+_pdbx_unobs_or_zero_occ_atoms.auth_atom_id 
+_pdbx_unobs_or_zero_occ_atoms.label_alt_id 
+_pdbx_unobs_or_zero_occ_atoms.label_asym_id 
+_pdbx_unobs_or_zero_occ_atoms.label_comp_id 
+_pdbx_unobs_or_zero_occ_atoms.label_seq_id 
+_pdbx_unobs_or_zero_occ_atoms.label_atom_id 
+1   1 N 1 Z SWR 1  ? N1  ? A SWR 1 N1  
+2   1 N 1 Z SWR 1  ? C7  ? A SWR 1 C7  
+3   1 N 1 Z SWR 1  ? C8  ? A SWR 1 C8  
+4   1 N 1 Z SWR 1  ? N2  ? A SWR 1 N2  
+5   1 N 1 Z SWR 1  ? C9  ? A SWR 1 C9  
+6   1 N 1 Z SWR 1  ? O1  ? A SWR 1 O1  
+7   1 N 1 Z SWR 1  ? C1  ? A SWR 1 C1  
+8   1 N 1 Z SWR 1  ? O5  ? A SWR 1 O5  
+9   1 N 1 Z SWR 1  ? C5  ? A SWR 1 C5  
+10  1 N 1 Z SWR 1  ? C6  ? A SWR 1 C6  
+11  1 N 1 Z SWR 1  ? N3  ? A SWR 1 N3  
+12  1 N 1 Z SWR 1  ? C4  ? A SWR 1 C4  
+13  1 N 1 Z SWR 1  ? O4  ? A SWR 1 O4  
+14  1 N 1 Z SWR 1  ? C3  ? A SWR 1 C3  
+15  1 N 1 Z SWR 1  ? O3  ? A SWR 1 O3  
+16  1 N 1 Z SWR 1  ? C2  ? A SWR 1 C2  
+17  1 N 1 Z SWR 1  ? N4  ? A SWR 1 N4  
+18  1 N 1 Z SWR 1  ? N   ? A SWR 1 N   
+19  1 N 1 Z SWR 1  ? C   ? A SWR 1 C   
+20  1 N 1 Z SWR 1  ? O   ? A SWR 1 O   
+21  1 N 1 Z SWR 1  ? C10 ? A SWR 1 C10 
+22  1 N 1 Z SWR 1  ? C11 ? A SWR 1 C11 
+23  1 N 1 Z SWR 1  ? C12 ? A SWR 1 C12 
+24  1 N 1 Z SWR 1  ? C13 ? A SWR 1 C13 
+25  1 N 1 Z SWR 1  ? C14 ? A SWR 1 C14 
+26  1 N 1 Z SWR 1  ? C15 ? A SWR 1 C15 
+27  1 N 1 Z SWR 1  ? C16 ? A SWR 1 C16 
+28  1 N 1 Z SWR 1  ? C17 ? A SWR 1 C17 
+29  1 N 1 Z SWR 1  ? C18 ? A SWR 1 C18 
+30  1 N 1 Z SWR 1  ? C19 ? A SWR 1 C19 
+31  1 N 1 Z SWR 1  ? C20 ? A SWR 1 C20 
+32  1 N 1 Z SWR 1  ? C21 ? A SWR 1 C21 
+33  1 N 1 Z SWR 1  ? C22 ? A SWR 1 C22 
+34  1 N 1 Z SWR 1  ? C23 ? A SWR 1 C23 
+35  1 N 1 Z SWR 1  ? C24 ? A SWR 1 C24 
+36  1 N 1 Z SWR 1  ? C25 ? A SWR 1 C25 
+37  1 N 1 Z SWR 1  ? C26 ? A SWR 1 C26 
+38  1 N 1 Z SWR 1  ? N5  ? A SWR 1 N5  
+39  1 N 1 Z SWR 1  ? N6  ? A SWR 1 N6  
+40  1 N 1 Z SWR 1  ? O2  ? A SWR 1 O2  
+41  1 N 1 Z SWR 1  ? O6  ? A SWR 1 O6  
+42  1 N 1 Z SWR 1  ? CL  ? A SWR 1 CL  
+43  1 N 1 Z SWR 1  ? CL1 ? A SWR 1 CL1 
+44  1 N 1 Z SWR 2  ? N1  ? B SWR 1 N1  
+45  1 N 1 Z SWR 2  ? C7  ? B SWR 1 C7  
+46  1 N 1 Z SWR 2  ? C8  ? B SWR 1 C8  
+47  1 N 1 Z SWR 2  ? N2  ? B SWR 1 N2  
+48  1 N 1 Z SWR 2  ? C9  ? B SWR 1 C9  
+49  1 N 1 Z SWR 2  ? O1  ? B SWR 1 O1  
+50  1 N 1 Z SWR 2  ? C1  ? B SWR 1 C1  
+51  1 N 1 Z SWR 2  ? O5  ? B SWR 1 O5  
+52  1 N 1 Z SWR 2  ? C5  ? B SWR 1 C5  
+53  1 N 1 Z SWR 2  ? C6  ? B SWR 1 C6  
+54  1 N 1 Z SWR 2  ? N3  ? B SWR 1 N3  
+55  1 N 1 Z SWR 2  ? C4  ? B SWR 1 C4  
+56  1 N 1 Z SWR 2  ? O4  ? B SWR 1 O4  
+57  1 N 1 Z SWR 2  ? C3  ? B SWR 1 C3  
+58  1 N 1 Z SWR 2  ? O3  ? B SWR 1 O3  
+59  1 N 1 Z SWR 2  ? C2  ? B SWR 1 C2  
+60  1 N 1 Z SWR 2  ? N4  ? B SWR 1 N4  
+61  1 N 1 Z SWR 2  ? N   ? B SWR 1 N   
+62  1 N 1 Z SWR 2  ? C   ? B SWR 1 C   
+63  1 N 1 Z SWR 2  ? O   ? B SWR 1 O   
+64  1 N 1 Z SWR 2  ? C10 ? B SWR 1 C10 
+65  1 N 1 Z SWR 2  ? C11 ? B SWR 1 C11 
+66  1 N 1 Z SWR 2  ? C12 ? B SWR 1 C12 
+67  1 N 1 Z SWR 2  ? C13 ? B SWR 1 C13 
+68  1 N 1 Z SWR 2  ? C14 ? B SWR 1 C14 
+69  1 N 1 Z SWR 2  ? C15 ? B SWR 1 C15 
+70  1 N 1 Z SWR 2  ? C16 ? B SWR 1 C16 
+71  1 N 1 Z SWR 2  ? C17 ? B SWR 1 C17 
+72  1 N 1 Z SWR 2  ? C18 ? B SWR 1 C18 
+73  1 N 1 Z SWR 2  ? C19 ? B SWR 1 C19 
+74  1 N 1 Z SWR 2  ? C20 ? B SWR 1 C20 
+75  1 N 1 Z SWR 2  ? C21 ? B SWR 1 C21 
+76  1 N 1 Z SWR 2  ? C22 ? B SWR 1 C22 
+77  1 N 1 Z SWR 2  ? C23 ? B SWR 1 C23 
+78  1 N 1 Z SWR 2  ? C24 ? B SWR 1 C24 
+79  1 N 1 Z SWR 2  ? C25 ? B SWR 1 C25 
+80  1 N 1 Z SWR 2  ? C26 ? B SWR 1 C26 
+81  1 N 1 Z SWR 2  ? N5  ? B SWR 1 N5  
+82  1 N 1 Z SWR 2  ? N6  ? B SWR 1 N6  
+83  1 N 1 Z SWR 2  ? O2  ? B SWR 1 O2  
+84  1 N 1 Z SWR 2  ? O6  ? B SWR 1 O6  
+85  1 N 1 Z SWR 2  ? CL  ? B SWR 1 CL  
+86  1 N 1 Z SWR 2  ? CL1 ? B SWR 1 CL1 
+87  1 N 1 Z SWR 3  ? N1  ? C SWR 1 N1  
+88  1 N 1 Z SWR 3  ? C7  ? C SWR 1 C7  
+89  1 N 1 Z SWR 3  ? C8  ? C SWR 1 C8  
+90  1 N 1 Z SWR 3  ? N2  ? C SWR 1 N2  
+91  1 N 1 Z SWR 3  ? C9  ? C SWR 1 C9  
+92  1 N 1 Z SWR 3  ? O1  ? C SWR 1 O1  
+93  1 N 1 Z SWR 3  ? C1  ? C SWR 1 C1  
+94  1 N 1 Z SWR 3  ? O5  ? C SWR 1 O5  
+95  1 N 1 Z SWR 3  ? C5  ? C SWR 1 C5  
+96  1 N 1 Z SWR 3  ? C6  ? C SWR 1 C6  
+97  1 N 1 Z SWR 3  ? N3  ? C SWR 1 N3  
+98  1 N 1 Z SWR 3  ? C4  ? C SWR 1 C4  
+99  1 N 1 Z SWR 3  ? O4  ? C SWR 1 O4  
+100 1 N 1 Z SWR 3  ? C3  ? C SWR 1 C3  
+101 1 N 1 Z SWR 3  ? O3  ? C SWR 1 O3  
+102 1 N 1 Z SWR 3  ? C2  ? C SWR 1 C2  
+103 1 N 1 Z SWR 3  ? N4  ? C SWR 1 N4  
+104 1 N 1 Z SWR 3  ? N   ? C SWR 1 N   
+105 1 N 1 Z SWR 3  ? C   ? C SWR 1 C   
+106 1 N 1 Z SWR 3  ? O   ? C SWR 1 O   
+107 1 N 1 Z SWR 3  ? C10 ? C SWR 1 C10 
+108 1 N 1 Z SWR 3  ? C11 ? C SWR 1 C11 
+109 1 N 1 Z SWR 3  ? C12 ? C SWR 1 C12 
+110 1 N 1 Z SWR 3  ? C13 ? C SWR 1 C13 
+111 1 N 1 Z SWR 3  ? C14 ? C SWR 1 C14 
+112 1 N 1 Z SWR 3  ? C15 ? C SWR 1 C15 
+113 1 N 1 Z SWR 3  ? C16 ? C SWR 1 C16 
+114 1 N 1 Z SWR 3  ? C17 ? C SWR 1 C17 
+115 1 N 1 Z SWR 3  ? C18 ? C SWR 1 C18 
+116 1 N 1 Z SWR 3  ? C19 ? C SWR 1 C19 
+117 1 N 1 Z SWR 3  ? C20 ? C SWR 1 C20 
+118 1 N 1 Z SWR 3  ? C21 ? C SWR 1 C21 
+119 1 N 1 Z SWR 3  ? C22 ? C SWR 1 C22 
+120 1 N 1 Z SWR 3  ? C23 ? C SWR 1 C23 
+121 1 N 1 Z SWR 3  ? C24 ? C SWR 1 C24 
+122 1 N 1 Z SWR 3  ? C25 ? C SWR 1 C25 
+123 1 N 1 Z SWR 3  ? C26 ? C SWR 1 C26 
+124 1 N 1 Z SWR 3  ? N5  ? C SWR 1 N5  
+125 1 N 1 Z SWR 3  ? N6  ? C SWR 1 N6  
+126 1 N 1 Z SWR 3  ? O2  ? C SWR 1 O2  
+127 1 N 1 Z SWR 3  ? O6  ? C SWR 1 O6  
+128 1 N 1 Z SWR 3  ? CL  ? C SWR 1 CL  
+129 1 N 1 Z SWR 3  ? CL1 ? C SWR 1 CL1 
+130 1 N 1 Z SWR 4  ? N1  ? D SWR 1 N1  
+131 1 N 1 Z SWR 4  ? C7  ? D SWR 1 C7  
+132 1 N 1 Z SWR 4  ? C8  ? D SWR 1 C8  
+133 1 N 1 Z SWR 4  ? N2  ? D SWR 1 N2  
+134 1 N 1 Z SWR 4  ? C9  ? D SWR 1 C9  
+135 1 N 1 Z SWR 4  ? O1  ? D SWR 1 O1  
+136 1 N 1 Z SWR 4  ? C1  ? D SWR 1 C1  
+137 1 N 1 Z SWR 4  ? O5  ? D SWR 1 O5  
+138 1 N 1 Z SWR 4  ? C5  ? D SWR 1 C5  
+139 1 N 1 Z SWR 4  ? C6  ? D SWR 1 C6  
+140 1 N 1 Z SWR 4  ? N3  ? D SWR 1 N3  
+141 1 N 1 Z SWR 4  ? C4  ? D SWR 1 C4  
+142 1 N 1 Z SWR 4  ? O4  ? D SWR 1 O4  
+143 1 N 1 Z SWR 4  ? C3  ? D SWR 1 C3  
+144 1 N 1 Z SWR 4  ? O3  ? D SWR 1 O3  
+145 1 N 1 Z SWR 4  ? C2  ? D SWR 1 C2  
+146 1 N 1 Z SWR 4  ? N4  ? D SWR 1 N4  
+147 1 N 1 Z SWR 4  ? N   ? D SWR 1 N   
+148 1 N 1 Z SWR 4  ? C   ? D SWR 1 C   
+149 1 N 1 Z SWR 4  ? O   ? D SWR 1 O   
+150 1 N 1 Z SWR 4  ? C10 ? D SWR 1 C10 
+151 1 N 1 Z SWR 4  ? C11 ? D SWR 1 C11 
+152 1 N 1 Z SWR 4  ? C12 ? D SWR 1 C12 
+153 1 N 1 Z SWR 4  ? C13 ? D SWR 1 C13 
+154 1 N 1 Z SWR 4  ? C14 ? D SWR 1 C14 
+155 1 N 1 Z SWR 4  ? C15 ? D SWR 1 C15 
+156 1 N 1 Z SWR 4  ? C16 ? D SWR 1 C16 
+157 1 N 1 Z SWR 4  ? C17 ? D SWR 1 C17 
+158 1 N 1 Z SWR 4  ? C18 ? D SWR 1 C18 
+159 1 N 1 Z SWR 4  ? C19 ? D SWR 1 C19 
+160 1 N 1 Z SWR 4  ? C20 ? D SWR 1 C20 
+161 1 N 1 Z SWR 4  ? C21 ? D SWR 1 C21 
+162 1 N 1 Z SWR 4  ? C22 ? D SWR 1 C22 
+163 1 N 1 Z SWR 4  ? C23 ? D SWR 1 C23 
+164 1 N 1 Z SWR 4  ? C24 ? D SWR 1 C24 
+165 1 N 1 Z SWR 4  ? C25 ? D SWR 1 C25 
+166 1 N 1 Z SWR 4  ? C26 ? D SWR 1 C26 
+167 1 N 1 Z SWR 4  ? N5  ? D SWR 1 N5  
+168 1 N 1 Z SWR 4  ? N6  ? D SWR 1 N6  
+169 1 N 1 Z SWR 4  ? O2  ? D SWR 1 O2  
+170 1 N 1 Z SWR 4  ? O6  ? D SWR 1 O6  
+171 1 N 1 Z SWR 4  ? CL  ? D SWR 1 CL  
+172 1 N 1 Z SWR 4  ? CL1 ? D SWR 1 CL1 
+173 1 N 1 Z SWR 5  ? N1  ? E SWR 1 N1  
+174 1 N 1 Z SWR 5  ? C7  ? E SWR 1 C7  
+175 1 N 1 Z SWR 5  ? C8  ? E SWR 1 C8  
+176 1 N 1 Z SWR 5  ? N2  ? E SWR 1 N2  
+177 1 N 1 Z SWR 5  ? C9  ? E SWR 1 C9  
+178 1 N 1 Z SWR 5  ? O1  ? E SWR 1 O1  
+179 1 N 1 Z SWR 5  ? C1  ? E SWR 1 C1  
+180 1 N 1 Z SWR 5  ? O5  ? E SWR 1 O5  
+181 1 N 1 Z SWR 5  ? C5  ? E SWR 1 C5  
+182 1 N 1 Z SWR 5  ? C6  ? E SWR 1 C6  
+183 1 N 1 Z SWR 5  ? N3  ? E SWR 1 N3  
+184 1 N 1 Z SWR 5  ? C4  ? E SWR 1 C4  
+185 1 N 1 Z SWR 5  ? O4  ? E SWR 1 O4  
+186 1 N 1 Z SWR 5  ? C3  ? E SWR 1 C3  
+187 1 N 1 Z SWR 5  ? O3  ? E SWR 1 O3  
+188 1 N 1 Z SWR 5  ? C2  ? E SWR 1 C2  
+189 1 N 1 Z SWR 5  ? N4  ? E SWR 1 N4  
+190 1 N 1 Z SWR 5  ? N   ? E SWR 1 N   
+191 1 N 1 Z SWR 5  ? C   ? E SWR 1 C   
+192 1 N 1 Z SWR 5  ? O   ? E SWR 1 O   
+193 1 N 1 Z SWR 5  ? C10 ? E SWR 1 C10 
+194 1 N 1 Z SWR 5  ? C11 ? E SWR 1 C11 
+195 1 N 1 Z SWR 5  ? C12 ? E SWR 1 C12 
+196 1 N 1 Z SWR 5  ? C13 ? E SWR 1 C13 
+197 1 N 1 Z SWR 5  ? C14 ? E SWR 1 C14 
+198 1 N 1 Z SWR 5  ? C15 ? E SWR 1 C15 
+199 1 N 1 Z SWR 5  ? C16 ? E SWR 1 C16 
+200 1 N 1 Z SWR 5  ? C17 ? E SWR 1 C17 
+201 1 N 1 Z SWR 5  ? C18 ? E SWR 1 C18 
+202 1 N 1 Z SWR 5  ? C19 ? E SWR 1 C19 
+203 1 N 1 Z SWR 5  ? C20 ? E SWR 1 C20 
+204 1 N 1 Z SWR 5  ? C21 ? E SWR 1 C21 
+205 1 N 1 Z SWR 5  ? C22 ? E SWR 1 C22 
+206 1 N 1 Z SWR 5  ? C23 ? E SWR 1 C23 
+207 1 N 1 Z SWR 5  ? C24 ? E SWR 1 C24 
+208 1 N 1 Z SWR 5  ? C25 ? E SWR 1 C25 
+209 1 N 1 Z SWR 5  ? C26 ? E SWR 1 C26 
+210 1 N 1 Z SWR 5  ? N5  ? E SWR 1 N5  
+211 1 N 1 Z SWR 5  ? N6  ? E SWR 1 N6  
+212 1 N 1 Z SWR 5  ? O2  ? E SWR 1 O2  
+213 1 N 1 Z SWR 5  ? O6  ? E SWR 1 O6  
+214 1 N 1 Z SWR 5  ? CL  ? E SWR 1 CL  
+215 1 N 1 Z SWR 5  ? CL1 ? E SWR 1 CL1 
+216 1 N 1 Z SWR 6  ? N1  ? F SWR 1 N1  
+217 1 N 1 Z SWR 6  ? C7  ? F SWR 1 C7  
+218 1 N 1 Z SWR 6  ? C8  ? F SWR 1 C8  
+219 1 N 1 Z SWR 6  ? N2  ? F SWR 1 N2  
+220 1 N 1 Z SWR 6  ? C9  ? F SWR 1 C9  
+221 1 N 1 Z SWR 6  ? O1  ? F SWR 1 O1  
+222 1 N 1 Z SWR 6  ? C1  ? F SWR 1 C1  
+223 1 N 1 Z SWR 6  ? O5  ? F SWR 1 O5  
+224 1 N 1 Z SWR 6  ? C5  ? F SWR 1 C5  
+225 1 N 1 Z SWR 6  ? C6  ? F SWR 1 C6  
+226 1 N 1 Z SWR 6  ? N3  ? F SWR 1 N3  
+227 1 N 1 Z SWR 6  ? C4  ? F SWR 1 C4  
+228 1 N 1 Z SWR 6  ? O4  ? F SWR 1 O4  
+229 1 N 1 Z SWR 6  ? C3  ? F SWR 1 C3  
+230 1 N 1 Z SWR 6  ? O3  ? F SWR 1 O3  
+231 1 N 1 Z SWR 6  ? C2  ? F SWR 1 C2  
+232 1 N 1 Z SWR 6  ? N4  ? F SWR 1 N4  
+233 1 N 1 Z SWR 6  ? N   ? F SWR 1 N   
+234 1 N 1 Z SWR 6  ? C   ? F SWR 1 C   
+235 1 N 1 Z SWR 6  ? O   ? F SWR 1 O   
+236 1 N 1 Z SWR 6  ? C10 ? F SWR 1 C10 
+237 1 N 1 Z SWR 6  ? C11 ? F SWR 1 C11 
+238 1 N 1 Z SWR 6  ? C12 ? F SWR 1 C12 
+239 1 N 1 Z SWR 6  ? C13 ? F SWR 1 C13 
+240 1 N 1 Z SWR 6  ? C14 ? F SWR 1 C14 
+241 1 N 1 Z SWR 6  ? C15 ? F SWR 1 C15 
+242 1 N 1 Z SWR 6  ? C16 ? F SWR 1 C16 
+243 1 N 1 Z SWR 6  ? C17 ? F SWR 1 C17 
+244 1 N 1 Z SWR 6  ? C18 ? F SWR 1 C18 
+245 1 N 1 Z SWR 6  ? C19 ? F SWR 1 C19 
+246 1 N 1 Z SWR 6  ? C20 ? F SWR 1 C20 
+247 1 N 1 Z SWR 6  ? C21 ? F SWR 1 C21 
+248 1 N 1 Z SWR 6  ? C22 ? F SWR 1 C22 
+249 1 N 1 Z SWR 6  ? C23 ? F SWR 1 C23 
+250 1 N 1 Z SWR 6  ? C24 ? F SWR 1 C24 
+251 1 N 1 Z SWR 6  ? C25 ? F SWR 1 C25 
+252 1 N 1 Z SWR 6  ? C26 ? F SWR 1 C26 
+253 1 N 1 Z SWR 6  ? N5  ? F SWR 1 N5  
+254 1 N 1 Z SWR 6  ? N6  ? F SWR 1 N6  
+255 1 N 1 Z SWR 6  ? O2  ? F SWR 1 O2  
+256 1 N 1 Z SWR 6  ? O6  ? F SWR 1 O6  
+257 1 N 1 Z SWR 6  ? CL  ? F SWR 1 CL  
+258 1 N 1 Z SWR 6  ? CL1 ? F SWR 1 CL1 
+259 1 N 1 Z SWR 7  ? N1  ? G SWR 1 N1  
+260 1 N 1 Z SWR 7  ? C7  ? G SWR 1 C7  
+261 1 N 1 Z SWR 7  ? C8  ? G SWR 1 C8  
+262 1 N 1 Z SWR 7  ? N2  ? G SWR 1 N2  
+263 1 N 1 Z SWR 7  ? C9  ? G SWR 1 C9  
+264 1 N 1 Z SWR 7  ? O1  ? G SWR 1 O1  
+265 1 N 1 Z SWR 7  ? C1  ? G SWR 1 C1  
+266 1 N 1 Z SWR 7  ? O5  ? G SWR 1 O5  
+267 1 N 1 Z SWR 7  ? C5  ? G SWR 1 C5  
+268 1 N 1 Z SWR 7  ? C6  ? G SWR 1 C6  
+269 1 N 1 Z SWR 7  ? N3  ? G SWR 1 N3  
+270 1 N 1 Z SWR 7  ? C4  ? G SWR 1 C4  
+271 1 N 1 Z SWR 7  ? O4  ? G SWR 1 O4  
+272 1 N 1 Z SWR 7  ? C3  ? G SWR 1 C3  
+273 1 N 1 Z SWR 7  ? O3  ? G SWR 1 O3  
+274 1 N 1 Z SWR 7  ? C2  ? G SWR 1 C2  
+275 1 N 1 Z SWR 7  ? N4  ? G SWR 1 N4  
+276 1 N 1 Z SWR 7  ? N   ? G SWR 1 N   
+277 1 N 1 Z SWR 7  ? C   ? G SWR 1 C   
+278 1 N 1 Z SWR 7  ? O   ? G SWR 1 O   
+279 1 N 1 Z SWR 7  ? C10 ? G SWR 1 C10 
+280 1 N 1 Z SWR 7  ? C11 ? G SWR 1 C11 
+281 1 N 1 Z SWR 7  ? C12 ? G SWR 1 C12 
+282 1 N 1 Z SWR 7  ? C13 ? G SWR 1 C13 
+283 1 N 1 Z SWR 7  ? C14 ? G SWR 1 C14 
+284 1 N 1 Z SWR 7  ? C15 ? G SWR 1 C15 
+285 1 N 1 Z SWR 7  ? C16 ? G SWR 1 C16 
+286 1 N 1 Z SWR 7  ? C17 ? G SWR 1 C17 
+287 1 N 1 Z SWR 7  ? C18 ? G SWR 1 C18 
+288 1 N 1 Z SWR 7  ? C19 ? G SWR 1 C19 
+289 1 N 1 Z SWR 7  ? C20 ? G SWR 1 C20 
+290 1 N 1 Z SWR 7  ? C21 ? G SWR 1 C21 
+291 1 N 1 Z SWR 7  ? C22 ? G SWR 1 C22 
+292 1 N 1 Z SWR 7  ? C23 ? G SWR 1 C23 
+293 1 N 1 Z SWR 7  ? C24 ? G SWR 1 C24 
+294 1 N 1 Z SWR 7  ? C25 ? G SWR 1 C25 
+295 1 N 1 Z SWR 7  ? C26 ? G SWR 1 C26 
+296 1 N 1 Z SWR 7  ? N5  ? G SWR 1 N5  
+297 1 N 1 Z SWR 7  ? N6  ? G SWR 1 N6  
+298 1 N 1 Z SWR 7  ? O2  ? G SWR 1 O2  
+299 1 N 1 Z SWR 7  ? O6  ? G SWR 1 O6  
+300 1 N 1 Z SWR 7  ? CL  ? G SWR 1 CL  
+301 1 N 1 Z SWR 7  ? CL1 ? G SWR 1 CL1 
+302 1 N 1 Z SWR 8  ? N1  ? H SWR 1 N1  
+303 1 N 1 Z SWR 8  ? C7  ? H SWR 1 C7  
+304 1 N 1 Z SWR 8  ? C8  ? H SWR 1 C8  
+305 1 N 1 Z SWR 8  ? N2  ? H SWR 1 N2  
+306 1 N 1 Z SWR 8  ? C9  ? H SWR 1 C9  
+307 1 N 1 Z SWR 8  ? O1  ? H SWR 1 O1  
+308 1 N 1 Z SWR 8  ? C1  ? H SWR 1 C1  
+309 1 N 1 Z SWR 8  ? O5  ? H SWR 1 O5  
+310 1 N 1 Z SWR 8  ? C5  ? H SWR 1 C5  
+311 1 N 1 Z SWR 8  ? C6  ? H SWR 1 C6  
+312 1 N 1 Z SWR 8  ? N3  ? H SWR 1 N3  
+313 1 N 1 Z SWR 8  ? C4  ? H SWR 1 C4  
+314 1 N 1 Z SWR 8  ? O4  ? H SWR 1 O4  
+315 1 N 1 Z SWR 8  ? C3  ? H SWR 1 C3  
+316 1 N 1 Z SWR 8  ? O3  ? H SWR 1 O3  
+317 1 N 1 Z SWR 8  ? C2  ? H SWR 1 C2  
+318 1 N 1 Z SWR 8  ? N4  ? H SWR 1 N4  
+319 1 N 1 Z SWR 8  ? N   ? H SWR 1 N   
+320 1 N 1 Z SWR 8  ? C   ? H SWR 1 C   
+321 1 N 1 Z SWR 8  ? O   ? H SWR 1 O   
+322 1 N 1 Z SWR 8  ? C10 ? H SWR 1 C10 
+323 1 N 1 Z SWR 8  ? C11 ? H SWR 1 C11 
+324 1 N 1 Z SWR 8  ? C12 ? H SWR 1 C12 
+325 1 N 1 Z SWR 8  ? C13 ? H SWR 1 C13 
+326 1 N 1 Z SWR 8  ? C14 ? H SWR 1 C14 
+327 1 N 1 Z SWR 8  ? C15 ? H SWR 1 C15 
+328 1 N 1 Z SWR 8  ? C16 ? H SWR 1 C16 
+329 1 N 1 Z SWR 8  ? C17 ? H SWR 1 C17 
+330 1 N 1 Z SWR 8  ? C18 ? H SWR 1 C18 
+331 1 N 1 Z SWR 8  ? C19 ? H SWR 1 C19 
+332 1 N 1 Z SWR 8  ? C20 ? H SWR 1 C20 
+333 1 N 1 Z SWR 8  ? C21 ? H SWR 1 C21 
+334 1 N 1 Z SWR 8  ? C22 ? H SWR 1 C22 
+335 1 N 1 Z SWR 8  ? C23 ? H SWR 1 C23 
+336 1 N 1 Z SWR 8  ? C24 ? H SWR 1 C24 
+337 1 N 1 Z SWR 8  ? C25 ? H SWR 1 C25 
+338 1 N 1 Z SWR 8  ? C26 ? H SWR 1 C26 
+339 1 N 1 Z SWR 8  ? N5  ? H SWR 1 N5  
+340 1 N 1 Z SWR 8  ? N6  ? H SWR 1 N6  
+341 1 N 1 Z SWR 8  ? O2  ? H SWR 1 O2  
+342 1 N 1 Z SWR 8  ? O6  ? H SWR 1 O6  
+343 1 N 1 Z SWR 8  ? CL  ? H SWR 1 CL  
+344 1 N 1 Z SWR 8  ? CL1 ? H SWR 1 CL1 
+345 1 N 1 Z SWR 9  ? N1  ? I SWR 1 N1  
+346 1 N 1 Z SWR 9  ? C7  ? I SWR 1 C7  
+347 1 N 1 Z SWR 9  ? C8  ? I SWR 1 C8  
+348 1 N 1 Z SWR 9  ? N2  ? I SWR 1 N2  
+349 1 N 1 Z SWR 9  ? C9  ? I SWR 1 C9  
+350 1 N 1 Z SWR 9  ? O1  ? I SWR 1 O1  
+351 1 N 1 Z SWR 9  ? C1  ? I SWR 1 C1  
+352 1 N 1 Z SWR 9  ? O5  ? I SWR 1 O5  
+353 1 N 1 Z SWR 9  ? C5  ? I SWR 1 C5  
+354 1 N 1 Z SWR 9  ? C6  ? I SWR 1 C6  
+355 1 N 1 Z SWR 9  ? N3  ? I SWR 1 N3  
+356 1 N 1 Z SWR 9  ? C4  ? I SWR 1 C4  
+357 1 N 1 Z SWR 9  ? O4  ? I SWR 1 O4  
+358 1 N 1 Z SWR 9  ? C3  ? I SWR 1 C3  
+359 1 N 1 Z SWR 9  ? O3  ? I SWR 1 O3  
+360 1 N 1 Z SWR 9  ? C2  ? I SWR 1 C2  
+361 1 N 1 Z SWR 9  ? N4  ? I SWR 1 N4  
+362 1 N 1 Z SWR 9  ? N   ? I SWR 1 N   
+363 1 N 1 Z SWR 9  ? C   ? I SWR 1 C   
+364 1 N 1 Z SWR 9  ? O   ? I SWR 1 O   
+365 1 N 1 Z SWR 9  ? C10 ? I SWR 1 C10 
+366 1 N 1 Z SWR 9  ? C11 ? I SWR 1 C11 
+367 1 N 1 Z SWR 9  ? C12 ? I SWR 1 C12 
+368 1 N 1 Z SWR 9  ? C13 ? I SWR 1 C13 
+369 1 N 1 Z SWR 9  ? C14 ? I SWR 1 C14 
+370 1 N 1 Z SWR 9  ? C15 ? I SWR 1 C15 
+371 1 N 1 Z SWR 9  ? C16 ? I SWR 1 C16 
+372 1 N 1 Z SWR 9  ? C17 ? I SWR 1 C17 
+373 1 N 1 Z SWR 9  ? C18 ? I SWR 1 C18 
+374 1 N 1 Z SWR 9  ? C19 ? I SWR 1 C19 
+375 1 N 1 Z SWR 9  ? C20 ? I SWR 1 C20 
+376 1 N 1 Z SWR 9  ? C21 ? I SWR 1 C21 
+377 1 N 1 Z SWR 9  ? C22 ? I SWR 1 C22 
+378 1 N 1 Z SWR 9  ? C23 ? I SWR 1 C23 
+379 1 N 1 Z SWR 9  ? C24 ? I SWR 1 C24 
+380 1 N 1 Z SWR 9  ? C25 ? I SWR 1 C25 
+381 1 N 1 Z SWR 9  ? C26 ? I SWR 1 C26 
+382 1 N 1 Z SWR 9  ? N5  ? I SWR 1 N5  
+383 1 N 1 Z SWR 9  ? N6  ? I SWR 1 N6  
+384 1 N 1 Z SWR 9  ? O2  ? I SWR 1 O2  
+385 1 N 1 Z SWR 9  ? O6  ? I SWR 1 O6  
+386 1 N 1 Z SWR 9  ? CL  ? I SWR 1 CL  
+387 1 N 1 Z SWR 9  ? CL1 ? I SWR 1 CL1 
+388 1 N 1 Z SWR 10 ? N1  ? J SWR 1 N1  
+389 1 N 1 Z SWR 10 ? C7  ? J SWR 1 C7  
+390 1 N 1 Z SWR 10 ? C8  ? J SWR 1 C8  
+391 1 N 1 Z SWR 10 ? N2  ? J SWR 1 N2  
+392 1 N 1 Z SWR 10 ? C9  ? J SWR 1 C9  
+393 1 N 1 Z SWR 10 ? O1  ? J SWR 1 O1  
+394 1 N 1 Z SWR 10 ? C1  ? J SWR 1 C1  
+395 1 N 1 Z SWR 10 ? O5  ? J SWR 1 O5  
+396 1 N 1 Z SWR 10 ? C5  ? J SWR 1 C5  
+397 1 N 1 Z SWR 10 ? C6  ? J SWR 1 C6  
+398 1 N 1 Z SWR 10 ? N3  ? J SWR 1 N3  
+399 1 N 1 Z SWR 10 ? C4  ? J SWR 1 C4  
+400 1 N 1 Z SWR 10 ? O4  ? J SWR 1 O4  
+401 1 N 1 Z SWR 10 ? C3  ? J SWR 1 C3  
+402 1 N 1 Z SWR 10 ? O3  ? J SWR 1 O3  
+403 1 N 1 Z SWR 10 ? C2  ? J SWR 1 C2  
+404 1 N 1 Z SWR 10 ? N4  ? J SWR 1 N4  
+405 1 N 1 Z SWR 10 ? N   ? J SWR 1 N   
+406 1 N 1 Z SWR 10 ? C   ? J SWR 1 C   
+407 1 N 1 Z SWR 10 ? O   ? J SWR 1 O   
+408 1 N 1 Z SWR 10 ? C10 ? J SWR 1 C10 
+409 1 N 1 Z SWR 10 ? C11 ? J SWR 1 C11 
+410 1 N 1 Z SWR 10 ? C12 ? J SWR 1 C12 
+411 1 N 1 Z SWR 10 ? C13 ? J SWR 1 C13 
+412 1 N 1 Z SWR 10 ? C14 ? J SWR 1 C14 
+413 1 N 1 Z SWR 10 ? C15 ? J SWR 1 C15 
+414 1 N 1 Z SWR 10 ? C16 ? J SWR 1 C16 
+415 1 N 1 Z SWR 10 ? C17 ? J SWR 1 C17 
+416 1 N 1 Z SWR 10 ? C18 ? J SWR 1 C18 
+417 1 N 1 Z SWR 10 ? C19 ? J SWR 1 C19 
+418 1 N 1 Z SWR 10 ? C20 ? J SWR 1 C20 
+419 1 N 1 Z SWR 10 ? C21 ? J SWR 1 C21 
+420 1 N 1 Z SWR 10 ? C22 ? J SWR 1 C22 
+421 1 N 1 Z SWR 10 ? C23 ? J SWR 1 C23 
+422 1 N 1 Z SWR 10 ? C24 ? J SWR 1 C24 
+423 1 N 1 Z SWR 10 ? C25 ? J SWR 1 C25 
+424 1 N 1 Z SWR 10 ? C26 ? J SWR 1 C26 
+425 1 N 1 Z SWR 10 ? N5  ? J SWR 1 N5  
+426 1 N 1 Z SWR 10 ? N6  ? J SWR 1 N6  
+427 1 N 1 Z SWR 10 ? O2  ? J SWR 1 O2  
+428 1 N 1 Z SWR 10 ? O6  ? J SWR 1 O6  
+429 1 N 1 Z SWR 10 ? CL  ? J SWR 1 CL  
+430 1 N 1 Z SWR 10 ? CL1 ? J SWR 1 CL1 
+431 1 N 1 Z SWR 11 ? N1  ? K SWR 1 N1  
+432 1 N 1 Z SWR 11 ? C7  ? K SWR 1 C7  
+433 1 N 1 Z SWR 11 ? C8  ? K SWR 1 C8  
+434 1 N 1 Z SWR 11 ? N2  ? K SWR 1 N2  
+435 1 N 1 Z SWR 11 ? C9  ? K SWR 1 C9  
+436 1 N 1 Z SWR 11 ? O1  ? K SWR 1 O1  
+437 1 N 1 Z SWR 11 ? C1  ? K SWR 1 C1  
+438 1 N 1 Z SWR 11 ? O5  ? K SWR 1 O5  
+439 1 N 1 Z SWR 11 ? C5  ? K SWR 1 C5  
+440 1 N 1 Z SWR 11 ? C6  ? K SWR 1 C6  
+441 1 N 1 Z SWR 11 ? N3  ? K SWR 1 N3  
+442 1 N 1 Z SWR 11 ? C4  ? K SWR 1 C4  
+443 1 N 1 Z SWR 11 ? O4  ? K SWR 1 O4  
+444 1 N 1 Z SWR 11 ? C3  ? K SWR 1 C3  
+445 1 N 1 Z SWR 11 ? O3  ? K SWR 1 O3  
+446 1 N 1 Z SWR 11 ? C2  ? K SWR 1 C2  
+447 1 N 1 Z SWR 11 ? N4  ? K SWR 1 N4  
+448 1 N 1 Z SWR 11 ? N   ? K SWR 1 N   
+449 1 N 1 Z SWR 11 ? C   ? K SWR 1 C   
+450 1 N 1 Z SWR 11 ? O   ? K SWR 1 O   
+451 1 N 1 Z SWR 11 ? C10 ? K SWR 1 C10 
+452 1 N 1 Z SWR 11 ? C11 ? K SWR 1 C11 
+453 1 N 1 Z SWR 11 ? C12 ? K SWR 1 C12 
+454 1 N 1 Z SWR 11 ? C13 ? K SWR 1 C13 
+455 1 N 1 Z SWR 11 ? C14 ? K SWR 1 C14 
+456 1 N 1 Z SWR 11 ? C15 ? K SWR 1 C15 
+457 1 N 1 Z SWR 11 ? C16 ? K SWR 1 C16 
+458 1 N 1 Z SWR 11 ? C17 ? K SWR 1 C17 
+459 1 N 1 Z SWR 11 ? C18 ? K SWR 1 C18 
+460 1 N 1 Z SWR 11 ? C19 ? K SWR 1 C19 
+461 1 N 1 Z SWR 11 ? C20 ? K SWR 1 C20 
+462 1 N 1 Z SWR 11 ? C21 ? K SWR 1 C21 
+463 1 N 1 Z SWR 11 ? C22 ? K SWR 1 C22 
+464 1 N 1 Z SWR 11 ? C23 ? K SWR 1 C23 
+465 1 N 1 Z SWR 11 ? C24 ? K SWR 1 C24 
+466 1 N 1 Z SWR 11 ? C25 ? K SWR 1 C25 
+467 1 N 1 Z SWR 11 ? C26 ? K SWR 1 C26 
+468 1 N 1 Z SWR 11 ? N5  ? K SWR 1 N5  
+469 1 N 1 Z SWR 11 ? N6  ? K SWR 1 N6  
+470 1 N 1 Z SWR 11 ? O2  ? K SWR 1 O2  
+471 1 N 1 Z SWR 11 ? O6  ? K SWR 1 O6  
+472 1 N 1 Z SWR 11 ? CL  ? K SWR 1 CL  
+473 1 N 1 Z SWR 11 ? CL1 ? K SWR 1 CL1 
+474 1 N 1 Z SWR 12 ? N1  ? L SWR 1 N1  
+475 1 N 1 Z SWR 12 ? C7  ? L SWR 1 C7  
+476 1 N 1 Z SWR 12 ? C8  ? L SWR 1 C8  
+477 1 N 1 Z SWR 12 ? N2  ? L SWR 1 N2  
+478 1 N 1 Z SWR 12 ? C9  ? L SWR 1 C9  
+479 1 N 1 Z SWR 12 ? O1  ? L SWR 1 O1  
+480 1 N 1 Z SWR 12 ? C1  ? L SWR 1 C1  
+481 1 N 1 Z SWR 12 ? O5  ? L SWR 1 O5  
+482 1 N 1 Z SWR 12 ? C5  ? L SWR 1 C5  
+483 1 N 1 Z SWR 12 ? C6  ? L SWR 1 C6  
+484 1 N 1 Z SWR 12 ? N3  ? L SWR 1 N3  
+485 1 N 1 Z SWR 12 ? C4  ? L SWR 1 C4  
+486 1 N 1 Z SWR 12 ? O4  ? L SWR 1 O4  
+487 1 N 1 Z SWR 12 ? C3  ? L SWR 1 C3  
+488 1 N 1 Z SWR 12 ? O3  ? L SWR 1 O3  
+489 1 N 1 Z SWR 12 ? C2  ? L SWR 1 C2  
+490 1 N 1 Z SWR 12 ? N4  ? L SWR 1 N4  
+491 1 N 1 Z SWR 12 ? N   ? L SWR 1 N   
+492 1 N 1 Z SWR 12 ? C   ? L SWR 1 C   
+493 1 N 1 Z SWR 12 ? O   ? L SWR 1 O   
+494 1 N 1 Z SWR 12 ? C10 ? L SWR 1 C10 
+495 1 N 1 Z SWR 12 ? C11 ? L SWR 1 C11 
+496 1 N 1 Z SWR 12 ? C12 ? L SWR 1 C12 
+497 1 N 1 Z SWR 12 ? C13 ? L SWR 1 C13 
+498 1 N 1 Z SWR 12 ? C14 ? L SWR 1 C14 
+499 1 N 1 Z SWR 12 ? C15 ? L SWR 1 C15 
+500 1 N 1 Z SWR 12 ? C16 ? L SWR 1 C16 
+501 1 N 1 Z SWR 12 ? C17 ? L SWR 1 C17 
+502 1 N 1 Z SWR 12 ? C18 ? L SWR 1 C18 
+503 1 N 1 Z SWR 12 ? C19 ? L SWR 1 C19 
+504 1 N 1 Z SWR 12 ? C20 ? L SWR 1 C20 
+505 1 N 1 Z SWR 12 ? C21 ? L SWR 1 C21 
+506 1 N 1 Z SWR 12 ? C22 ? L SWR 1 C22 
+507 1 N 1 Z SWR 12 ? C23 ? L SWR 1 C23 
+508 1 N 1 Z SWR 12 ? C24 ? L SWR 1 C24 
+509 1 N 1 Z SWR 12 ? C25 ? L SWR 1 C25 
+510 1 N 1 Z SWR 12 ? C26 ? L SWR 1 C26 
+511 1 N 1 Z SWR 12 ? N5  ? L SWR 1 N5  
+512 1 N 1 Z SWR 12 ? N6  ? L SWR 1 N6  
+513 1 N 1 Z SWR 12 ? O2  ? L SWR 1 O2  
+514 1 N 1 Z SWR 12 ? O6  ? L SWR 1 O6  
+515 1 N 1 Z SWR 12 ? CL  ? L SWR 1 CL  
+516 1 N 1 Z SWR 12 ? CL1 ? L SWR 1 CL1 
+517 1 N 1 Z SWR 13 ? N1  ? M SWR 1 N1  
+518 1 N 1 Z SWR 13 ? C7  ? M SWR 1 C7  
+519 1 N 1 Z SWR 13 ? C8  ? M SWR 1 C8  
+520 1 N 1 Z SWR 13 ? N2  ? M SWR 1 N2  
+521 1 N 1 Z SWR 13 ? C9  ? M SWR 1 C9  
+522 1 N 1 Z SWR 13 ? O1  ? M SWR 1 O1  
+523 1 N 1 Z SWR 13 ? C1  ? M SWR 1 C1  
+524 1 N 1 Z SWR 13 ? O5  ? M SWR 1 O5  
+525 1 N 1 Z SWR 13 ? C5  ? M SWR 1 C5  
+526 1 N 1 Z SWR 13 ? C6  ? M SWR 1 C6  
+527 1 N 1 Z SWR 13 ? N3  ? M SWR 1 N3  
+528 1 N 1 Z SWR 13 ? C4  ? M SWR 1 C4  
+529 1 N 1 Z SWR 13 ? O4  ? M SWR 1 O4  
+530 1 N 1 Z SWR 13 ? C3  ? M SWR 1 C3  
+531 1 N 1 Z SWR 13 ? O3  ? M SWR 1 O3  
+532 1 N 1 Z SWR 13 ? C2  ? M SWR 1 C2  
+533 1 N 1 Z SWR 13 ? N4  ? M SWR 1 N4  
+534 1 N 1 Z SWR 13 ? N   ? M SWR 1 N   
+535 1 N 1 Z SWR 13 ? C   ? M SWR 1 C   
+536 1 N 1 Z SWR 13 ? O   ? M SWR 1 O   
+537 1 N 1 Z SWR 13 ? C10 ? M SWR 1 C10 
+538 1 N 1 Z SWR 13 ? C11 ? M SWR 1 C11 
+539 1 N 1 Z SWR 13 ? C12 ? M SWR 1 C12 
+540 1 N 1 Z SWR 13 ? C13 ? M SWR 1 C13 
+541 1 N 1 Z SWR 13 ? C14 ? M SWR 1 C14 
+542 1 N 1 Z SWR 13 ? C15 ? M SWR 1 C15 
+543 1 N 1 Z SWR 13 ? C16 ? M SWR 1 C16 
+544 1 N 1 Z SWR 13 ? C17 ? M SWR 1 C17 
+545 1 N 1 Z SWR 13 ? C18 ? M SWR 1 C18 
+546 1 N 1 Z SWR 13 ? C19 ? M SWR 1 C19 
+547 1 N 1 Z SWR 13 ? C20 ? M SWR 1 C20 
+548 1 N 1 Z SWR 13 ? C21 ? M SWR 1 C21 
+549 1 N 1 Z SWR 13 ? C22 ? M SWR 1 C22 
+550 1 N 1 Z SWR 13 ? C23 ? M SWR 1 C23 
+551 1 N 1 Z SWR 13 ? C24 ? M SWR 1 C24 
+552 1 N 1 Z SWR 13 ? C25 ? M SWR 1 C25 
+553 1 N 1 Z SWR 13 ? C26 ? M SWR 1 C26 
+554 1 N 1 Z SWR 13 ? N5  ? M SWR 1 N5  
+555 1 N 1 Z SWR 13 ? N6  ? M SWR 1 N6  
+556 1 N 1 Z SWR 13 ? O2  ? M SWR 1 O2  
+557 1 N 1 Z SWR 13 ? O6  ? M SWR 1 O6  
+558 1 N 1 Z SWR 13 ? CL  ? M SWR 1 CL  
+559 1 N 1 Z SWR 13 ? CL1 ? M SWR 1 CL1 
+560 1 N 1 Z SWR 14 ? N1  ? N SWR 1 N1  
+561 1 N 1 Z SWR 14 ? C7  ? N SWR 1 C7  
+562 1 N 1 Z SWR 14 ? C8  ? N SWR 1 C8  
+563 1 N 1 Z SWR 14 ? N2  ? N SWR 1 N2  
+564 1 N 1 Z SWR 14 ? C9  ? N SWR 1 C9  
+565 1 N 1 Z SWR 14 ? O1  ? N SWR 1 O1  
+566 1 N 1 Z SWR 14 ? C1  ? N SWR 1 C1  
+567 1 N 1 Z SWR 14 ? O5  ? N SWR 1 O5  
+568 1 N 1 Z SWR 14 ? C5  ? N SWR 1 C5  
+569 1 N 1 Z SWR 14 ? C6  ? N SWR 1 C6  
+570 1 N 1 Z SWR 14 ? N3  ? N SWR 1 N3  
+571 1 N 1 Z SWR 14 ? C4  ? N SWR 1 C4  
+572 1 N 1 Z SWR 14 ? O4  ? N SWR 1 O4  
+573 1 N 1 Z SWR 14 ? C3  ? N SWR 1 C3  
+574 1 N 1 Z SWR 14 ? O3  ? N SWR 1 O3  
+575 1 N 1 Z SWR 14 ? C2  ? N SWR 1 C2  
+576 1 N 1 Z SWR 14 ? N4  ? N SWR 1 N4  
+577 1 N 1 Z SWR 14 ? N   ? N SWR 1 N   
+578 1 N 1 Z SWR 14 ? C   ? N SWR 1 C   
+579 1 N 1 Z SWR 14 ? O   ? N SWR 1 O   
+580 1 N 1 Z SWR 14 ? C10 ? N SWR 1 C10 
+581 1 N 1 Z SWR 14 ? C11 ? N SWR 1 C11 
+582 1 N 1 Z SWR 14 ? C12 ? N SWR 1 C12 
+583 1 N 1 Z SWR 14 ? C13 ? N SWR 1 C13 
+584 1 N 1 Z SWR 14 ? C14 ? N SWR 1 C14 
+585 1 N 1 Z SWR 14 ? C15 ? N SWR 1 C15 
+586 1 N 1 Z SWR 14 ? C16 ? N SWR 1 C16 
+587 1 N 1 Z SWR 14 ? C17 ? N SWR 1 C17 
+588 1 N 1 Z SWR 14 ? C18 ? N SWR 1 C18 
+589 1 N 1 Z SWR 14 ? C19 ? N SWR 1 C19 
+590 1 N 1 Z SWR 14 ? C20 ? N SWR 1 C20 
+591 1 N 1 Z SWR 14 ? C21 ? N SWR 1 C21 
+592 1 N 1 Z SWR 14 ? C22 ? N SWR 1 C22 
+593 1 N 1 Z SWR 14 ? C23 ? N SWR 1 C23 
+594 1 N 1 Z SWR 14 ? C24 ? N SWR 1 C24 
+595 1 N 1 Z SWR 14 ? C25 ? N SWR 1 C25 
+596 1 N 1 Z SWR 14 ? C26 ? N SWR 1 C26 
+597 1 N 1 Z SWR 14 ? N5  ? N SWR 1 N5  
+598 1 N 1 Z SWR 14 ? N6  ? N SWR 1 N6  
+599 1 N 1 Z SWR 14 ? O2  ? N SWR 1 O2  
+600 1 N 1 Z SWR 14 ? O6  ? N SWR 1 O6  
+601 1 N 1 Z SWR 14 ? CL  ? N SWR 1 CL  
+602 1 N 1 Z SWR 14 ? CL1 ? N SWR 1 CL1 
+603 1 N 1 Z SWR 15 ? N1  ? O SWR 1 N1  
+604 1 N 1 Z SWR 15 ? C7  ? O SWR 1 C7  
+605 1 N 1 Z SWR 15 ? C8  ? O SWR 1 C8  
+606 1 N 1 Z SWR 15 ? N2  ? O SWR 1 N2  
+607 1 N 1 Z SWR 15 ? C9  ? O SWR 1 C9  
+608 1 N 1 Z SWR 15 ? O1  ? O SWR 1 O1  
+609 1 N 1 Z SWR 15 ? C1  ? O SWR 1 C1  
+610 1 N 1 Z SWR 15 ? O5  ? O SWR 1 O5  
+611 1 N 1 Z SWR 15 ? C5  ? O SWR 1 C5  
+612 1 N 1 Z SWR 15 ? C6  ? O SWR 1 C6  
+613 1 N 1 Z SWR 15 ? N3  ? O SWR 1 N3  
+614 1 N 1 Z SWR 15 ? C4  ? O SWR 1 C4  
+615 1 N 1 Z SWR 15 ? O4  ? O SWR 1 O4  
+616 1 N 1 Z SWR 15 ? C3  ? O SWR 1 C3  
+617 1 N 1 Z SWR 15 ? O3  ? O SWR 1 O3  
+618 1 N 1 Z SWR 15 ? C2  ? O SWR 1 C2  
+619 1 N 1 Z SWR 15 ? N4  ? O SWR 1 N4  
+620 1 N 1 Z SWR 15 ? N   ? O SWR 1 N   
+621 1 N 1 Z SWR 15 ? C   ? O SWR 1 C   
+622 1 N 1 Z SWR 15 ? O   ? O SWR 1 O   
+623 1 N 1 Z SWR 15 ? C10 ? O SWR 1 C10 
+624 1 N 1 Z SWR 15 ? C11 ? O SWR 1 C11 
+625 1 N 1 Z SWR 15 ? C12 ? O SWR 1 C12 
+626 1 N 1 Z SWR 15 ? C13 ? O SWR 1 C13 
+627 1 N 1 Z SWR 15 ? C14 ? O SWR 1 C14 
+628 1 N 1 Z SWR 15 ? C15 ? O SWR 1 C15 
+629 1 N 1 Z SWR 15 ? C16 ? O SWR 1 C16 
+630 1 N 1 Z SWR 15 ? C17 ? O SWR 1 C17 
+631 1 N 1 Z SWR 15 ? C18 ? O SWR 1 C18 
+632 1 N 1 Z SWR 15 ? C19 ? O SWR 1 C19 
+633 1 N 1 Z SWR 15 ? C20 ? O SWR 1 C20 
+634 1 N 1 Z SWR 15 ? C21 ? O SWR 1 C21 
+635 1 N 1 Z SWR 15 ? C22 ? O SWR 1 C22 
+636 1 N 1 Z SWR 15 ? C23 ? O SWR 1 C23 
+637 1 N 1 Z SWR 15 ? C24 ? O SWR 1 C24 
+638 1 N 1 Z SWR 15 ? C25 ? O SWR 1 C25 
+639 1 N 1 Z SWR 15 ? C26 ? O SWR 1 C26 
+640 1 N 1 Z SWR 15 ? N5  ? O SWR 1 N5  
+641 1 N 1 Z SWR 15 ? N6  ? O SWR 1 N6  
+642 1 N 1 Z SWR 15 ? O2  ? O SWR 1 O2  
+643 1 N 1 Z SWR 15 ? O6  ? O SWR 1 O6  
+644 1 N 1 Z SWR 15 ? CL  ? O SWR 1 CL  
+645 1 N 1 Z SWR 15 ? CL1 ? O SWR 1 CL1 
+646 1 N 1 Z SWR 16 ? N1  ? P SWR 1 N1  
+647 1 N 1 Z SWR 16 ? C7  ? P SWR 1 C7  
+648 1 N 1 Z SWR 16 ? C8  ? P SWR 1 C8  
+649 1 N 1 Z SWR 16 ? N2  ? P SWR 1 N2  
+650 1 N 1 Z SWR 16 ? C9  ? P SWR 1 C9  
+651 1 N 1 Z SWR 16 ? O1  ? P SWR 1 O1  
+652 1 N 1 Z SWR 16 ? C1  ? P SWR 1 C1  
+653 1 N 1 Z SWR 16 ? O5  ? P SWR 1 O5  
+654 1 N 1 Z SWR 16 ? C5  ? P SWR 1 C5  
+655 1 N 1 Z SWR 16 ? C6  ? P SWR 1 C6  
+656 1 N 1 Z SWR 16 ? N3  ? P SWR 1 N3  
+657 1 N 1 Z SWR 16 ? C4  ? P SWR 1 C4  
+658 1 N 1 Z SWR 16 ? O4  ? P SWR 1 O4  
+659 1 N 1 Z SWR 16 ? C3  ? P SWR 1 C3  
+660 1 N 1 Z SWR 16 ? O3  ? P SWR 1 O3  
+661 1 N 1 Z SWR 16 ? C2  ? P SWR 1 C2  
+662 1 N 1 Z SWR 16 ? N4  ? P SWR 1 N4  
+663 1 N 1 Z SWR 16 ? N   ? P SWR 1 N   
+664 1 N 1 Z SWR 16 ? C   ? P SWR 1 C   
+665 1 N 1 Z SWR 16 ? O   ? P SWR 1 O   
+666 1 N 1 Z SWR 16 ? C10 ? P SWR 1 C10 
+667 1 N 1 Z SWR 16 ? C11 ? P SWR 1 C11 
+668 1 N 1 Z SWR 16 ? C12 ? P SWR 1 C12 
+669 1 N 1 Z SWR 16 ? C13 ? P SWR 1 C13 
+670 1 N 1 Z SWR 16 ? C14 ? P SWR 1 C14 
+671 1 N 1 Z SWR 16 ? C15 ? P SWR 1 C15 
+672 1 N 1 Z SWR 16 ? C16 ? P SWR 1 C16 
+673 1 N 1 Z SWR 16 ? C17 ? P SWR 1 C17 
+674 1 N 1 Z SWR 16 ? C18 ? P SWR 1 C18 
+675 1 N 1 Z SWR 16 ? C19 ? P SWR 1 C19 
+676 1 N 1 Z SWR 16 ? C20 ? P SWR 1 C20 
+677 1 N 1 Z SWR 16 ? C21 ? P SWR 1 C21 
+678 1 N 1 Z SWR 16 ? C22 ? P SWR 1 C22 
+679 1 N 1 Z SWR 16 ? C23 ? P SWR 1 C23 
+680 1 N 1 Z SWR 16 ? C24 ? P SWR 1 C24 
+681 1 N 1 Z SWR 16 ? C25 ? P SWR 1 C25 
+682 1 N 1 Z SWR 16 ? C26 ? P SWR 1 C26 
+683 1 N 1 Z SWR 16 ? N5  ? P SWR 1 N5  
+684 1 N 1 Z SWR 16 ? N6  ? P SWR 1 N6  
+685 1 N 1 Z SWR 16 ? O2  ? P SWR 1 O2  
+686 1 N 1 Z SWR 16 ? O6  ? P SWR 1 O6  
+687 1 N 1 Z SWR 16 ? CL  ? P SWR 1 CL  
+688 1 N 1 Z SWR 16 ? CL1 ? P SWR 1 CL1 
+689 1 N 1 Z SWR 17 ? N1  ? Q SWR 1 N1  
+690 1 N 1 Z SWR 17 ? C7  ? Q SWR 1 C7  
+691 1 N 1 Z SWR 17 ? C8  ? Q SWR 1 C8  
+692 1 N 1 Z SWR 17 ? N2  ? Q SWR 1 N2  
+693 1 N 1 Z SWR 17 ? C9  ? Q SWR 1 C9  
+694 1 N 1 Z SWR 17 ? O1  ? Q SWR 1 O1  
+695 1 N 1 Z SWR 17 ? C1  ? Q SWR 1 C1  
+696 1 N 1 Z SWR 17 ? O5  ? Q SWR 1 O5  
+697 1 N 1 Z SWR 17 ? C5  ? Q SWR 1 C5  
+698 1 N 1 Z SWR 17 ? C6  ? Q SWR 1 C6  
+699 1 N 1 Z SWR 17 ? N3  ? Q SWR 1 N3  
+700 1 N 1 Z SWR 17 ? C4  ? Q SWR 1 C4  
+701 1 N 1 Z SWR 17 ? O4  ? Q SWR 1 O4  
+702 1 N 1 Z SWR 17 ? C3  ? Q SWR 1 C3  
+703 1 N 1 Z SWR 17 ? O3  ? Q SWR 1 O3  
+704 1 N 1 Z SWR 17 ? C2  ? Q SWR 1 C2  
+705 1 N 1 Z SWR 17 ? N4  ? Q SWR 1 N4  
+706 1 N 1 Z SWR 17 ? N   ? Q SWR 1 N   
+707 1 N 1 Z SWR 17 ? C   ? Q SWR 1 C   
+708 1 N 1 Z SWR 17 ? O   ? Q SWR 1 O   
+709 1 N 1 Z SWR 17 ? C10 ? Q SWR 1 C10 
+710 1 N 1 Z SWR 17 ? C11 ? Q SWR 1 C11 
+711 1 N 1 Z SWR 17 ? C12 ? Q SWR 1 C12 
+712 1 N 1 Z SWR 17 ? C13 ? Q SWR 1 C13 
+713 1 N 1 Z SWR 17 ? C14 ? Q SWR 1 C14 
+714 1 N 1 Z SWR 17 ? C15 ? Q SWR 1 C15 
+715 1 N 1 Z SWR 17 ? C16 ? Q SWR 1 C16 
+716 1 N 1 Z SWR 17 ? C17 ? Q SWR 1 C17 
+717 1 N 1 Z SWR 17 ? C18 ? Q SWR 1 C18 
+718 1 N 1 Z SWR 17 ? C19 ? Q SWR 1 C19 
+719 1 N 1 Z SWR 17 ? C20 ? Q SWR 1 C20 
+720 1 N 1 Z SWR 17 ? C21 ? Q SWR 1 C21 
+721 1 N 1 Z SWR 17 ? C22 ? Q SWR 1 C22 
+722 1 N 1 Z SWR 17 ? C23 ? Q SWR 1 C23 
+723 1 N 1 Z SWR 17 ? C24 ? Q SWR 1 C24 
+724 1 N 1 Z SWR 17 ? C25 ? Q SWR 1 C25 
+725 1 N 1 Z SWR 17 ? C26 ? Q SWR 1 C26 
+726 1 N 1 Z SWR 17 ? N5  ? Q SWR 1 N5  
+727 1 N 1 Z SWR 17 ? N6  ? Q SWR 1 N6  
+728 1 N 1 Z SWR 17 ? O2  ? Q SWR 1 O2  
+729 1 N 1 Z SWR 17 ? O6  ? Q SWR 1 O6  
+730 1 N 1 Z SWR 17 ? CL  ? Q SWR 1 CL  
+731 1 N 1 Z SWR 17 ? CL1 ? Q SWR 1 CL1 
+732 1 N 1 Z SWR 18 ? N1  ? R SWR 1 N1  
+733 1 N 1 Z SWR 18 ? C7  ? R SWR 1 C7  
+734 1 N 1 Z SWR 18 ? C8  ? R SWR 1 C8  
+735 1 N 1 Z SWR 18 ? N2  ? R SWR 1 N2  
+736 1 N 1 Z SWR 18 ? C9  ? R SWR 1 C9  
+737 1 N 1 Z SWR 18 ? O1  ? R SWR 1 O1  
+738 1 N 1 Z SWR 18 ? C1  ? R SWR 1 C1  
+739 1 N 1 Z SWR 18 ? O5  ? R SWR 1 O5  
+740 1 N 1 Z SWR 18 ? C5  ? R SWR 1 C5  
+741 1 N 1 Z SWR 18 ? C6  ? R SWR 1 C6  
+742 1 N 1 Z SWR 18 ? N3  ? R SWR 1 N3  
+743 1 N 1 Z SWR 18 ? C4  ? R SWR 1 C4  
+744 1 N 1 Z SWR 18 ? O4  ? R SWR 1 O4  
+745 1 N 1 Z SWR 18 ? C3  ? R SWR 1 C3  
+746 1 N 1 Z SWR 18 ? O3  ? R SWR 1 O3  
+747 1 N 1 Z SWR 18 ? C2  ? R SWR 1 C2  
+748 1 N 1 Z SWR 18 ? N4  ? R SWR 1 N4  
+749 1 N 1 Z SWR 18 ? N   ? R SWR 1 N   
+750 1 N 1 Z SWR 18 ? C   ? R SWR 1 C   
+751 1 N 1 Z SWR 18 ? O   ? R SWR 1 O   
+752 1 N 1 Z SWR 18 ? C10 ? R SWR 1 C10 
+753 1 N 1 Z SWR 18 ? C11 ? R SWR 1 C11 
+754 1 N 1 Z SWR 18 ? C12 ? R SWR 1 C12 
+755 1 N 1 Z SWR 18 ? C13 ? R SWR 1 C13 
+756 1 N 1 Z SWR 18 ? C14 ? R SWR 1 C14 
+757 1 N 1 Z SWR 18 ? C15 ? R SWR 1 C15 
+758 1 N 1 Z SWR 18 ? C16 ? R SWR 1 C16 
+759 1 N 1 Z SWR 18 ? C17 ? R SWR 1 C17 
+760 1 N 1 Z SWR 18 ? C18 ? R SWR 1 C18 
+761 1 N 1 Z SWR 18 ? C19 ? R SWR 1 C19 
+762 1 N 1 Z SWR 18 ? C20 ? R SWR 1 C20 
+763 1 N 1 Z SWR 18 ? C21 ? R SWR 1 C21 
+764 1 N 1 Z SWR 18 ? C22 ? R SWR 1 C22 
+765 1 N 1 Z SWR 18 ? C23 ? R SWR 1 C23 
+766 1 N 1 Z SWR 18 ? C24 ? R SWR 1 C24 
+767 1 N 1 Z SWR 18 ? C25 ? R SWR 1 C25 
+768 1 N 1 Z SWR 18 ? C26 ? R SWR 1 C26 
+769 1 N 1 Z SWR 18 ? N5  ? R SWR 1 N5  
+770 1 N 1 Z SWR 18 ? N6  ? R SWR 1 N6  
+771 1 N 1 Z SWR 18 ? O2  ? R SWR 1 O2  
+772 1 N 1 Z SWR 18 ? O6  ? R SWR 1 O6  
+773 1 N 1 Z SWR 18 ? CL  ? R SWR 1 CL  
+774 1 N 1 Z SWR 18 ? CL1 ? R SWR 1 CL1 
+775 1 N 1 Z SWR 19 ? N1  ? S SWR 1 N1  
+776 1 N 1 Z SWR 19 ? C7  ? S SWR 1 C7  
+777 1 N 1 Z SWR 19 ? C8  ? S SWR 1 C8  
+778 1 N 1 Z SWR 19 ? N2  ? S SWR 1 N2  
+779 1 N 1 Z SWR 19 ? C9  ? S SWR 1 C9  
+780 1 N 1 Z SWR 19 ? O1  ? S SWR 1 O1  
+781 1 N 1 Z SWR 19 ? C1  ? S SWR 1 C1  
+782 1 N 1 Z SWR 19 ? O5  ? S SWR 1 O5  
+783 1 N 1 Z SWR 19 ? C5  ? S SWR 1 C5  
+784 1 N 1 Z SWR 19 ? C6  ? S SWR 1 C6  
+785 1 N 1 Z SWR 19 ? N3  ? S SWR 1 N3  
+786 1 N 1 Z SWR 19 ? C4  ? S SWR 1 C4  
+787 1 N 1 Z SWR 19 ? O4  ? S SWR 1 O4  
+788 1 N 1 Z SWR 19 ? C3  ? S SWR 1 C3  
+789 1 N 1 Z SWR 19 ? O3  ? S SWR 1 O3  
+790 1 N 1 Z SWR 19 ? C2  ? S SWR 1 C2  
+791 1 N 1 Z SWR 19 ? N4  ? S SWR 1 N4  
+792 1 N 1 Z SWR 19 ? N   ? S SWR 1 N   
+793 1 N 1 Z SWR 19 ? C   ? S SWR 1 C   
+794 1 N 1 Z SWR 19 ? O   ? S SWR 1 O   
+795 1 N 1 Z SWR 19 ? C10 ? S SWR 1 C10 
+796 1 N 1 Z SWR 19 ? C11 ? S SWR 1 C11 
+797 1 N 1 Z SWR 19 ? C12 ? S SWR 1 C12 
+798 1 N 1 Z SWR 19 ? C13 ? S SWR 1 C13 
+799 1 N 1 Z SWR 19 ? C14 ? S SWR 1 C14 
+800 1 N 1 Z SWR 19 ? C15 ? S SWR 1 C15 
+801 1 N 1 Z SWR 19 ? C16 ? S SWR 1 C16 
+802 1 N 1 Z SWR 19 ? C17 ? S SWR 1 C17 
+803 1 N 1 Z SWR 19 ? C18 ? S SWR 1 C18 
+804 1 N 1 Z SWR 19 ? C19 ? S SWR 1 C19 
+805 1 N 1 Z SWR 19 ? C20 ? S SWR 1 C20 
+806 1 N 1 Z SWR 19 ? C21 ? S SWR 1 C21 
+807 1 N 1 Z SWR 19 ? C22 ? S SWR 1 C22 
+808 1 N 1 Z SWR 19 ? C23 ? S SWR 1 C23 
+809 1 N 1 Z SWR 19 ? C24 ? S SWR 1 C24 
+810 1 N 1 Z SWR 19 ? C25 ? S SWR 1 C25 
+811 1 N 1 Z SWR 19 ? C26 ? S SWR 1 C26 
+812 1 N 1 Z SWR 19 ? N5  ? S SWR 1 N5  
+813 1 N 1 Z SWR 19 ? N6  ? S SWR 1 N6  
+814 1 N 1 Z SWR 19 ? O2  ? S SWR 1 O2  
+815 1 N 1 Z SWR 19 ? O6  ? S SWR 1 O6  
+816 1 N 1 Z SWR 19 ? CL  ? S SWR 1 CL  
+817 1 N 1 Z SWR 19 ? CL1 ? S SWR 1 CL1 
+# 
+_atom_type.symbol   H 
+# 
+_entry.id   SWARM_CENTERS 
+# 
+_pdbx_entity_nonpoly.entity_id   1 
+_pdbx_entity_nonpoly.name        "N'-(4-chlorophenyl)-N-[(4R)-3-(4-chlorophenyl)-5,5-dimethyl-1-(2-{(2E)-2-[(2E)-3-(5-nitrofuran-2-yl)prop-2-en-1-ylidene]hydrazinyl}-2-oxoethyl)-2-oxoimidazolidin-4-yl]-N-hydroxyurea" 
+_pdbx_entity_nonpoly.comp_id     SWR 
+# 
+loop_
+_atom_site.group_PDB 
+_atom_site.id 
+_atom_site.type_symbol 
+_atom_site.label_atom_id 
+_atom_site.label_alt_id 
+_atom_site.label_comp_id 
+_atom_site.label_asym_id 
+_atom_site.label_entity_id 
+_atom_site.label_seq_id 
+_atom_site.pdbx_PDB_ins_code 
+_atom_site.Cartn_x 
+_atom_site.Cartn_y 
+_atom_site.Cartn_z 
+_atom_site.occupancy 
+_atom_site.B_iso_or_equiv 
+_atom_site.pdbx_formal_charge 
+_atom_site.auth_seq_id 
+_atom_site.auth_comp_id 
+_atom_site.auth_asym_id 
+_atom_site.auth_atom_id 
+_atom_site.pdbx_PDB_model_num 
+HETATM 1  H H . SWR A 1 . ? -20.909 9.420   26.410 1.00 1.00 ? 1  SWR Z H 1 
+HETATM 2  H H . SWR B 1 . ? -29.385 -8.778  29.939 1.00 1.00 ? 2  SWR Z H 1 
+HETATM 3  H H . SWR C 1 . ? 14.878  0.573   32.236 1.00 1.00 ? 3  SWR Z H 1 
+HETATM 4  H H . SWR D 1 . ? -4.663  -2.152  31.799 1.00 1.00 ? 4  SWR Z H 1 
+HETATM 5  H H . SWR E 1 . ? 17.403  -17.523 32.822 1.00 1.00 ? 5  SWR Z H 1 
+HETATM 6  H H . SWR F 1 . ? 5.544   -19.318 37.130 1.00 1.00 ? 6  SWR Z H 1 
+HETATM 7  H H . SWR G 1 . ? -20.314 -19.306 29.004 1.00 1.00 ? 7  SWR Z H 1 
+HETATM 8  H H . SWR H 1 . ? -9.223  17.503  25.962 1.00 1.00 ? 8  SWR Z H 1 
+HETATM 9  H H . SWR I 1 . ? -0.250  -24.870 32.377 1.00 1.00 ? 9  SWR Z H 1 
+HETATM 10 H H . SWR J 1 . ? -12.056 4.927   30.593 1.00 1.00 ? 10 SWR Z H 1 
+HETATM 11 H H . SWR K 1 . ? 11.851  -10.330 36.733 1.00 1.00 ? 11 SWR Z H 1 
+HETATM 12 H H . SWR L 1 . ? 3.270   8.438   33.830 1.00 1.00 ? 12 SWR Z H 1 
+HETATM 13 H H . SWR M 1 . ? -0.230  24.216  28.322 1.00 1.00 ? 13 SWR Z H 1 
+HETATM 14 H H . SWR N 1 . ? 9.277   -26.154 28.410 1.00 1.00 ? 14 SWR Z H 1 
+HETATM 15 H H . SWR O 1 . ? 10.808  24.259  28.540 1.00 1.00 ? 15 SWR Z H 1 
+HETATM 16 H H . SWR P 1 . ? 19.436  13.225  28.767 1.00 1.00 ? 16 SWR Z H 1 
+HETATM 17 H H . SWR Q 1 . ? -8.569  -19.102 32.591 1.00 1.00 ? 17 SWR Z H 1 
+HETATM 18 H H . SWR R 1 . ? 1.576   -9.831  36.691 1.00 1.00 ? 18 SWR Z H 1 
+HETATM 19 H H . SWR S 1 . ? -16.507 -7.392  33.396 1.00 1.00 ? 19 SWR Z H 1 
+# 

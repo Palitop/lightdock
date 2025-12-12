@@ -13,20 +13,24 @@ class TestDDNA:
         self.golden_data_path = self.path / "golden_data"
         self.dna = DDNA()
 
-    def test_calculate_DNA_1AZP(self):
-        io = IOFactory(self.golden_data_path / "1azp_prot.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1azp_dna.pdb", "1azp_prot.pdb"),
+        ("1azp_dna.cif", "1azp_prot.cif")
+    ])
+    def test_calculate_DNA_1AZP(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1azp_prot.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(
-            chains, atoms, structure_file_name=(self.golden_data_path / "1azp_prot.pdb")
+            chains, atoms, structure_file_name=(self.golden_data_path / rec_file)
         )
-        io = IOFactory(self.golden_data_path / "1azp_dna.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1azp_dna.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(
-            chains, atoms, structure_file_name=(self.golden_data_path / "1azp_dna.pdb")
+            chains, atoms, structure_file_name=(self.golden_data_path / lig_file)
         )
         adapter = DDNAAdapter(receptor, ligand)
         assert 6.915295143021656 == pytest.approx(

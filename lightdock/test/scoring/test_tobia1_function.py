@@ -29,15 +29,19 @@ class TestTOBIA1:
         self.golden_data_path = self.path / "golden_data"
         self.tobia1 = TOBIA1()
 
-    def test_calculate_TOBIA1_1PPE(self):
-        io = IOFactory(self.golden_data_path / "1PPErec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1PPElig.pdb", "1PPErec.pdb"),
+        ("1PPElig.cif", "1PPErec.cif")
+    ])
+    def test_calculate_TOBIA1_1PPE(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1PPErec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1PPElig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1PPElig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = TOBIA1Adapter(receptor, ligand)
@@ -50,15 +54,19 @@ class TestTOBIA1:
             )
         )
 
-    def test_calculate_TOBIA1_1EAW(self):
-        io = IOFactory(self.golden_data_path / "1EAWrec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1EAWlig.pdb", "1EAWrec.pdb"),
+        ("1EAWlig.cif", "1EAWrec.cif")
+    ])
+    def test_calculate_TOBIA1_1EAW(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1EAWrec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1EAWlig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1EAWlig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = TOBIA1Adapter(receptor, ligand)
@@ -71,15 +79,19 @@ class TestTOBIA1:
             )
         )
 
-    def test_calculate_TOBIA1_1AY7(self):
-        io = IOFactory(self.golden_data_path / "1AY7rec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1AY7lig.pdb", "1AY7rec.pdb"),
+        ("1AY7lig.cif", "1AY7rec.cif")
+    ])
+    def test_calculate_TOBIA1_1AY7(self, rec_file, lig_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1AY7rec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1AY7lig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1AY7lig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = TOBIA1Adapter(receptor, ligand)
@@ -92,15 +104,19 @@ class TestTOBIA1:
             )
         )
 
-    def test_calculate_TOBIA1_1CZY(self):
-        io = IOFactory(self.golden_data_path / "1czy_protein.pdb").get_instance()
+    @pytest.mark.parametrize("protein, peptide", [
+        ("1czy_protein.pdb", "1czy_peptide.pdb"),
+        ("1czy_protein.cif", "1czy_peptide.cif")
+    ])
+    def test_calculate_TOBIA1_1CZY(self, protein, peptide):
+        io = IOFactory(self.golden_data_path / protein).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1czy_protein.pdb"
+            self.golden_data_path / protein
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1czy_peptide.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / peptide).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1czy_peptide.pdb"
+            self.golden_data_path / peptide
         )
         ligand = Complex(chains, atoms)
         adapter = TOBIA1Adapter(receptor, ligand)

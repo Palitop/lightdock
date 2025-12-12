@@ -13,25 +13,29 @@ class TestPyDock:
         self.golden_data_path = self.path / "golden_data"
         self.pydock = CPyDock()
 
-    def test_calculate_PyDock_1AY7(self):
-        io = IOFactory(self.golden_data_path / "1AY7_rec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1AY7_lig.pdb", "1AY7_rec.pdb")
+    ])
+    def test_calculate_PyDock_1AY7(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1AY7_rec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(
             chains,
             atoms,
-            structure_file_name=(self.golden_data_path / "1AY7_rec.pdb"),
+            structure_file_name=(self.golden_data_path / rec_file),
         )
-        io = IOFactory(self.golden_data_path / "1AY7_lig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1AY7_lig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(
             chains,
             atoms,
-            structure_file_name=(self.golden_data_path / "1AY7_lig.pdb"),
+            structure_file_name=(self.golden_data_path / lig_file),
         )
+
         adapter = CPyDockAdapter(receptor, ligand)
         assert -15.923994756 == pytest.approx(
             self.pydock(

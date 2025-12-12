@@ -83,7 +83,7 @@ def read_input_structure(
     else:
         file_names.append(file)
     for file_name in file_names:
-        log.info(f"Reading structure from {file_name} PDB file...")
+        log.info(f"Reading structure from {file_name} file...")
         io = IOFactory(file_name).get_instance()
         atoms, residues, chains = io.parse_complex_from_file(
             file_name, atoms_to_ignore, residues_to_ignore, verbose_parser

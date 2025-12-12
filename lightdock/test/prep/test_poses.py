@@ -1,5 +1,6 @@
 """Tests for poses related module"""
 
+import pytest
 import filecmp
 from pathlib import Path
 import numpy as np
@@ -496,14 +497,18 @@ class TestPoses:
         # We generate the expected poses
         assert np.allclose(expected, poses)
 
-    def test_calculate_initial_poses(self, tmp_path):
+    @pytest.mark.parametrize("lig_file, rec_file, folder_name", [
+        ("ligand.pdb", "receptor_membrane.pdb", "init"),
+        ("ligand.cif", "receptor_membrane.cif", "initcif")
+    ])
+    def test_calculate_initial_poses(self, lig_file, rec_file, folder_name, tmp_path):
 
-        file_name = self.golden_data_path / "3p0g" / "receptor_membrane.pdb"
+        file_name = self.golden_data_path / "3p0g" / rec_file
         io = IOFactory(file_name).get_instance()
-        print(type(io))
+
         _, _, chains = io.parse_complex_from_file(file_name)
         receptor = Complex(chains, structure_file_name=file_name)
-        file_name = self.golden_data_path / "3p0g" / "ligand.pdb"
+        file_name = self.golden_data_path / "3p0g" / lig_file
         io = IOFactory(file_name).get_instance()
         _, _, chains = io.parse_complex_from_file(file_name)
         ligand = Complex(chains, structure_file_name=file_name)
@@ -538,11 +543,11 @@ class TestPoses:
 
         assert filecmp.cmp(
             positions_files[0],
-            self.golden_data_path / "3p0g" / "init" / "initial_positions_0.dat",
+            self.golden_data_path / "3p0g" / folder_name / "initial_positions_0.dat",
         )
         assert filecmp.cmp(
             positions_files[1],
-            self.golden_data_path / "3p0g" / "init" / "initial_positions_1.dat",
+            self.golden_data_path / "3p0g" / folder_name / "initial_positions_1.dat",
         )
 
     def test_apply_restraints(self):

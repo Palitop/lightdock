@@ -1,7 +1,6 @@
 """Tests for Logger module"""
 
 import sys
-import pytest
 import filecmp
 from pathlib import Path
 from io import StringIO

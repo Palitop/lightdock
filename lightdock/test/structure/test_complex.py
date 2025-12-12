@@ -1,7 +1,6 @@
 """Tests for Complex class"""
 
 import pytest
-import filecmp
 import numpy as np
 from pathlib import Path
 from lightdock.structure.complex import Complex
@@ -10,6 +9,7 @@ from lightdock.structure.residue import Residue
 from lightdock.structure.atom import Atom
 from lightdock.mathutil.cython.quaternion import Quaternion
 from lightdock.ioutil.IOFactory import IOFactory
+from lightdock.test.helpers.test_utils import TestUtils
 
 
 class TestComplex:
@@ -151,43 +151,55 @@ class TestComplex:
 
         assert (expected_coordinates == protein.atom_coordinates).all()
 
-    def test_null_rotation(self, tmp_path):
+    @pytest.mark.parametrize("file, residue_file", [
+        ("rotated.pdb", "two_residues.pdb"),
+        ("rotated.cif", "two_residues.cif")
+    ])
+    def test_null_rotation(self, file, residue_file, tmp_path):
         protein = Complex(chains=self.chains2)
         q = Quaternion()
         protein.rotate(q)
-        file_name = tmp_path / "rotated.pdb"
+        file_name = tmp_path / file
         io = IOFactory(file_name).get_instance()
         io.write_to_file(
-            protein, tmp_path / "rotated.pdb", protein.atom_coordinates[0]
+            protein, tmp_path / file, protein.atom_coordinates[0]
         )
-        assert filecmp.cmp(
-            self.golden_data_path / "two_residues.pdb", tmp_path / "rotated.pdb"
+        assert TestUtils.compare_biological_content(
+            self.golden_data_path / residue_file, tmp_path / file
         )
 
-    def test_rotation_180_degrees_y_axis_origin_is_0(self, tmp_path):
+    @pytest.mark.parametrize("file, residue_file", [
+        ("rotated.pdb", "two_residues_y_180.pdb"),
+        ("rotated.cif", "two_residues_y_180.cif")
+    ])
+    def test_rotation_180_degrees_y_axis_origin_is_0(self, file, residue_file, tmp_path):
         """Expected file has been generated with Chimera fixing the rotation to the
         center of coordinates and modifying the column of atom name to have the
-        same padding as the write_pdb_file function.
+        same padding as the write_file function.
         """
         protein = Complex(chains=self.chains2)
         q = Quaternion(0, 0.0, 1.0, 0)
 
         protein.rotate(q)
 
-        file_name = tmp_path / "rotated.pdb"
+        file_name = tmp_path / file
         io = IOFactory(file_name).get_instance()
         io.write_to_file(
             protein, file_name, protein.atom_coordinates[0]
         )
-        assert filecmp.cmp(
-            self.golden_data_path / "two_residues_y_180.pdb",
-            tmp_path / "rotated.pdb",
+        assert TestUtils.compare_biological_content(
+            self.golden_data_path / residue_file,
+            tmp_path / file,
         )
 
-    def test_rotation_90_degrees_y_axis_90_degrees_x_axis_origin_is_0(self, tmp_path):
+    @pytest.mark.parametrize("file, residue_file", [
+        ("rotated.pdb", "two_residues_y_90_x_90.pdb"),
+        ("rotated.cif", "two_residues_y_90_x_90.cif")
+    ])
+    def test_rotation_90_degrees_y_axis_90_degrees_x_axis_origin_is_0(self, file, residue_file, tmp_path):
         """Expected file has been generated with Chimera fixing the rotation to the
         center of coordinates and modifying the column of atom name to have the
-        same padding as the write_pdb_file function.
+        same padding as the write_file function.
         """
         protein = Complex(chains=self.chains2)
         # Heading 90degrees (Y axis)
@@ -198,12 +210,12 @@ class TestComplex:
 
         protein.rotate(q)
 
-        file_name = tmp_path / "rotated.pdb"
+        file_name = tmp_path / file
         io = IOFactory(file_name).get_instance()
         io.write_to_file(
-            protein, tmp_path / "rotated.pdb", protein.atom_coordinates[0]
+            protein, tmp_path / file, protein.atom_coordinates[0]
         )
-        assert filecmp.cmp(
-            self.golden_data_path / "two_residues_y_90_x_90.pdb",
-            tmp_path / "rotated.pdb",
+        assert TestUtils.compare_biological_content(
+            self.golden_data_path / residue_file,
+            tmp_path / file,
         )

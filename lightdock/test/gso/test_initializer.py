@@ -203,3 +203,90 @@ class TestLightdockFromFileInitializer:
             swarm = initializer.generate_glowworms()
 
             assert swarm.get_size() > 0
+            
+
+class TestLightdockFromFileInitializerCIF:
+    def setup_class(self):
+        self.path = Path(__file__).absolute().parent
+        self.golden_data_path = self.path / "golden_data"
+        file_name = self.golden_data_path / "1PPErec.cif"
+        io = IOFactory(file_name).get_instance()
+        atoms, _, chains = io.parse_complex_from_file(file_name)
+        self.receptor = Complex(chains, atoms)
+        file_name = self.golden_data_path / "1PPElig.cif"
+        io = IOFactory(file_name).get_instance()
+        atoms, _, chains = io.parse_complex_from_file(file_name)
+        self.ligand = Complex(chains, atoms)
+        self.adapter = MJ3hAdapter(self.receptor, self.ligand)
+        self.scoring_function = MJ3h()
+
+    def test_create_swarm(self):
+        gso_parameters = GSOParameters()
+        number_of_glowworms = 5
+        seed = 324324
+        random_number_generator = MTGenerator(seed)
+        initializer = LightdockFromFileInitializer(
+            [self.adapter],
+            [self.scoring_function],
+            number_of_glowworms,
+            gso_parameters,
+            7,
+            self.golden_data_path / "initial_positions_1PPE.txt",
+            0.5,
+            0.5,
+            random_number_generator,
+            0.5,
+            10,
+            10,
+        )
+        swarm = initializer.generate_glowworms()
+
+        assert number_of_glowworms == swarm.get_size()
+
+    def test_generate_landscape_positions_without_coordinates(self):
+        with pytest.raises(GSOCoordinatesError):
+            gso_parameters = GSOParameters()
+            number_of_glowworms = 5
+            seed = 324324
+            random_number_generator = MTGenerator(seed)
+            initializer = LightdockFromFileInitializer(
+                self.adapter,
+                self.scoring_function,
+                number_of_glowworms,
+                gso_parameters,
+                7,
+                self.golden_data_path / "initial_positions_empty.txt",
+                0.5,
+                0.5,
+                random_number_generator,
+                0.5,
+                10,
+                10,
+            )
+            swarm = initializer.generate_glowworms()
+
+            assert swarm.get_size() > 0
+
+    def test_generate_landscape_positions_num_glowworms_different(self):
+        with pytest.raises(GSOCoordinatesError):
+            gso_parameters = GSOParameters()
+            number_of_glowworms = 10
+            seed = 324324
+            random_number_generator = MTGenerator(seed)
+            initializer = LightdockFromFileInitializer(
+                self.adapter,
+                self.scoring_function,
+                number_of_glowworms,
+                gso_parameters,
+                7,
+                self.golden_data_path / "initial_positions_1PPE.txt",
+                0.5,
+                0.5,
+                random_number_generator,
+                0.5,
+                10,
+                10,
+            )
+            swarm = initializer.generate_glowworms()
+
+            assert swarm.get_size() > 0

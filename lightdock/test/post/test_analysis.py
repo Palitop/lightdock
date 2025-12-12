@@ -6,8 +6,7 @@ from pathlib import Path
 from lightdock.post.analysis import (
     read_initial_positions_file,
     LightDockPose,
-    read_predictions_file,
-    LightDockPrediction,
+    read_predictions_file
 )
 from lightdock.error.lightdock_errors import GSOCoordinatesError
 
@@ -67,19 +66,19 @@ class TestInitialPositionsFiles:
 
     def test_read_initial_positions_file_malformed_nan(self):
         with pytest.raises(GSOCoordinatesError, match=r"NaN found in pose"):
-            poses = read_initial_positions_file(self.golden_data_path / 'malformed_10_glowworms_no_anm_nan.dat')
+            _ = read_initial_positions_file(self.golden_data_path / 'malformed_10_glowworms_no_anm_nan.dat')
 
     def test_read_initial_positions_file_malformed_missing(self):
         with pytest.raises(GSOCoordinatesError, match=r"Malformed line 2"):
-            poses = read_initial_positions_file(self.golden_data_path / 'malformed_10_glowworms_no_anm_less.dat')
+            _ = read_initial_positions_file(self.golden_data_path / 'malformed_10_glowworms_no_anm_less.dat')
 
     def test_read_initial_positions_file_malformed_string(self):
         with pytest.raises(GSOCoordinatesError, match=r"Malformed pose in line 10"):
-            poses = read_initial_positions_file(self.golden_data_path / 'malformed_10_glowworms_no_anm_string.dat')
+            _ = read_initial_positions_file(self.golden_data_path / 'malformed_10_glowworms_no_anm_string.dat')
 
     def test_read_initial_positions_file_not_found(self):
         with pytest.raises(GSOCoordinatesError, match=r"Cannot find or open"):
-            poses = read_initial_positions_file(self.golden_data_path / 'wrong_file_name.dat')
+            _ = read_initial_positions_file(self.golden_data_path / 'wrong_file_name.dat')
 
     def test_distance_trans(self):
         poses = read_initial_positions_file(self.golden_data_path / 'good_10_glowworms_no_anm.dat')
@@ -183,12 +182,12 @@ class TestPredictions:
 
     def test_read_predictions_file_wrong_anm(self):
         with pytest.raises(GSOCoordinatesError, match=r"Malformed line"):
-            predictions = read_predictions_file(self.golden_data_path / 'gso_100_good.out')
+            _ = read_predictions_file(self.golden_data_path / 'gso_100_good.out')
 
     def test_read_predictions_file_wrong_luciferin(self):
         with pytest.raises(GSOCoordinatesError, match=r"Malformed prediction"):
-            predictions = read_predictions_file(self.golden_data_path / 'gso_100_wrong_luciferin.out', 10, 10)
+            _ = read_predictions_file(self.golden_data_path / 'gso_100_wrong_luciferin.out', 10, 10)
 
     def test_read_predictions_file_not_found(self):
         with pytest.raises(GSOCoordinatesError, match=r"Cannot find or open"):
-            poses = read_predictions_file(self.golden_data_path / 'wrong_file_name.dat')
+            _ = read_predictions_file(self.golden_data_path / 'wrong_file_name.dat')

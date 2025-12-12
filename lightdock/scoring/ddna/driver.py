@@ -411,6 +411,8 @@ atom_types = [
     "Met",
 ]
 
+translate = {"OP1": "O1P", "OP2": "O2P"}
+
 
 class DDNAPotential(object):
     """Loads DDNA potentials information"""
@@ -477,6 +479,8 @@ class DDNAAdapter(ModelAdapter):
 
                 for rec_atom in residue.atoms:
                     try:
+                        if rec_atom.name in translate:
+                            rec_atom.name = translate[rec_atom.name]
                         ddna_atom_type = atom_types.index(
                             atom_map[rec_atom.residue_name][rec_atom.name]
                         )

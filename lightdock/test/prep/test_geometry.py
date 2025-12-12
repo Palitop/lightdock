@@ -1,6 +1,6 @@
 """Tests for geometry module"""
 
-import pytest
+
 from pathlib import Path
 import filecmp
 from lightdock.prep.geometry import sphere, axis, create_bild_file

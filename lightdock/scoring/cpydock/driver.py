@@ -94,7 +94,9 @@ class CPyDockAdapter(ModelAdapter):
                 if atom_name in amber.translate:
                     atom_name = amber.translate[atom.name]
                 atom_id = "%s-%s" % (res_name, atom_name)
+                print("Atom ID:", atom_id)
                 atom.amber_type = amber.amber_types[atom_id]
+                print("Amber type:", atom.amber_type)
                 atom.charge = amber.charges[atom_id]
                 atom.mass = amber.masses[atom.amber_type]
                 atom.vdw_energy = vdw.vdw_energy[atom.amber_type]

@@ -7,7 +7,6 @@ from lightdock.ioutil.IOFactory import IOFactory
 from lightdock.structure.complex import Complex
 from lightdock.structure.nm import calculate_nmodes, write_nmodes, read_nmodes
 from lightdock.constants import STARTING_NM_SEED, DEFAULT_ANM_RMSD
-from lightdock.error.lightdock_errors import NormalModesCalculationError
 
 
 class TestNM:
@@ -15,14 +14,15 @@ class TestNM:
         self.path = Path(__file__).absolute().parent
         self.golden_data_path = self.path / "golden_data"
 
-    def test_calculate_anm_protein_1(self):
-        pdb_file = self.golden_data_path / "nm_prot" / "2UUY_lig.pdb"
-        io = IOFactory(pdb_file).get_instance()
-        _, _, chains = io.parse_complex_from_file(pdb_file)
+    @pytest.mark.parametrize("file", ["2UUY_lig.pdb", "2UUY_lig.cif"])
+    def test_calculate_anm_protein_1(self, file):
+        file_name = self.golden_data_path / "nm_prot" / file
+        io = IOFactory(file_name).get_instance()
+        _, _, chains = io.parse_complex_from_file(file_name)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
-            pdb_file,
+            file_name,
             n_modes=10,
             rmsd=DEFAULT_ANM_RMSD,
             seed=STARTING_NM_SEED,
@@ -35,14 +35,15 @@ class TestNM:
 
         assert np.allclose(expected_nmodes, nmodes)
 
-    def test_calculate_anm_protein_2(self):
-        pdb_file = self.golden_data_path / "nm_prot" / "2UUY_rec.pdb"
-        io = IOFactory(pdb_file).get_instance()
-        _, _, chains = io.parse_complex_from_file(pdb_file)
+    @pytest.mark.parametrize("file", ["2UUY_rec.pdb", "2UUY_rec.cif"])
+    def test_calculate_anm_protein_2(self, file):
+        file_name = self.golden_data_path / "nm_prot" / file
+        io = IOFactory(file_name).get_instance()
+        _, _, chains = io.parse_complex_from_file(file_name)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
-            pdb_file,
+            file_name,
             n_modes=10,
             rmsd=DEFAULT_ANM_RMSD,
             seed=STARTING_NM_SEED,
@@ -55,14 +56,15 @@ class TestNM:
 
         assert np.allclose(expected_nmodes, nmodes)
 
-    def test_calculate_anm_dna(self):
-        pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb"
-        io = IOFactory(pdb_file).get_instance()
-        _, _, chains = io.parse_complex_from_file(pdb_file)
+    @pytest.mark.parametrize("file", ["1DIZ_lig.pdb", "1DIZ_lig.cif"])
+    def test_calculate_anm_dna(self, file):
+        file_name = self.golden_data_path / "nm_dna" / file
+        io = IOFactory(file_name).get_instance()
+        _, _, chains = io.parse_complex_from_file(file_name)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
-            pdb_file,
+            file_name,
             n_modes=10,
             rmsd=DEFAULT_ANM_RMSD,
             seed=STARTING_NM_SEED,
@@ -75,14 +77,15 @@ class TestNM:
 
         assert np.allclose(expected_nmodes, nmodes)
 
-    def test_read_write(self, tmp_path):
-        pdb_file = self.golden_data_path / "nm_dna" / "1DIZ_lig.pdb"
-        io = IOFactory(pdb_file).get_instance()
-        _, _, chains = io.parse_complex_from_file(pdb_file)
+    @pytest.mark.parametrize("file", ["1DIZ_lig.pdb", "1DIZ_lig.cif"])
+    def test_read_write(self, file, tmp_path):
+        file_name = self.golden_data_path / "nm_dna" / file
+        io = IOFactory(file_name).get_instance()
+        _, _, chains = io.parse_complex_from_file(file_name)
         molecule = Complex(chains)
 
         nmodes = calculate_nmodes(
-            pdb_file,
+            file_name,
             n_modes=10,
             rmsd=DEFAULT_ANM_RMSD,
             seed=STARTING_NM_SEED,

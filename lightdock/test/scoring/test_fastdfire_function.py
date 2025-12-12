@@ -13,15 +13,18 @@ class TestFastDFIRE:
         self.golden_data_path = self.path / "golden_data"
         self.dfire = DFIRE()
 
-    def test_calculate_FastDFIRE_1PPE(self):
-        io = IOFactory(self.golden_data_path / "1PPErec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1PPElig.pdb", "1PPErec.pdb")
+    ])
+    def test_calculate_FastDFIRE_1PPE(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1PPErec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1PPElig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1PPElig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = DFIREAdapter(receptor, ligand)
@@ -34,15 +37,18 @@ class TestFastDFIRE:
             )
         )
 
-    def test_calculate_FastDFIRE_1EAW(self):
-        io = IOFactory(self.golden_data_path / "1EAWrec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1EAWlig.pdb", "1EAWrec.pdb")
+    ])
+    def test_calculate_FastDFIRE_1EAW(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1EAWrec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1EAWlig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1EAWlig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = DFIREAdapter(receptor, ligand)
@@ -55,15 +61,18 @@ class TestFastDFIRE:
             )
         )
 
-    def test_calculate_FastDFIRE_1AY7(self):
-        io = IOFactory(self.golden_data_path / "1AY7rec.pdb").get_instance()
+    @pytest.mark.parametrize("lig_file, rec_file", [
+        ("1AY7lig.pdb", "1AY7rec.pdb")
+    ])
+    def test_calculate_FastDFIRE_1AY7(self, lig_file, rec_file):
+        io = IOFactory(self.golden_data_path / rec_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1AY7rec.pdb"
+            self.golden_data_path / rec_file
         )
         receptor = Complex(chains, atoms)
-        io = IOFactory(self.golden_data_path / "1AY7lig.pdb").get_instance()
+        io = IOFactory(self.golden_data_path / lig_file).get_instance()
         atoms, _, chains = io.parse_complex_from_file(
-            self.golden_data_path / "1AY7lig.pdb"
+            self.golden_data_path / lig_file
         )
         ligand = Complex(chains, atoms)
         adapter = DFIREAdapter(receptor, ligand)

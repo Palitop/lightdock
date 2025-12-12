@@ -1,11 +1,11 @@
 """Tests for starting_points module"""
 
 import pytest
-import filecmp
 from pathlib import Path
 from lightdock.prep.starting_points import points_on_sphere, calculate_surface_points
 from lightdock.structure.complex import Complex
 from lightdock.ioutil.IOFactory import IOFactory
+from lightdock.test.helpers.test_utils import TestUtils
 
 
 class TestStartingPoints:
@@ -27,24 +27,33 @@ class TestStartingPoints:
             assert correct[1] == pytest.approx(point[1])
             assert correct[2] == pytest.approx(point[2])
 
-    def test_create_file_from_points(self, tmp_path):
+    @pytest.mark.parametrize("file, tmp_file", [
+        ("100_points.pdb", "points.pdb"),
+        ("100_points.cif", "points.cif")
+    ])
+    def test_create_file_from_points(self, file, tmp_file, tmp_path):
         points = points_on_sphere(100)
-        file_name = tmp_path / "points.pdb"
+        file_name = tmp_path / tmp_file
         io = IOFactory(file_name).get_instance()
         io.create_file_from_points(file_name, points)
-        assert filecmp.cmp(
-            self.golden_data_path / "100_points.pdb", tmp_path / "points.pdb"
+
+        assert TestUtils.compare_biological_content(
+            self.golden_data_path / file, tmp_path / tmp_file
         )
 
-    def test_calculate_starting_points(self, tmp_path):
+    @pytest.mark.parametrize("lig_file, rec_file, file, tmp_file", [
+        ("1PPE_lig.pdb", "1PPE_rec.pdb", "starting_points.pdb", "points.pdb"),
+        ("1PPE_lig.cif", "1PPE_rec.cif", "starting_points.cif", "points.cif")
+    ])
+    def test_calculate_starting_points(self, lig_file, rec_file, file, tmp_file, tmp_path):
         # Receptor
-        file_name = self.golden_data_path / "1PPE_rec.pdb"
+        file_name = self.golden_data_path / rec_file
         io = IOFactory(file_name).get_instance()
         atoms, _, chains = io.parse_complex_from_file(file_name)
         receptor = Complex(chains, atoms, structure_file_name=file_name)
 
         # Ligand
-        file_name = self.golden_data_path / "1PPE_lig.pdb"
+        file_name = self.golden_data_path / lig_file
         io = IOFactory(file_name).get_instance()
         atoms, _, chains = io.parse_complex_from_file(file_name)
         ligand = Complex(chains, atoms, structure_file_name=file_name)
@@ -56,9 +65,10 @@ class TestStartingPoints:
         assert 50.213210831413676 == pytest.approx(rec_diameter)
         assert 27.855559534857672 == pytest.approx(lig_diameter)
 
-        file_name = tmp_path / "points.pdb"
+        file_name = tmp_path / tmp_file
         io = IOFactory(file_name).get_instance()
-        io.create_file_from_points(tmp_path / "points.pdb", starting_points)
-        assert filecmp.cmp(
-            self.golden_data_path / "starting_points.pdb", tmp_path / "points.pdb"
+        io.create_file_from_points(tmp_path / tmp_file, starting_points)
+
+        assert TestUtils.compare_biological_content(
+            self.golden_data_path / file, tmp_path / tmp_file
         )

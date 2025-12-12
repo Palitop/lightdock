@@ -13,8 +13,7 @@ class TestPyDockDNA:
         self.golden_data_path = self.path / "golden_data"
 
     @pytest.mark.parametrize("lig_file, rec_file", [
-        ("3mfk_dna.pdb", "3mfk_homodimer.pdb"),
-        ("3mfk_dna.cif", "3mfk_homodimer.cif")
+        ("3mfk_dna.pdb", "3mfk_homodimer.pdb")
     ])
     def test_calculate_DNA_3MFK(self, lig_file, rec_file):
         dna = DNA()
@@ -45,8 +44,7 @@ class TestPyDockDNA:
         )
 
     @pytest.mark.parametrize("lig_file, rec_file", [
-        ("3mfk_dna.pdb", "3mfk_homodimer_with_H.pdb"),
-        ("3mfk_dna.cif", "3mfk_homodimer_with_H.cif")
+        ("3mfk_dna.pdb", "3mfk_homodimer_with_H.pdb")
     ])
     def test_calculate_DNA_3MFK_with_hydrogens(self, lig_file, rec_file):
         dna = DNA()

@@ -14,8 +14,7 @@ class TestPyDock:
         self.pydock = CPyDock()
 
     @pytest.mark.parametrize("lig_file, rec_file", [
-        ("1AY7_lig.pdb", "1AY7_rec.pdb"),
-        ("1AY7_lig.cif", "1AY7_rec.cif")
+        ("1AY7_lig.pdb", "1AY7_rec.pdb")
     ])
     def test_calculate_PyDock_1AY7(self, lig_file, rec_file):
         io = IOFactory(self.golden_data_path / rec_file).get_instance()

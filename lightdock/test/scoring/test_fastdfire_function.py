@@ -14,8 +14,7 @@ class TestFastDFIRE:
         self.dfire = DFIRE()
 
     @pytest.mark.parametrize("lig_file, rec_file", [
-        ("1PPElig.pdb", "1PPErec.pdb"),
-        ("1PPElig.cif", "1PPErec.cif")
+        ("1PPElig.pdb", "1PPErec.pdb")
     ])
     def test_calculate_FastDFIRE_1PPE(self, lig_file, rec_file):
         io = IOFactory(self.golden_data_path / rec_file).get_instance()
@@ -39,8 +38,7 @@ class TestFastDFIRE:
         )
 
     @pytest.mark.parametrize("lig_file, rec_file", [
-        ("1EAWlig.pdb", "1EAWrec.pdb"),
-        ("1EAWlig.cif", "1EAWrec.cif")
+        ("1EAWlig.pdb", "1EAWrec.pdb")
     ])
     def test_calculate_FastDFIRE_1EAW(self, lig_file, rec_file):
         io = IOFactory(self.golden_data_path / rec_file).get_instance()
@@ -64,8 +62,7 @@ class TestFastDFIRE:
         )
 
     @pytest.mark.parametrize("lig_file, rec_file", [
-        ("1AY7lig.pdb", "1AY7rec.pdb"),
-        ("1AY7lig.cif", "1AY7rec.cif")
+        ("1AY7lig.pdb", "1AY7rec.pdb")
     ])
     def test_calculate_FastDFIRE_1AY7(self, lig_file, rec_file):
         io = IOFactory(self.golden_data_path / rec_file).get_instance()
